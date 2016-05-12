@@ -1,0 +1,19 @@
+#package /corto/mongodb
+
+class Connector : core/mount, hidden::
+    int16 construct()
+    alias mount: mount/mount
+    alias mask : mount/mask
+    dbname : string
+    collection : string
+    keyname : string
+    objtype : string
+    user : string
+    password: string
+    hostaddr: string
+    port : uint16
+    resultIter onRequest(core/request request)
+    void onDeclare(object observable)
+    void onUpdate(object observable)
+    void onDelete(object observable)
+    object onResume(string parent, string name, object o)

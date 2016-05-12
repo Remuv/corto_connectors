@@ -1,0 +1,5 @@
+/corto/test
+/corto/mongodb
+/vendor/mongo/bson
+/vendor/mongo/cdriver
+/vendor/mongo/cxx

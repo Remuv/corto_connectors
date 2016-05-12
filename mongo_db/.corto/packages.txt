@@ -1,0 +1,4 @@
+/corto/fmt/json
+/vendor/mongo/bson
+/vendor/mongo/cdriver
+/vendor/mongo/cxx

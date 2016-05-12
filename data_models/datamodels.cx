@@ -1,0 +1,15 @@
+#package /corto/datamodels
+
+class server_Data::
+    _id : string, hidden
+    interface : string
+    type : string
+    rin : string
+    alias : string
+    access : string
+    __v : string
+
+class sockjs_Data::
+    TYPE : string
+    UUID : string
+    VALUE : string
