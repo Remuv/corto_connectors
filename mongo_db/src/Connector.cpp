@@ -26,6 +26,7 @@ corto_int16 _mongodb_Connector_construct(
 {
 /* $begin(corto/mongodb/Connector/construct) */
     if (!corto_checkAttr(_this, CORTO_ATTR_SCOPED)) {
+
         corto_seterr("mongodb/Connector objects must be SCOPED");
         return -1;
     }

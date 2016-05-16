@@ -16,7 +16,12 @@ public:
 
     CMongoClient(std::string user, std::string password, std::string hostaddr, std::string port) : inst()
     {
-        std::string uri = "mongodb://"+user+":"+password+"@"+hostaddr+":"+port;
+        std::string auth = "";
+        if (!user.empty())
+        {
+            auth = user+":"+password+"@";
+        }
+        std::string uri = "mongodb://"+auth+hostaddr+":"+port;
         conn = mongocxx::client(mongocxx::uri(uri));
     }
 };
