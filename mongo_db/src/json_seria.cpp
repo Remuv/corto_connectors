@@ -1,5 +1,9 @@
 #include "mongo_util.h"
 
+#include <mongocxx/stdx.hpp>
+#include <bsoncxx/json.hpp>
+#include <bsoncxx/stdx/string_view.hpp>
+
 namespace mongo_json
 {
     corto_int16 serializeNumber(

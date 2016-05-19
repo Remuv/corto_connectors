@@ -21,6 +21,16 @@ CORTO_MONGODB_EXPORT corto_int16 _mongodb_Connector_construct(
     mongodb_Connector _this);
 #define mongodb_Connector_construct(_this) _mongodb_Connector_construct(mongodb_Connector(_this))
 
+CORTO_MONGODB_EXPORT corto_string _mongodb_Connector_FindById(
+    mongodb_Connector _this,
+    corto_string id);
+#define mongodb_Connector_FindById(_this, id) _mongodb_Connector_FindById(mongodb_Connector(_this), id)
+
+CORTO_MONGODB_EXPORT mongodb_stringList _mongodb_Connector_FindByIds(
+    mongodb_Connector _this,
+    mongodb_stringList ids);
+#define mongodb_Connector_FindByIds(_this, ids) _mongodb_Connector_FindByIds(mongodb_Connector(_this), ids)
+
 CORTO_MONGODB_EXPORT corto_void _mongodb_Connector_onDeclare(
     mongodb_Connector _this,
     corto_object observable);

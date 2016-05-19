@@ -10,13 +10,9 @@
 
 /* $header() */
 #include "mongo_util.h"
-#include <corto/fmt/json/json.h>
 
-#include <mongocxx/instance.hpp>
-#include <mongocxx/client.hpp>
-#include <mongocxx/stdx.hpp>
 #include <bsoncxx/json.hpp>
-#include <bsoncxx/stdx/string_view.hpp>
+#include <bsoncxx/builder/stream/array.hpp>
 
 extern corto_uint8 MONGOCLIENT_HANDLE;
 /* $end */
@@ -56,6 +52,59 @@ corto_int16 _mongodb_Connector_construct(
     corto_mount_setContentType(_this, "text/json");
     corto_mount(_this)->kind = CORTO_SINK;
     return corto_mount_construct(_this);
+/* $end */
+}
+
+corto_string _mongodb_Connector_FindById(
+    mongodb_Connector _this,
+    corto_string id)
+{
+/* $begin(corto/mongodb/Connector/FindById) */
+    CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
+    mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
+
+    bsoncxx::builder::stream::document filter_builder;
+    filter_builder << "_id" << bsoncxx::oid(std::string(id)) << bsoncxx::builder::stream::finalize;
+
+    mongocxx::cursor cursor = coll.find(filter_builder.view());
+
+    for (mongocxx::cursor::iterator itr = cursor.begin(); itr != cursor.end(); itr++)
+    {
+        corto_string json = corto_strdup((char*)bsoncxx::to_json(*itr).c_str());
+        corto_trace("%s", json);
+        return json;
+    }
+    return NULL;
+/* $end */
+}
+
+mongodb_stringList _mongodb_Connector_FindByIds(
+    mongodb_Connector _this,
+    mongodb_stringList ids)
+{
+/* $begin(corto/mongodb/Connector/FindByIds) */
+    mongodb_stringList list = corto_llNew();
+
+    CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
+    mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
+
+    bsoncxx::builder::stream::array arrayIds;
+    mongodb_stringListForeach(ids, id)
+    {
+        arrayIds << bsoncxx::oid(std::string(id));
+    }
+    bsoncxx::builder::stream::document builder;
+    builder << "_id" << bsoncxx::builder::stream::open_document << "$in"
+            << bsoncxx::builder::stream::open_array << bsoncxx::builder::concatenate_array{arrayIds.view()} << bsoncxx::builder::stream::close_array
+            << bsoncxx::builder::stream::close_document;
+
+    mongocxx::cursor cursor = coll.find(builder.view());
+    for (mongocxx::cursor::iterator itr = cursor.begin(); itr != cursor.end(); itr++)
+    {
+        corto_string json = corto_strdup((char*)bsoncxx::to_json(*itr).c_str());
+        corto_llInsert(list, json);
+    }
+    return list;
 /* $end */
 }
 

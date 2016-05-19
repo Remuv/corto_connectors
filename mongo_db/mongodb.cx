@@ -1,5 +1,7 @@
 #package /corto/mongodb
 
+list stringList{string}
+
 class Connector : core/mount, hidden::
     int16 construct()
     alias mount: mount/mount
@@ -17,3 +19,5 @@ class Connector : core/mount, hidden::
     void onUpdate(object observable)
     void onDelete(object observable)
     object onResume(string parent, string name, object o)
+    string FindById(string id)
+    mongodb::stringList FindByIds(mongodb::stringList ids)

@@ -1,12 +1,10 @@
 #ifndef __MONGO_CLIENT_H__
 #define __MONGO_CLIENT_H__
 
-#include <corto/corto.h>
+#include "mongodb.h"
+
 #include <mongocxx/instance.hpp>
 #include <mongocxx/client.hpp>
-#include <corto/mongodb/mongodb.h>
-#include <corto/fmt/json/json.h>
-
 
 class CMongoClient
 {
@@ -40,5 +38,6 @@ namespace mongo_json{
     corto_int16 json_toCorto(corto_object o, corto_string json);
 }
 
+void MongodbFind(mongodb_Connector _this, std::string filter);
 
 #endif

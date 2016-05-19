@@ -1,5 +1,6 @@
 #include "mongo_util.h"
 
+#include <bsoncxx/json.hpp>
 
 //Custom json deserializing
 namespace mongo_json
