@@ -1,0 +1,7 @@
+TARGET = 'corto_test_temp'
+
+INCLUDE = ["$(CORTO_INCLUDE)"]
+
+LANGUAGE = "c4cpp"
+
+require "#{ENV['CORTO_BUILD']}/application"

@@ -1,0 +1,29 @@
+#package /corto/dds
+
+bitmask DdsType::
+    Publisher,
+    Subscriber
+
+class Connector : core/mount, hidden::
+    alias mount : mount/mount
+    type : DdsType
+    topic : string
+    ptr : word, private
+    publisher : word, private
+    subscriber : word, private
+
+    request_publisher : word, private
+    request_subscriber : word, private
+
+    data_handler : word, private
+    request_handler : word, private
+
+    int16 construct()
+    void destruct()
+
+    void onDeclare(object observable)
+    void onUpdate(object observable)
+    void onDelete(object observable)
+    object onResume(string parent, string name, object o)
+
+    void sendRequest(string name, string type, string value)

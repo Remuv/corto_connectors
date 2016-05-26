@@ -64,7 +64,7 @@ corto_string _mongodb_Connector_FindById(
     mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
 
     bsoncxx::builder::stream::document filter_builder;
-    filter_builder << "_id" << bsoncxx::oid(std::string(id)) << bsoncxx::builder::stream::finalize;
+    filter_builder << "_id" << bsoncxx::oid(std::string(id));
 
     mongocxx::cursor cursor = coll.find(filter_builder.view());
 
