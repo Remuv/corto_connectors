@@ -1,21 +1,11 @@
-# /corto/mongodb
+# /corto/dds
 
 ## Connector
-### collection
 ### construct()
 #### Returns
-### dbname
-### FindById(string id)
-#### id
-#### Returns
-### FindByIds(/corto/mongodb/stringList ids)
-#### ids
-#### Returns
-### hostaddr
-### keyname
-### mask
+### dds_adapter
+### destruct()
 ### mount
-### objtype
 ### onDeclare(object observable)
 #### observable
 ### onDelete(object observable)
@@ -30,8 +20,13 @@
 #### Returns
 ### onUpdate(object observable)
 #### observable
-### password
-### port
-### user
+### sendRequest(string name,string type,string value)
+#### name
+#### type
+#### value
+### topic
+### type
 
-## stringList
+## DdsType
+### Publisher
+### Subscriber

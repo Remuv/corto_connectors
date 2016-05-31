@@ -16,7 +16,7 @@ corto_void _test_ddsConnectorTest_StartTest(
     corto_object mount = corto_voidCreateChild(NULL, "mount");
     //_parent, corto_string _name, corto_object mount, dds_DdsType type_1, corto_string topic
     dds_Connector connector = dds_ConnectorCreateChild(NULL, "net", mount, Dds_Publisher | Dds_Subscriber, "Net");
-    
+    dds_Connector_Init(connector);
     test_Data data = test_DataCreateChild(mount, "data1", "Hello");
 
     for (int i = 0; i < 1000; i++)

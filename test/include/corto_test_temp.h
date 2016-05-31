@@ -18,13 +18,13 @@
 #include <corto/dds/dds.h>
 #include <corto/test/test.h>
 #include <corto/datamodels/datamodels.h>
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /* $header() */
 /* You can put your own definitions here! */
 /* $end */
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifdef __cplusplus
 }

@@ -8,19 +8,12 @@ class Connector : core/mount, hidden::
     alias mount : mount/mount
     type : DdsType
     topic : string
-    ptr : word, private
-    publisher : word, private
-    subscriber : word, private
-
-    request_publisher : word, private
-    request_subscriber : word, private
-
-    data_handler : word, private
-    request_handler : word, private
+    dds_adapter : word, private
 
     int16 construct()
     void destruct()
 
+    resultIter onRequest(core/request request)
     void onDeclare(object observable)
     void onUpdate(object observable)
     void onDelete(object observable)

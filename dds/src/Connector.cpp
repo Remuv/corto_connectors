@@ -10,12 +10,21 @@
 
 /* $header() */
 
+#include <functional>
+#include <memory>
+#include <sstream>
 
-class CSyncAdapter : std::shared_from_this<CSyncAdapter>
+/*
+    core::InstanceHandle *handler, throws an error on delete handler.
+    Had to move all the dds_connector code to a single class CSyncAdapter
+*/
+class CSyncAdapter : public std::enable_shared_from_this<CSyncAdapter>
 {
 private:
+    typedef std::map<std::string, core::InstanceHandle> HandlerMap;
+    dds_Connector *connector;
+
     std::string m_ddsTopic;
-    dds_Connector *m_pConnector;
 
     CCortoDataPublisher *m_pDataPublisher;
     CCortoDataSubscriber *m_pDataSubscriber;
@@ -23,26 +32,27 @@ private:
     CCortoRequestPublisher *m_pRequestPublisher;
     CCortoRequestSubscriber *m_pRequestSubscriber;
 
-    core::InstanceHandle m_dataHandler;
-    core::InstanceHandle m_requestHandler;
+    HandlerMap m_dataHandlers;
+    HandlerMap m_requestHandlers;
+
+    std::shared_ptr<CSyncAdapter> getptr()
+    {
+        return shared_from_this();
+    }
 
 public:
-    CSyncAdapter(dds_Connector *connector, std::string topic) :
-            m_pDataSubscriber(nullptr),
+    CSyncAdapter(std::string topic) :
             m_pDataPublisher(nullptr),
-            m_pRequestSubscriber(nullptr),
-            m_pRequestPublisher(nullptr)
+            m_pDataSubscriber(nullptr),
+            m_pRequestPublisher(nullptr),
+            m_pRequestSubscriber(nullptr)
     {
-        m_pConnector = m_pConnector;
-        m_ddstopic = topic;
+        m_ddsTopic = topic;
     }
 
-    ~CSyncAdapter()
-    {
+    ~CSyncAdapter(){}
 
-    }
-
-    bool SetUpDataPublisher()
+    bool SetUpDataPublisher(CCortoRequestSubscriber::DataNotifyCallback callback)
     {
         m_pDataPublisher = new CCortoDataPublisher("StoreSync_"+m_ddsTopic);
         m_pRequestSubscriber = new CCortoRequestSubscriber("StoreRequest_"+m_ddsTopic);
@@ -53,163 +63,342 @@ public:
             delete m_pRequestSubscriber;
             return false;
         }
-        CCortoRequestSubscriber::NewDataDelegate delegate(getptr(),
-                                     [&] (CCortoRequestSubscriber::Sample &sample){
-                                         dds_Connector_OnRequest(m_pConnector, sample);
-                                     });
-        subscriber->RegisterNewDataSubscriber(delegate);
+        CCortoRequestSubscriber::NewDataDelegate delegate(getptr(), callback);
+        m_pRequestSubscriber->RegisterNewDataSubscriber(delegate);
         return true;
     }
 
-    bool SetUpDataSubscriber()
+    bool SetUpDataSubscriber(CCortoDataSubscriber::DataNotifyCallback callback)
     {
         m_pDataSubscriber = new CCortoDataSubscriber("StoreSync_"+m_ddsTopic);
         m_pRequestPublisher = new CCortoRequestPublisher("StoreRequest_"+m_ddsTopic);
 
         if (m_pDataSubscriber->Initialize() == false || m_pRequestPublisher->Initialize() == false)
         {
-            delete subscriber;
-            delete publisher;
+            delete m_pDataSubscriber;
+            delete m_pRequestPublisher;
             return false;
         }
-        CCortoDataSubscriber::NewDataDelegate delegate( getptr(),
-                                     [&] (CCortoDataSubscriber::Sample &sample){
-                                         dds_Connector_OnData(m_pConnector, sample);
-                                     });
+        CCortoDataSubscriber::NewDataDelegate delegate( getptr(), callback);
         m_pDataSubscriber->RegisterNewDataSubscriber(delegate);
-        return false;
+        return true;
     }
 
-    SendData(std::string name, std::string type, std::value)
+    void SendData(std::string name, std::string type, std::string value)
     {
-
+        if (m_pDataPublisher == nullptr)
+        {
+            return;
+        }
+        Corto::Data data(name, type, value);
+        core::InstanceHandle handler = m_dataHandlers[data.name()];
+        if (handler.is_nil())
+        {
+            handler = m_pDataPublisher->RegisterInstance(data);
+            m_dataHandlers[data.name()] = handler;
+        }
+        m_pDataPublisher->Write(data, handler);
     }
 
-    SendRequest(std::string name, std::string type, std::value)
+    void SendRequest(std::string name, std::string type, std::string value)
     {
+        if (m_pRequestPublisher == nullptr)
+        {
+            return;
+        }
+        Corto::Request request(name, type, value);
+        core::InstanceHandle handler = m_requestHandlers[request.name()];
 
+        if (handler.is_nil())
+        {
+            handler = m_pRequestPublisher->RegisterInstance(request);
+            m_requestHandlers[request.name()] = handler;
+        }
+        m_pRequestPublisher->Write(request, handler);
     }
 
-}
+    void Close()
+    {
+        if (m_pRequestSubscriber != nullptr)
+        {
+            m_pRequestSubscriber->UnregisterNewDataSubscriber(getptr());
+            delete m_pRequestSubscriber;
+            m_pRequestSubscriber = nullptr;
+        }
 
+        if (m_pDataSubscriber != nullptr)
+        {
+            m_pDataSubscriber->UnregisterNewDataSubscriber(getptr());
+            delete m_pDataSubscriber;
+            m_pDataSubscriber = nullptr;
+        }
 
+        if (m_pDataPublisher != nullptr)
+        {
+            HandlerMap::iterator handlerIt;
+            for (handlerIt = m_dataHandlers.begin();
+                 handlerIt != m_dataHandlers.end();
+                 handlerIt++)
+            {
+                m_pDataPublisher->UnregisterInstance(handlerIt->second);
+            }
+            delete m_pDataPublisher;
+            m_pDataPublisher = nullptr;
+        }
 
+        if (m_pRequestPublisher != nullptr)
+        {
+            HandlerMap::iterator handlerIt;
+            for (handlerIt = m_requestHandlers.begin();
+                 handlerIt != m_requestHandlers.end();
+                 handlerIt++)
+            {
+                m_pRequestPublisher->UnregisterInstance(handlerIt->second);
+            }
+            delete m_pRequestPublisher;
+            m_pRequestPublisher = nullptr;
+        }
+    }
+};
 
-#define cortoSharedPtr_int(obj) ((std::shared_ptr<int>*)obj)
-#define cortoData_publisher(obj) ((CCortoDataPublisher*)obj)
-#define cortoData_subscriber(obj) ((CCortoDataSubscriber*)obj)
-#define cortoRequest_publisher(obj) ((CCortoRequestPublisher*)obj)
-#define cortoRequest_subscriber(obj) ((CCortoRequestSubscriber*)obj)
-#define cortoCore_instanceHandle(obj) ((core::InstanceHandle*)obj)
-
+#define StdSharedPtr_SyncAdapter(obj)((std::shared_ptr<CSyncAdapter>*)obj)
 #define NULLWORD 0
+
+corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
+{
+    if(_this->dds_adapter == NULLWORD)
+    {
+        return;
+    }
+    std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
+
+    corto_id name;
+    corto_id type;
+    corto_path(name, corto_mount(_this)->mount, obj, ".");
+    corto_fullpath(type, corto_typeof(obj));
+    corto_string cstr = corto_str(obj, 0);
+    std::string value;
+    if(cstr[0] == '{')
+    {
+        value = std::string(cstr);
+    }
+    else
+    {
+        value = "{"+std::string(cstr)+"}";
+    }
+    (*adapter)->SendData(name, type, value);
+    corto_dealloc(cstr);
+}
 
 corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber::Sample &sample)
 {
-    corto_trace("OnRequest");
+    Corto::Request request = sample.data();
 
+    if (strcmp(request.type().c_str(), "UPDATE") == 0)
+    {
+        corto_object obj = corto_resolve(corto_mount(_this)->mount, (char*)request.name().c_str());
+        if (obj != nullptr)
+        {
+            const char *name = request.name().c_str();
+            const char *value = request.value().c_str();
+
+            if (corto_updateBegin(obj) == 0)
+            {
+                if (corto_fromStr(&obj, (char*)value) != 0)
+                {
+                    corto_error("Failed to deserialize for %s: %s (%s)", (char*)name, corto_lasterr(), (char*)value);
+                }
+                corto_updateEnd(obj);
+            }
+            corto_release(obj);
+        }
+    }
+    else if (strcmp(request.type().c_str(), "REQUEST") == 0)
+    {
+        if (strcmp(request.name().c_str(), "*") == 0)
+        {
+            corto_object obj = NULL;
+            corto_id name;
+            corto_id type;
+            corto_id path;
+            corto_fullpath(path, corto_mount(_this)->mount);
+            corto_iter iter = corto_select(path, "*").iter(NULL);
+
+            std::string value;
+            corto_resultIterForeach(iter, e) {
+                obj = corto_resolve(corto_mount(_this)->mount, e.name);
+                if (obj != NULL)
+                {
+                    if (value.empty() == false)
+                    {
+                        value += "\n";
+                    }
+                    corto_path(name, corto_mount(_this)->mount, obj, ".");
+                    corto_fullpath(type, corto_typeof(obj));
+                    corto_string cstr = corto_str(obj, 0);
+                    if(cstr[0] == '{')
+                    {
+                        value += std::string(type)+","+std::string(name)+","+std::string(cstr);
+                    }
+                    else
+                    {
+                        value += std::string(type)+","+std::string(name)+",{"+std::string(cstr)+"}";
+                    }
+                    corto_dealloc(cstr);
+                    corto_release(obJ);
+                }
+            }
+            std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
+            (*adapter)->SendData("", "", value);
+        }
+        else
+        {
+            corto_object obj = corto_resolve(corto_mount(_this)->mount, (char*)request.name().c_str());
+
+            if (obj != nullptr)
+            {
+                corto_trace("found");
+                dds_Connector_SendData(_this, obj);
+                corto_release(obj);
+            }
+        }
+    }
+}
+
+corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_string name, corto_string value)
+{
+    corto_object obj = corto_resolve(corto_mount(_this)->mount, name);
+    if (obj != nullptr)
+    {
+        corto_string cstr = corto_str(obj, 0);
+        std::string valStr;
+        if(cstr[0] == '{')
+        {
+            valStr = std::string(cstr);
+        }
+        else
+        {
+            valStr = "{"+std::string(cstr)+"}";
+        }
+        corto_dealloc(cstr);
+
+        if (strcmp(value, valStr.c_str()) != 0)
+        {
+            if (corto_updateBegin(obj) == 0)
+            {
+                if (corto_fromStr(&obj, value) != 0)
+                {
+                    corto_error("Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
+                }
+                corto_updateEnd(obj);
+            }
+        }
+        corto_release(obj);
+    }
+    else
+    {
+        corto_object typeo = corto_resolve(NULL,type);
+        if (typeo == NULL)
+        {
+            corto_error("Type %s not found", type);
+            return;
+        }
+        obj = corto_declareChild(corto_mount(_this)->mount, name, typeo);
+        corto_release(typeo);
+        if (obj == NULL)
+        {
+            corto_error("Failed to create object %s", name);
+            return;
+        }
+        if (corto_fromStr(&obj, value) != 0)
+        {
+            corto_error("Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
+            return;
+        }
+        if (corto_define(obj) != 0)
+        {
+            corto_error("Failed to define %s", corto_idof(obj));
+        }
+    }
 }
 
 corto_void dds_Connector_OnData(dds_Connector _this, CCortoDataSubscriber::Sample &sample)
 {
-    corto_trace("OnData");
+    Corto::Data data = sample.data();
 
+    if (data.type().empty())
+    {
+        std::stringstream iss(data.value());
+        std::string line;
+
+        while(std::getline(iss, line, '\n'))
+        {
+            if(line.empty() == false)
+            {
+                size_t n;
+                size_t v;
+                if ( ((n = line.find(',')) != std::string::npos) &&
+                     ((v = line.find(',', n+1)) != std::string::npos) )
+                {
+                    //corto_trace("%s, %u, %u", (char*)line.c_str(), n, v);
+                    std::string type = line.substr(0,n);
+                    std::string name = line.substr(n+1,v - (n+1));
+                    std::string value = line.substr(v+1);
+                    dds_Connector_SetData(_this, (char*)type.c_str(), (char*)name.c_str(), (char*)value.c_str());
+                    //corto_trace("T:%s \nN:%s \nV:%s", (char*)type.c_str(), (char*)name.c_str(), (char*)value.c_str());
+                }
+            }
+        }
+    }
+    else
+    {
+        char *name = (char*)data.name().c_str();
+        char *type = (char*)data.type().c_str();
+        char *value = (char*)data.value().c_str();
+        dds_Connector_SetData(_this, type, name, value);
+    }
 }
-
-corto_void dds_Connector_SendData(dds_Connector _this, corto_string data, corto_string type, corto_string value)
-{
-
-
-}
-
-
-
-
 /* $end */
 
 corto_int16 _dds_Connector_construct(
     dds_Connector _this)
 {
 /* $begin(corto/dds/Connector/construct) */
-    _this->ptr = NULLWORD;
-    _this->publisher = NULLWORD;
-    _this->subscriber = NULLWORD;
-    _this->request_publisher = NULLWORD;
-    _this->request_subscriber = NULLWORD;
-    _this->data_handler = NULLWORD;
-    _this->request_handler = NULLWORD;
+    std::shared_ptr<CSyncAdapter> *adapter = new std::shared_ptr<CSyncAdapter>();
+    *adapter = std::shared_ptr<CSyncAdapter>(new CSyncAdapter(_this->topic));
 
-    std::string syncSubTopic = "StoreSync_";
-    std::string requestSubTopic = "StoreRequest_";
-
-    std::shared_ptr<int> *sp = new std::shared_ptr<int>(new int(10));
-    _this->ptr = (corto_word)sp;
+    _this->dds_adapter = (corto_word)adapter;
 
     if (_this->type & Dds_Publisher)
     {
-        CCortoDataPublisher *publisher = new CCortoDataPublisher(syncSubTopic+_this->topic);
-        CCortoRequestSubscriber *subscriber = new CCortoRequestSubscriber(requestSubTopic+_this->topic);
+        CCortoRequestSubscriber::DataNotifyCallback callback =
+                [_this](CCortoRequestSubscriber::Sample &sample)
+                {
+                    dds_Connector_OnRequest(_this, sample);
+                };
 
-        if (publisher->Initialize() == false)
+        if ((*adapter)->SetUpDataPublisher(callback) == false)
         {
-            corto_trace("Failed to initialize %s", "CCoreDataPublisher");
-            delete publisher;
-            delete subscriber;
-        }
-        else
-        {
-            if (subscriber->Initialize() == false)
-            {
-                corto_trace("Failed to initialize %s", "CCortoRequestSubscriber");
-                delete subscriber;
-                delete publisher;
-            }
-            else
-            {
-                CCortoRequestSubscriber::NewDataDelegate delegate(*sp,
-                                             [&] (CCortoRequestSubscriber::Sample &sample){
-                                                 dds_Connector_OnRequest(_this, sample);
-                                             });
-                subscriber->RegisterNewDataSubscriber(delegate);
-
-                _this->request_subscriber = (corto_word)subscriber;
-                _this->publisher = (corto_word)publisher;
-            }
+            corto_trace("TODO: Error");
         }
     }
     if (_this->type & Dds_Subscriber)
     {
-        CCortoDataSubscriber *subscriber = new CCortoDataSubscriber(syncSubTopic+_this->topic);
-        CCortoRequestPublisher *publisher = new CCortoRequestPublisher(requestSubTopic+_this->topic);
-
-        if (subscriber->Initialize() == false)
+        CCortoDataSubscriber::DataNotifyCallback callback =
+                [_this](CCortoDataSubscriber::Sample &sample)
+                {
+                    dds_Connector_OnData(_this, sample);
+                };
+        if ((*adapter)->SetUpDataSubscriber(callback) == false)
         {
-            corto_trace("Failed to initialize %s", "CCoreDataSubscriber");
-            delete subscriber;
-            delete publisher;
-        }
-        else
-        {
-            if (publisher->Initialize() == false)
-            {
-                corto_trace("Failed to initialize %s", "CCortoRequestPublisher");
-                delete subscriber;
-                delete publisher;
-            }
-            else
-            {
-                CCortoDataSubscriber::NewDataDelegate delegate(*sp,
-                                             [&] (CCortoDataSubscriber::Sample &sample){
-                                                 dds_Connector_OnData(_this, sample);
-                                             });
-                subscriber->RegisterNewDataSubscriber(delegate);
-                _this->subscriber = (corto_word)subscriber;
-                _this->request_publisher = (corto_word)publisher;
-            }
+            corto_trace("TODO: Error");
         }
     }
-    /* << Insert implementation >> */
-    return 0;
+    corto_setstr(&corto_mount(_this)->type, "/noType");
+
+    corto_mount(_this)->mask = CORTO_ON_SCOPE | CORTO_ON_TREE;
+    corto_mount(_this)->kind = CORTO_SINK;
+    return corto_mount_construct(_this);
 /* $end */
 }
 
@@ -217,69 +406,16 @@ corto_void _dds_Connector_destruct(
     dds_Connector _this)
 {
 /* $begin(corto/dds/Connector/destruct) */
-    corto_trace("Destruct");
-
-    corto_trace("_this->ptr %o",_this->ptr);
-    corto_trace("_this->publisher %o",_this->publisher );
-    corto_trace("_this->subscriber %o",_this->subscriber );
-    corto_trace("_this->request_publisher %o",_this->request_publisher );
-    corto_trace("_this->request_subscriber %o",_this->request_subscriber );
-    corto_trace("_this->data_handler %o",_this->data_handler );
-    corto_trace("_this->request_handler %o",_this->request_handler);
-
-    if (_this->data_handler != NULLWORD)
+    if(_this->dds_adapter == NULLWORD)
     {
-        corto_trace("data_handler");
-        core::InstanceHandle *handler = cortoCore_instanceHandle(_this->data_handler);
-        cortoData_publisher(_this->publisher)->UnregisterInstance(*handler);
-        corto_trace("delte data_handler");
-        delete handler;
-        _this->data_handler = NULLWORD;
+        return;
     }
-    if (_this->request_handler != NULLWORD)
-    {
+    std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
 
-        core::InstanceHandle *handler = cortoCore_instanceHandle(_this->request_handler);
-        corto_trace("request_handler %o", handler);
-        cortoRequest_publisher(_this->request_publisher)->UnregisterInstance(*handler);
-        corto_trace("delete request_handler %o", handler);
-
-        delete handler;
-        _this->request_handler = NULLWORD;
-    }
-
-    if (_this->subscriber != NULLWORD)
-    {
-        CCortoDataSubscriber *subscriber = cortoData_subscriber(_this->subscriber);
-        subscriber->UnregisterNewDataSubscriber(*cortoSharedPtr_int(_this->ptr));
-        delete subscriber;
-        _this->subscriber = NULLWORD;
-    }
-    if (_this->request_subscriber != NULLWORD)
-    {
-        CCortoRequestSubscriber *subscriber = cortoRequest_subscriber(_this->request_subscriber);
-        subscriber->UnregisterNewDataSubscriber(*cortoSharedPtr_int(_this->ptr));
-        delete subscriber;
-        _this->subscriber = NULLWORD;
-    }
-
-    if (_this->publisher != NULLWORD)
-    {
-        CCortoDataPublisher *publisher = cortoData_publisher(_this->publisher);
-        delete publisher;
-        _this->publisher = NULLWORD;
-    }
-    if (_this->request_publisher != NULLWORD)
-    {
-        CCortoRequestPublisher *publisher = cortoRequest_publisher(_this->request_publisher);
-        delete publisher;
-        _this->request_publisher = NULLWORD;
-    }
-
-    std::shared_ptr<int> *ptr = cortoSharedPtr_int(_this->ptr);
-    delete ptr;
-    _this->ptr = NULLWORD;
-    corto_trace("End destructor");
+    (*adapter)->Close();
+    adapter->reset();
+    delete adapter;
+    _this->dds_adapter = NULLWORD;
 /* $end */
 }
 
@@ -288,8 +424,6 @@ corto_void _dds_Connector_onDeclare(
     corto_object observable)
 {
 /* $begin(corto/dds/Connector/onDeclare) */
-
-    /* << Insert implementation >> */
 
 /* $end */
 }
@@ -300,8 +434,16 @@ corto_void _dds_Connector_onDelete(
 {
 /* $begin(corto/dds/Connector/onDelete) */
 
-    /* << Insert implementation >> */
+/* $end */
+}
 
+corto_resultIter _dds_Connector_onRequest(
+    dds_Connector _this,
+    corto_request *request)
+{
+/* $begin(corto/dds/Connector/onRequest) */
+    /* << Insert implementation >> */
+    return corto_mount_onRequest_v(_this, request);
 /* $end */
 }
 
@@ -312,9 +454,7 @@ corto_object _dds_Connector_onResume(
     corto_object o)
 {
 /* $begin(corto/dds/Connector/onResume) */
-
-    /* << Insert implementation >> */
-    return NULL;
+    return o;
 /* $end */
 }
 
@@ -323,9 +463,7 @@ corto_void _dds_Connector_onUpdate(
     corto_object observable)
 {
 /* $begin(corto/dds/Connector/onUpdate) */
-
-    /* << Insert implementation >> */
-
+    dds_Connector_SendData(_this, observable);
 /* $end */
 }
 
@@ -336,32 +474,12 @@ corto_void _dds_Connector_sendRequest(
     corto_string value)
 {
 /* $begin(corto/dds/Connector/sendRequest) */
-    if (_this->request_publisher == NULLWORD)
+    if(_this->dds_adapter == NULLWORD)
     {
-        corto_trace("Error: try to send request without publisher");
         return;
     }
-    Corto::Request request;//(name, type, value);
-    request.name(name);
-    request.type(type);
-    request.value(value);
+    std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
 
-    CCortoRequestPublisher *publisher = cortoRequest_publisher(_this->request_publisher);
-
-    core::InstanceHandle *handler = nullptr;
-    if (_this->request_handler == NULLWORD)
-    {
-        handler = new core::InstanceHandle();
-        *handler = publisher->RegisterInstance(request);
-        _this->request_handler = (corto_word)handler;
-    }
-    else
-    {
-        handler = cortoCore_instanceHandle(_this->request_handler);
-    }
-    if (publisher->Write(request, *handler) == false)
-    {
-        corto_trace("Failed to write request.");
-    }
+    (*adapter)->SendRequest(name, type, value);
 /* $end */
 }

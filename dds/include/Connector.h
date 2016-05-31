@@ -35,6 +35,11 @@ CORTO_DDS_EXPORT corto_void _dds_Connector_onDelete(
     corto_object observable);
 #define dds_Connector_onDelete(_this, observable) _dds_Connector_onDelete(dds_Connector(_this), observable)
 
+CORTO_DDS_EXPORT corto_resultIter _dds_Connector_onRequest(
+    dds_Connector _this,
+    corto_request *request);
+#define dds_Connector_onRequest(_this, request) _dds_Connector_onRequest(dds_Connector(_this), request)
+
 CORTO_DDS_EXPORT corto_object _dds_Connector_onResume(
     dds_Connector _this,
     corto_string parent,
