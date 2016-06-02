@@ -4,10 +4,6 @@ int corto_test_tempMain(int argc, char* argv[])
 {
     corto_object mount = corto_voidCreateChild(NULL, "mount");
     corto_object sync_mount = corto_voidCreateChild(NULL, "sync_mount");
-
-    corto_object ro = corto_voidCreateChild(NULL, "ro");
-    corto_object b1 = corto_stringCreateChild(ro, "b1", "hello");
-
     //_parent, corto_string _name, corto_object mount, dds_DdsType type_1, corto_string topic
     dds_Connector net = dds_ConnectorCreateChild(NULL, "net", mount, Dds_Publisher, "Net");
 
@@ -21,18 +17,17 @@ int corto_test_tempMain(int argc, char* argv[])
 
     dds_Connector sync_net = dds_ConnectorCreateChild(NULL, "sync_net", sync_mount, Dds_Subscriber, "Net");
 
-
-    datamodels_sockjs_Data data = datamodels_sockjs_DataCreateChild(mount, "data1", "Hello", "uuid", "val");
     dds_Connector_sendRequest(sync_net, "*", "REQUEST", "");
     usleep(1000*1000);
-
+    /*
     corto_int16 ret;
     corto_iter iter = corto_select("sync_mount", "*").iter(&ret);
 
     corto_resultIterForeach(iter, e) {
         corto_trace("on sync_mount: found %s of type %s", e.name, e.type);
     }
-    //return 0;
+    datamodels_sockjs_Data data = datamodels_sockjs_DataCreateChild(mount, "data1", "Hello", "uuid", "val");
+
     datamodels_sockjs_Data sn_data = (datamodels_sockjs_Data)corto_resolve(sync_mount, "data1");
     if(sn_data == NULL)
     {
@@ -55,8 +50,9 @@ int corto_test_tempMain(int argc, char* argv[])
     corto_trace("final value mount/data1: %s,%s,%s", data->type,data->UUID, data->VALUE );
     corto_trace("final value sync_mount/data1: %s,%s,%s", sn_data->type, sn_data->UUID, sn_data->VALUE );
 
-    dds_Connector_sendRequest(sync_net, "data1", "UPDATE", "{\"hello\",\"uuid\",\"Some-new-value\"}");
-
+    //dds_Connector_sendRequest(sync_net, "data1", "UPDATE", "{\"hello\",\"uuid\",\"Some-new-value\"}");
+    */
+    usleep(1000*2000);
 
     corto_trace("sync_mount");
     corto_delete(sync_mount);

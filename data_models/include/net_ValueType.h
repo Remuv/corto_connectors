@@ -1,10 +1,10 @@
-/* datamodels.h
+/* net_ValueType.h
  *
  * This file contains generated code. Do not modify!
  */
 
-#ifndef CORTO_DATAMODELS_H
-#define CORTO_DATAMODELS_H
+#ifndef CORTO_DATAMODELS_NET_VALUETYPE_H
+#define CORTO_DATAMODELS_NET_VALUETYPE_H
 
 #include <corto/corto.h>
 #include <corto/datamodels/_interface.h>
@@ -12,15 +12,10 @@
 #include <corto/datamodels/_api.h>
 #include <corto/datamodels/_meta.h>
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include <corto/datamodels/net_Data.h>
-#include <corto/datamodels/net_ValueType.h>
-#include <corto/datamodels/server_Data.h>
-#include <corto/datamodels/sockjs_Data.h>
 
 #ifdef __cplusplus
 }
