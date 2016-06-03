@@ -12,18 +12,69 @@ corto_void _test_ddsConnectorTest_StartTest(
     test_ddsConnectorTest _this)
 {
 /* $begin(test/ddsConnectorTest/StartTest) */
-//*
     corto_object mount = corto_voidCreateChild(NULL, "mount");
-    //_parent, corto_string _name, corto_object mount, dds_DdsType type_1, corto_string topic
-    dds_Connector connector = dds_ConnectorCreateChild(NULL, "net", mount, Dds_Publisher | Dds_Subscriber, "Net");
-    dds_Connector_Init(connector);
-    test_Data data = test_DataCreateChild(mount, "data1", "Hello");
+    corto_object sync_mount = corto_voidCreateChild(NULL, "sync_mount");
 
-    for (int i = 0; i < 1000; i++)
+    corto_trace("Create DDS Connector on 'mount'");
+    dds_Connector net = dds_ConnectorCreateChild(NULL, "net", mount, Dds_Publisher, "TestTopic");
+
+    int size = 10;
+    corto_trace("Creathe %i childs on 'mount'", size);
+    for(int i = 0; i < size; i++)
+    {
+        std::string name = "Child"+std::to_string(i);
+        std::string val = std::to_string(i);
+        datamodels_sockjs_Data data = datamodels_sockjs_DataCreateChild(mount, (char*)name.c_str(), "Hello", "uuid", (char*)val.c_str());
+        CORTO_UNUSED(data);
+    }
+    corto_trace("Create DDS Connector on 'sync_mount'");
+    dds_Connector sync_net = dds_ConnectorCreateChild(NULL, "sync_net", sync_mount, Dds_Subscriber, "TestTopic");
+
+    corto_trace("Request All childs");
+    dds_Connector_sendRequest(sync_net, "*", "REQUEST", "");
+    usleep(1000*1000);
+
+    corto_int16 ret;
+    corto_iter iter = corto_select("sync_mount", "*").iter(&ret);
+
+    int count = 0;
+    corto_resultIterForeach(iter, e) {
+        corto_trace("on sync_mount: found %s of type %s", e.name, e.type);
+        count++;
+    }
+    corto_trace("Found %i childs on 'sync_mount'", count);
+    test_assert(count == size);
+
+    datamodels_sockjs_Data data = datamodels_sockjs_DataCreateChild(mount, "data1", "Hello", "uuid", "val");
+    usleep(1000*100);
+    datamodels_sockjs_Data sn_data = (datamodels_sockjs_Data)corto_resolve(sync_mount, "data1");
+    if(sn_data == NULL)
+    {
+        corto_seterr("sync_mount does not resolve data1");
+    }
+    test_assert(sn_data != NULL);
+    for (int i = 0; i < 10; i++)
     {
         std::string v = "Hello "+std::to_string(i);
-        test_DataUpdate(data, (char*)v.c_str());
+        corto_trace("Set Value 'mount/data1->value' to  %s", (char*)v.c_str());
+        datamodels_sockjs_DataUpdate(data, "hello", "uuid", (char*)v.c_str());
+        usleep(1000*100);
+        corto_trace("Value on 'sync_mount/data1->value' %s", sn_data->value);
+        if ( strcmp(data->value,sn_data->value) != 0)
+        {
+            corto_trace("Fail to sync childs mount/data1 and sync_mount/data1");
+            test_assert(false);
+        }
     }
+    test_assert(true);
+    usleep(1000*2000);
+
+    corto_delete(sync_mount);
+    corto_delete(sync_net);
+    corto_delete(mount);
+    corto_delete(net);
+    usleep(1000*1000);
+
     test_assert(true);
 //*/
 /* $end */

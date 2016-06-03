@@ -53,7 +53,6 @@ void CSyncAdapter::SendData(std::string name, std::string type, std::string valu
     {
         return;
     }
-    corto_trace("SendData: %s", (char*)name.c_str());
     Corto::Data data(name, type, value);
     core::InstanceHandle handler = m_dataHandlers[data.name()];
     if (handler.is_nil())
@@ -70,7 +69,6 @@ void CSyncAdapter::SendRequest(std::string name, std::string type, std::string v
     {
         return;
     }
-    corto_trace("SendRequest %s", (char*)name.c_str());
     Corto::Request request(name, type, value);
     core::InstanceHandle handler = m_requestHandlers[request.name()];
 

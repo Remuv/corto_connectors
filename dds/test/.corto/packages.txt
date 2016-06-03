@@ -7,3 +7,4 @@
 /common/dds/interface/corto
 /corto/dds
 /corto/test
+/corto/datamodels

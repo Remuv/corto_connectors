@@ -108,7 +108,6 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
 
             if (obj != nullptr)
             {
-                corto_trace("found");
                 dds_Connector_SendData(_this, obj);
                 corto_release(obj);
             }
@@ -228,7 +227,12 @@ corto_int16 _dds_Connector_construct(
 
         if ((*adapter)->SetUpDataPublisher(callback) == false)
         {
-            corto_trace("TODO: Error");
+            (*adapter)->Close();
+            adapter->reset();
+            delete adapter;
+            _this->dds_adapter = NULLWORD;
+            corto_seterr("Fail to Initialize Data Publisher");
+            return -1;
         }
     }
     if (_this->type & Dds_Subscriber)
@@ -240,7 +244,12 @@ corto_int16 _dds_Connector_construct(
                 };
         if ((*adapter)->SetUpDataSubscriber(callback) == false)
         {
-            corto_trace("TODO: Error");
+            (*adapter)->Close();
+            adapter->reset();
+            delete adapter;
+            _this->dds_adapter = NULLWORD;
+            corto_seterr("Fail to Initialize Data Subscriber");
+            return -1;
         }
     }
     corto_setstr(&corto_mount(_this)->type, "/noType");

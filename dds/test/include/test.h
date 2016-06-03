@@ -21,6 +21,7 @@
 #include <common/dds/interface/corto/corto.h>
 #include <corto/dds/dds.h>
 #include <corto/test/test.h>
+#include <corto/datamodels/datamodels.h>
 
 #ifdef __cplusplus
 extern "C" {
