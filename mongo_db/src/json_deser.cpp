@@ -1,4 +1,5 @@
 #include "mongo_util.h"
+#include "json_util.h"
 
 #include <bsoncxx/json.hpp>
 

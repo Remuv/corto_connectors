@@ -34,3 +34,6 @@ struct net_Data::
     hint: int32
     actual: net_ValueType
     target: net_ValueType
+
+struct object_ptr::
+    ptr : word

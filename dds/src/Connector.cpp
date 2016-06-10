@@ -175,7 +175,6 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
 corto_void dds_Connector_OnData(dds_Connector _this, CCortoDataSubscriber::Sample &sample)
 {
     Corto::Data data = sample.data();
-
     if (data.type().empty())
     {
         std::stringstream iss(data.value());

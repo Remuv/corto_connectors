@@ -17,8 +17,15 @@ CSyncAdapter::~CSyncAdapter()
 
 bool CSyncAdapter::SetUpDataPublisher(CCortoRequestSubscriber::DataNotifyCallback callback)
 {
-    m_pDataPublisher = new CCortoDataPublisher("StoreSync_"+m_ddsTopic);
-    m_pRequestSubscriber = new CCortoRequestSubscriber("StoreRequest_"+m_ddsTopic);
+    if (m_pDataPublisher == nullptr)
+    {
+        m_pDataPublisher = new CCortoDataPublisher("StoreSync_"+m_ddsTopic);
+    }
+
+    if(m_pRequestSubscriber == nullptr)
+    {
+        m_pRequestSubscriber = new CCortoRequestSubscriber("StoreRequest_"+m_ddsTopic);
+    }
 
     if (m_pDataPublisher->Initialize() == false || m_pRequestSubscriber->Initialize() == false)
     {
@@ -33,8 +40,15 @@ bool CSyncAdapter::SetUpDataPublisher(CCortoRequestSubscriber::DataNotifyCallbac
 
 bool CSyncAdapter::SetUpDataSubscriber(CCortoDataSubscriber::DataNotifyCallback callback)
 {
-    m_pDataSubscriber = new CCortoDataSubscriber("StoreSync_"+m_ddsTopic);
-    m_pRequestPublisher = new CCortoRequestPublisher("StoreRequest_"+m_ddsTopic);
+    if (m_pDataSubscriber == nullptr)
+    {
+        m_pDataSubscriber = new CCortoDataSubscriber("StoreSync_"+m_ddsTopic);
+    }
+
+    if (m_pRequestPublisher == nullptr)
+    {
+        m_pRequestPublisher = new CCortoRequestPublisher("StoreRequest_"+m_ddsTopic);
+    }
 
     if (m_pDataSubscriber->Initialize() == false || m_pRequestPublisher->Initialize() == false)
     {

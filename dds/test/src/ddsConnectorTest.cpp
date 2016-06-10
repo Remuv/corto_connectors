@@ -39,7 +39,7 @@ corto_void _test_ddsConnectorTest_StartTest(
 
     int count = 0;
     corto_resultIterForeach(iter, e) {
-        corto_trace("on sync_mount: found %s of type %s", e.name, e.type);
+        corto_trace("id: %s, name: %s, parent: %s, type: %s, value: %llu", e.id, e.name, e.parent, e.type, e.value);
         count++;
     }
     corto_trace("Found %i childs on 'sync_mount'", count);
