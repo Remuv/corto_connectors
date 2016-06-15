@@ -1,7 +1,7 @@
 #ifndef __CORTO_DDS_SYNC_ADAPTER_H__
 #define __CORTO_DDS_SYNC_ADAPTER_H__
 
-#include <corto/dds/dds.h>
+#include <recorto/dds/dds.h>
 #include <functional>
 #include <memory>
 

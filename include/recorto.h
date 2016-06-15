@@ -1,16 +1,17 @@
-/* TestData.h
+/* recorto.h
  *
  * This file contains generated code. Do not modify!
  */
 
-#ifndef TEST_TESTDATA_H
-#define TEST_TESTDATA_H
+#ifndef RECORTO_H
+#define RECORTO_H
 
 #include <corto/corto.h>
-#include <_interface.h>
-#include <_type.h>
-#include <_api.h>
-#include <_meta.h>
+#include <recorto/_interface.h>
+#include <recorto/_type.h>
+#include <recorto/_api.h>
+#include <recorto/_meta.h>
+
 
 #ifdef __cplusplus
 extern "C" {

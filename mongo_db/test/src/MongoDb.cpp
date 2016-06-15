@@ -9,7 +9,7 @@
 #include <test.h>
 
 /* $header() */
-#include <corto/mongodb/mongo_util.h>
+#include <recorto/mongodb/mongo_util.h>
 
 /* $end */
 

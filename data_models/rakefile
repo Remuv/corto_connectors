@@ -1,4 +1,4 @@
-PACKAGE = "corto/datamodels"
+PACKAGE = "recorto/datamodels"
 
 INCLUDE = ["$(CORTO_INCLUDE)"]
 

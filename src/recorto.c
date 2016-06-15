@@ -1,14 +1,14 @@
 /* $CORTO_GENERATED
  *
- * datamodels.cpp
+ * recorto.c
  *
  * Only code written between the begin and end tags will be preserved
  * when the file is regenerated.
  */
 
-#include <recorto/datamodels/datamodels.h>
+#include <recorto/recorto.h>
 
-int datamodelsMain(int argc, char* argv[]) {
+int recortoMain(int argc, char* argv[]) {
 /* $begin(main) */
 
     /* Insert code that must be run when component is loaded */

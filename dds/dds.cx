@@ -1,4 +1,4 @@
-#package /corto/dds
+#package /recorto/dds
 
 bitmask DdsType::
     Publisher,

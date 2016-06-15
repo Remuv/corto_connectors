@@ -6,7 +6,7 @@
  * when the file is regenerated.
  */
 
-#include <corto/mongodb/mongodb.h>
+#include <recorto/mongodb/mongodb.h>
 
 /* $header() */
 #include "mongo_util.h"

@@ -6,7 +6,7 @@
  * when the file is regenerated.
  */
 
-#include <corto/dds/dds.h>
+#include <recorto/dds/dds.h>
 
 int ddsMain(int argc, char* argv[]) {
 /* $begin(main) */

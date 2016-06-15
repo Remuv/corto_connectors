@@ -6,7 +6,7 @@
  * when the file is regenerated.
  */
 
-#include <corto/dds/dds.h>
+#include <recorto/dds/dds.h>
 
 /* $header() */
 #include "sync_adapter.h"
@@ -210,7 +210,8 @@ corto_void dds_Connector_OnData(dds_Connector _this, CCortoDataSubscriber::Sampl
 corto_int16 _dds_Connector_construct(
     dds_Connector _this)
 {
-/* $begin(corto/dds/Connector/construct) */
+/* $begin(recorto/dds/Connector/construct) */
+
     std::shared_ptr<CSyncAdapter> *adapter = new std::shared_ptr<CSyncAdapter>();
     *adapter = std::shared_ptr<CSyncAdapter>(new CSyncAdapter(_this->topic));
 
@@ -256,13 +257,15 @@ corto_int16 _dds_Connector_construct(
     corto_mount(_this)->mask = CORTO_ON_SCOPE | CORTO_ON_TREE;
     corto_mount(_this)->kind = CORTO_SINK;
     return corto_mount_construct(_this);
+
 /* $end */
 }
 
 corto_void _dds_Connector_destruct(
     dds_Connector _this)
 {
-/* $begin(corto/dds/Connector/destruct) */
+/* $begin(recorto/dds/Connector/destruct) */
+
     if(_this->dds_adapter == NULLWORD)
     {
         return;
@@ -273,6 +276,7 @@ corto_void _dds_Connector_destruct(
     adapter->reset();
     delete adapter;
     _this->dds_adapter = NULLWORD;
+
 /* $end */
 }
 
@@ -280,7 +284,9 @@ corto_void _dds_Connector_onDeclare(
     dds_Connector _this,
     corto_object observable)
 {
-/* $begin(corto/dds/Connector/onDeclare) */
+/* $begin(recorto/dds/Connector/onDeclare) */
+
+    /* << Insert implementation >> */
 
 /* $end */
 }
@@ -289,7 +295,9 @@ corto_void _dds_Connector_onDelete(
     dds_Connector _this,
     corto_object observable)
 {
-/* $begin(corto/dds/Connector/onDelete) */
+/* $begin(recorto/dds/Connector/onDelete) */
+
+    /* << Insert implementation >> */
 
 /* $end */
 }
@@ -298,9 +306,10 @@ corto_resultIter _dds_Connector_onRequest(
     dds_Connector _this,
     corto_request *request)
 {
-/* $begin(corto/dds/Connector/onRequest) */
-    /* << Insert implementation >> */
+/* $begin(recorto/dds/Connector/onRequest) */
+
     return corto_mount_onRequest_v(_this, request);
+
 /* $end */
 }
 
@@ -310,8 +319,10 @@ corto_object _dds_Connector_onResume(
     corto_string name,
     corto_object o)
 {
-/* $begin(corto/dds/Connector/onResume) */
+/* $begin(recorto/dds/Connector/onResume) */
+
     return o;
+
 /* $end */
 }
 
@@ -319,8 +330,10 @@ corto_void _dds_Connector_onUpdate(
     dds_Connector _this,
     corto_object observable)
 {
-/* $begin(corto/dds/Connector/onUpdate) */
+/* $begin(recorto/dds/Connector/onUpdate) */
+
     dds_Connector_SendData(_this, observable);
+
 /* $end */
 }
 
@@ -330,7 +343,8 @@ corto_void _dds_Connector_sendRequest(
     corto_string type,
     corto_string value)
 {
-/* $begin(corto/dds/Connector/sendRequest) */
+/* $begin(recorto/dds/Connector/sendRequest) */
+
     if(_this->dds_adapter == NULLWORD)
     {
         return;
@@ -338,5 +352,6 @@ corto_void _dds_Connector_sendRequest(
     std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
 
     (*adapter)->SendRequest(name, type, value);
+
 /* $end */
 }

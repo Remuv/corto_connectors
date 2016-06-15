@@ -1,4 +1,4 @@
-PACKAGE = "corto/mongodb"
+PACKAGE = "recorto/mongodb"
 
 INCLUDE = ["$(CORTO_INCLUDE)"]
 

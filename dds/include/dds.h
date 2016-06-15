@@ -3,32 +3,30 @@
  * This file contains generated code. Do not modify!
  */
 
-#ifndef CORTO_DDS_H
-#define CORTO_DDS_H
+#ifndef RECORTO_DDS_H
+#define RECORTO_DDS_H
 
 #include <corto/corto.h>
-#include <corto/dds/_interface.h>
+#include <recorto/dds/_interface.h>
 /* $header() */
 /* You can put your own definitions here! */
 /* $end */
 
-#include <corto/dds/_type.h>
-#include <corto/dds/_api.h>
-#include <corto/dds/_meta.h>
+#include <recorto/dds/_type.h>
+#include <recorto/dds/_api.h>
+#include <recorto/dds/_meta.h>
 
 #include <common/base/base.h>
-#include <common/generics/generics.h>
 #include <common/logger/logger.h>
-#include <common/dds/manager/manager.h>
-#include <datamodels/corto/corto.h>
-#include <vendor/dds/dds.h>
 #include <common/dds/interface/corto/corto.h>
+#include <recorto/recorto.h>
+#include <vendor/dds/dds.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include <corto/dds/Connector.h>
+#include <recorto/dds/Connector.h>
 
 #ifdef __cplusplus
 }

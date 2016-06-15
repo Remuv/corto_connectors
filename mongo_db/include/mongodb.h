@@ -3,16 +3,17 @@
  * This file contains generated code. Do not modify!
  */
 
-#ifndef CORTO_MONGODB_H
-#define CORTO_MONGODB_H
+#ifndef RECORTO_MONGODB_H
+#define RECORTO_MONGODB_H
 
 #include <corto/corto.h>
-#include <corto/mongodb/_interface.h>
-#include <corto/mongodb/_type.h>
-#include <corto/mongodb/_api.h>
-#include <corto/mongodb/_meta.h>
+#include <recorto/mongodb/_interface.h>
+#include <recorto/mongodb/_type.h>
+#include <recorto/mongodb/_api.h>
+#include <recorto/mongodb/_meta.h>
 
 #include <corto/fmt/json/json.h>
+#include <recorto/recorto.h>
 #include <vendor/mongo/bson/bson.h>
 #include <vendor/mongo/cdriver/cdriver.h>
 #include <vendor/mongo/cxx/cxx.h>
@@ -21,7 +22,7 @@
 extern "C" {
 #endif
 
-#include <corto/mongodb/Connector.h>
+#include <recorto/mongodb/Connector.h>
 
 #ifdef __cplusplus
 }

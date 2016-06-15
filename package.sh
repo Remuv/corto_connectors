@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PACKAGE_NAME='corto'
+PACKAGE_NAME='recorto'
 CORTO_VERSION="0.2"
 
 VERSION=0.0

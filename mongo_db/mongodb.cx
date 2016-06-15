@@ -1,4 +1,4 @@
-#package /corto/mongodb
+#package /recorto/mongodb
 
 list stringList{string}
 

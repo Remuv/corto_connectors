@@ -1,4 +1,4 @@
-# /corto/datamodels
+# /recorto/datamodels
 
 ## net_Data
 ### actual

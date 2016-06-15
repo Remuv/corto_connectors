@@ -1,4 +1,4 @@
-# /corto/dds
+# /recorto/dds
 
 ## Connector
 ### construct()

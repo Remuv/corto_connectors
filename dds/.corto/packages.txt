@@ -1,7 +1,5 @@
 /common/base
-/common/generics
 /common/logger
-/common/dds/manager
-/datamodels/corto
-/vendor/dds
 /common/dds/interface/corto
+/recorto
+/vendor/dds

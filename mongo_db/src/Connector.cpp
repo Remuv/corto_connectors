@@ -6,7 +6,7 @@
  * when the file is regenerated.
  */
 
-#include <corto/mongodb/mongodb.h>
+#include <recorto/mongodb/mongodb.h>
 
 /* $header() */
 #include "mongo_util.h"
@@ -15,131 +15,7 @@
 #include <bsoncxx/builder/stream/array.hpp>
 
 extern corto_uint8 MONGOCLIENT_HANDLE;
-/* $end */
 
-corto_int16 _mongodb_Connector_construct(
-    mongodb_Connector _this)
-{
-/* $begin(corto/mongodb/Connector/construct) */
-    if (!corto_checkAttr(_this, CORTO_ATTR_SCOPED)) {
-
-        corto_seterr("mongodb/Connector objects must be SCOPED");
-        return -1;
-    }
-
-    corto_type obj_type = (corto_type)corto_resolve(NULL, _this->objtype);
-    if (obj_type == NULL)
-    {
-        corto_seterr("Unable to resolve for object type: %s", _this->objtype);
-        return -1;
-    }
-    corto_member mkey = corto_interface_resolveMember(obj_type, _this->keyname);
-    if (mkey == NULL)
-    {
-        corto_seterr("%s does not have member %s", _this->objtype, _this->keyname);
-        return -1;
-    }
-    if (mkey->type != corto_type(corto_string_o))
-    {
-        corto_seterr("Member Key %s must be of type corto_string", _this->keyname);
-        return -1;
-    }
-
-    CMongoClient *p_client = new CMongoClient(_this->user, _this->password, _this->hostaddr, std::to_string(_this->port));
-
-    corto_olsSet(_this, MONGOCLIENT_HANDLE, p_client);
-
-    corto_mount_setContentType(_this, "text/json");
-    corto_mount(_this)->kind = CORTO_SINK;
-    return corto_mount_construct(_this);
-/* $end */
-}
-
-corto_string _mongodb_Connector_FindById(
-    mongodb_Connector _this,
-    corto_string id)
-{
-/* $begin(corto/mongodb/Connector/FindById) */
-    CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
-    mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
-
-    bsoncxx::builder::stream::document filter_builder;
-    filter_builder << "_id" << bsoncxx::oid(std::string(id));
-
-    mongocxx::cursor cursor = coll.find(filter_builder.view());
-
-    for (mongocxx::cursor::iterator itr = cursor.begin(); itr != cursor.end(); itr++)
-    {
-        corto_string json = corto_strdup((char*)bsoncxx::to_json(*itr).c_str());
-        corto_trace("%s", json);
-        return json;
-    }
-    return NULL;
-/* $end */
-}
-
-mongodb_stringList _mongodb_Connector_FindByIds(
-    mongodb_Connector _this,
-    mongodb_stringList ids)
-{
-/* $begin(corto/mongodb/Connector/FindByIds) */
-    mongodb_stringList list = corto_llNew();
-
-    CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
-    mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
-
-    bsoncxx::builder::stream::array arrayIds;
-    mongodb_stringListForeach(ids, id)
-    {
-        arrayIds << bsoncxx::oid(std::string(id));
-    }
-    bsoncxx::builder::stream::document builder;
-    builder << "_id" << bsoncxx::builder::stream::open_document << "$in"
-            << bsoncxx::builder::stream::open_array << bsoncxx::builder::concatenate_array{arrayIds.view()} << bsoncxx::builder::stream::close_array
-            << bsoncxx::builder::stream::close_document;
-
-    mongocxx::cursor cursor = coll.find(builder.view());
-    for (mongocxx::cursor::iterator itr = cursor.begin(); itr != cursor.end(); itr++)
-    {
-        corto_string json = corto_strdup((char*)bsoncxx::to_json(*itr).c_str());
-        corto_llInsert(list, json);
-    }
-    return list;
-/* $end */
-}
-
-corto_void _mongodb_Connector_onDeclare(
-    mongodb_Connector _this,
-    corto_object observable)
-{
-/* $begin(corto/mongodb/Connector/onDeclare) */
-    /*
-        Corto object life cicle
-        onDeclare -> onResolve ->onUpdate
-        let onUpdate to insert new data if object does not exit,
-    */
-/* $end */
-}
-
-corto_void _mongodb_Connector_onDelete(
-    mongodb_Connector _this,
-    corto_object observable)
-{
-/* $begin(corto/mongodb/Connector/onDelete) */
-    CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
-    mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
-
-    corto_id buffer;
-    corto_string name = corto_path(buffer, corto_mount(_this)->mount, observable, ".");
-
-    bsoncxx::builder::stream::document filter_builder;
-    filter_builder << std::string(_this->keyname) << std::string(name) << bsoncxx::builder::stream::finalize;
-
-    coll.delete_many(filter_builder.view());
-/* $end */
-}
-
-/* $header(corto/mongodb/Connector/onRequest) */
 struct mongodb_iterData
 {
     mongocxx::cursor res;
@@ -187,12 +63,146 @@ void mongodb_iterRelease(corto_iter *iter)
     delete data->key;
     delete data;
 }
+
 /* $end */
+
+corto_int16 _mongodb_Connector_construct(
+    mongodb_Connector _this)
+{
+/* $begin(recorto/mongodb/Connector/construct) */
+
+    if (!corto_checkAttr(_this, CORTO_ATTR_SCOPED)) {
+
+        corto_seterr("mongodb/Connector objects must be SCOPED");
+        return -1;
+    }
+
+    corto_type obj_type = (corto_type)corto_resolve(NULL, _this->objtype);
+    if (obj_type == NULL)
+    {
+        corto_seterr("Unable to resolve for object type: %s", _this->objtype);
+        return -1;
+    }
+    corto_member mkey = corto_interface_resolveMember(obj_type, _this->keyname);
+    if (mkey == NULL)
+    {
+        corto_seterr("%s does not have member %s", _this->objtype, _this->keyname);
+        return -1;
+    }
+    if (mkey->type != corto_type(corto_string_o))
+    {
+        corto_seterr("Member Key %s must be of type corto_string", _this->keyname);
+        return -1;
+    }
+
+    CMongoClient *p_client = new CMongoClient(_this->user, _this->password, _this->hostaddr, std::to_string(_this->port));
+
+    corto_olsSet(_this, MONGOCLIENT_HANDLE, p_client);
+
+    corto_mount_setContentType(_this, "text/json");
+    corto_mount(_this)->kind = CORTO_SINK;
+    return corto_mount_construct(_this);
+
+/* $end */
+}
+
+corto_string _mongodb_Connector_FindById(
+    mongodb_Connector _this,
+    corto_string id)
+{
+/* $begin(recorto/mongodb/Connector/FindById) */
+
+    CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
+    mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
+
+    bsoncxx::builder::stream::document filter_builder;
+    filter_builder << "_id" << bsoncxx::oid(std::string(id));
+
+    mongocxx::cursor cursor = coll.find(filter_builder.view());
+
+    for (mongocxx::cursor::iterator itr = cursor.begin(); itr != cursor.end(); itr++)
+    {
+        corto_string json = corto_strdup((char*)bsoncxx::to_json(*itr).c_str());
+        corto_trace("%s", json);
+        return json;
+    }
+    return NULL;
+
+/* $end */
+}
+
+mongodb_stringList _mongodb_Connector_FindByIds(
+    mongodb_Connector _this,
+    mongodb_stringList ids)
+{
+/* $begin(recorto/mongodb/Connector/FindByIds) */
+
+    mongodb_stringList list = corto_llNew();
+
+    CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
+    mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
+
+    bsoncxx::builder::stream::array arrayIds;
+    mongodb_stringListForeach(ids, id)
+    {
+        arrayIds << bsoncxx::oid(std::string(id));
+    }
+    bsoncxx::builder::stream::document builder;
+    builder << "_id" << bsoncxx::builder::stream::open_document << "$in"
+            << bsoncxx::builder::stream::open_array << bsoncxx::builder::concatenate_array{arrayIds.view()} << bsoncxx::builder::stream::close_array
+            << bsoncxx::builder::stream::close_document;
+
+    mongocxx::cursor cursor = coll.find(builder.view());
+    for (mongocxx::cursor::iterator itr = cursor.begin(); itr != cursor.end(); itr++)
+    {
+        corto_string json = corto_strdup((char*)bsoncxx::to_json(*itr).c_str());
+        corto_llInsert(list, json);
+    }
+    return list;
+
+/* $end */
+}
+
+corto_void _mongodb_Connector_onDeclare(
+    mongodb_Connector _this,
+    corto_object observable)
+{
+/* $begin(recorto/mongodb/Connector/onDeclare) */
+
+    /*
+        Corto object life cicle
+        onDeclare -> onResolve ->onUpdate
+        let onUpdate to insert new data if object does not exit,
+    */
+
+/* $end */
+}
+
+corto_void _mongodb_Connector_onDelete(
+    mongodb_Connector _this,
+    corto_object observable)
+{
+/* $begin(recorto/mongodb/Connector/onDelete) */
+
+    CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
+    mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
+
+    corto_id buffer;
+    corto_string name = corto_path(buffer, corto_mount(_this)->mount, observable, ".");
+
+    bsoncxx::builder::stream::document filter_builder;
+    filter_builder << std::string(_this->keyname) << std::string(name) << bsoncxx::builder::stream::finalize;
+
+    coll.delete_many(filter_builder.view());
+/* $end */
+}
+
 corto_resultIter _mongodb_Connector_onRequest(
     mongodb_Connector _this,
     corto_request *request)
 {
-/* $begin(corto/mongodb/Connector/onRequest) */
+/* $begin(recorto/mongodb/Connector/onRequest) */
+
     corto_resultIter result;
 
     CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
@@ -223,7 +233,8 @@ corto_object _mongodb_Connector_onResume(
     corto_string name,
     corto_object o)
 {
-/* $begin(corto/mongodb/Connector/onResume) */
+/* $begin(recorto/mongodb/Connector/onResume) */
+
     if (o == NULL)
     {
         corto_type t = (corto_type)corto_resolve(NULL, (char*)_this->objtype);
@@ -256,6 +267,7 @@ corto_object _mongodb_Connector_onResume(
         }
     }
     return o;
+
 /* $end */
 }
 
@@ -263,7 +275,8 @@ corto_void _mongodb_Connector_onUpdate(
     mongodb_Connector _this,
     corto_object observable)
 {
-/* $begin(corto/mongodb/Connector/onUpdate) */
+/* $begin(recorto/mongodb/Connector/onUpdate) */
+
     corto_id path;
 
     corto_type obj_type = (corto_type)corto_resolve(NULL, _this->objtype);

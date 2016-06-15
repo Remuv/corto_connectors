@@ -1,4 +1,4 @@
-# /corto/mongodb
+# /recorto/mongodb
 
 ## Connector
 ### collection
@@ -8,7 +8,7 @@
 ### FindById(string id)
 #### id
 #### Returns
-### FindByIds(/corto/mongodb/stringList ids)
+### FindByIds(/recorto/mongodb/stringList ids)
 #### ids
 #### Returns
 ### hostaddr
