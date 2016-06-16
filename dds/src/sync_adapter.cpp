@@ -33,7 +33,7 @@ bool CSyncAdapter::SetUpDataPublisher(CCortoRequestSubscriber::DataNotifyCallbac
         delete m_pRequestSubscriber;
         return false;
     }
-    CCortoRequestSubscriber::NewDataDelegate delegate(shared_from_this(), callback);
+    CCortoRequestSubscriber::DataDelegate delegate(shared_from_this(), callback);
     m_pRequestSubscriber->RegisterNewDataSubscriber(delegate);
     return true;
 }
@@ -56,7 +56,7 @@ bool CSyncAdapter::SetUpDataSubscriber(CCortoDataSubscriber::DataNotifyCallback 
         delete m_pRequestPublisher;
         return false;
     }
-    CCortoDataSubscriber::NewDataDelegate delegate( shared_from_this(), callback);
+    CCortoDataSubscriber::DataDelegate delegate( shared_from_this(), callback);
     m_pDataSubscriber->RegisterNewDataSubscriber(delegate);
     return true;
 }
