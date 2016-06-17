@@ -5,6 +5,6 @@
 /datamodels/corto
 /vendor/dds
 /common/dds/interface/corto
-/corto/dds
+/recorto/dds
 /corto/test
-/corto/datamodels
+/recorto/datamodels

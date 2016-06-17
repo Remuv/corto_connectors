@@ -64,6 +64,84 @@ void mongodb_iterRelease(corto_iter *iter)
     delete data;
 }
 
+void mongodb_ConnectorUpdateDb(
+    mongodb_Connector _this,
+    corto_object observable)
+{
+    corto_type obj_type = (corto_type)corto_resolve(NULL, _this->objtype);
+    if ( obj_type == nullptr || corto_instanceof(obj_type, observable) == false)
+    {
+        corto_seterr("Observable not instance of %s", _this->objtype);
+        return;
+    }
+
+    corto_member mkey = corto_interface_resolveMember(obj_type, _this->keyname);
+    if (mkey == nullptr)
+    {
+        corto_seterr("%s is not a member of %s", _this->keyname, _this->objtype);
+        return;
+    }
+    if (mkey->type != corto_type(corto_string_o))
+    {
+        corto_seterr("member key(%s) must be of type corto_string", _this->keyname);
+        return;
+    }
+    corto_string *key = (corto_string*)CORTO_OFFSET(observable, mkey->offset);
+
+    corto_id path;
+    corto_path(path, corto_mount(_this)->mount, observable, ".");
+
+    char *ptr = path, ch;
+    while ((ch = *ptr))
+    {
+        if (ch == '/')
+        {
+            *ptr = '.';
+        }
+        ptr++;
+    }
+    corto_setstr(key, (char*)path);
+
+    CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
+    mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
+
+    bsoncxx::builder::stream::document filter_builder;
+
+    char * json = mongo_json::json_serialize(observable);
+    std::string json_obj = std::string(json);
+    corto_dealloc(json);
+
+    filter_builder << std::string(_this->keyname) << std::string(*key);
+
+    auto curso = coll.find_one(filter_builder.view());
+    if (!curso)
+    {
+        bsoncxx::document::value doc = bsoncxx::from_json(json_obj);
+        auto result = coll.insert_one(doc.view());
+
+        corto_member mid = corto_interface_resolveMember(obj_type, "_id");
+        if (mid != NULL && result && mid->type == corto_type(corto_string_o))
+        {
+            std::string oid_s = result->inserted_id().get_oid().value.to_string();
+            corto_string *id = (corto_string*)CORTO_OFFSET(observable, mid->offset);
+            corto_setstr(id, (char*)oid_s.c_str());
+        }
+    }
+    else
+    {
+        bsoncxx::document::value val = bsoncxx::from_json(json_obj);
+        auto result = coll.replace_one(filter_builder.view(), val.view());
+
+        corto_member mid = corto_interface_resolveMember(obj_type, "_id");
+        if (mid != NULL && result && result->upserted_id() && mid->type == corto_type(corto_string_o))
+        {
+            std::string oid_s = (*result->upserted_id())["_id"].get_oid().value.to_string();
+            corto_string *id = (corto_string*)CORTO_OFFSET(observable, mid->offset);
+            corto_setstr(id, (char*)oid_s.c_str());
+        }
+    }
+}
+
 /* $end */
 
 corto_int16 _mongodb_Connector_construct(
@@ -71,8 +149,8 @@ corto_int16 _mongodb_Connector_construct(
 {
 /* $begin(recorto/mongodb/Connector/construct) */
 
-    if (!corto_checkAttr(_this, CORTO_ATTR_SCOPED)) {
-
+    if (!corto_checkAttr(_this, CORTO_ATTR_SCOPED))
+    {
         corto_seterr("mongodb/Connector objects must be SCOPED");
         return -1;
     }
@@ -83,12 +161,14 @@ corto_int16 _mongodb_Connector_construct(
         corto_seterr("Unable to resolve for object type: %s", _this->objtype);
         return -1;
     }
+
     corto_member mkey = corto_interface_resolveMember(obj_type, _this->keyname);
     if (mkey == NULL)
     {
         corto_seterr("%s does not have member %s", _this->objtype, _this->keyname);
         return -1;
     }
+
     if (mkey->type != corto_type(corto_string_o))
     {
         corto_seterr("Member Key %s must be of type corto_string", _this->keyname);
@@ -123,7 +203,6 @@ corto_string _mongodb_Connector_FindById(
     for (mongocxx::cursor::iterator itr = cursor.begin(); itr != cursor.end(); itr++)
     {
         corto_string json = corto_strdup((char*)bsoncxx::to_json(*itr).c_str());
-        corto_trace("%s", json);
         return json;
     }
     return NULL;
@@ -169,11 +248,6 @@ corto_void _mongodb_Connector_onDeclare(
 {
 /* $begin(recorto/mongodb/Connector/onDeclare) */
 
-    /*
-        Corto object life cicle
-        onDeclare -> onResolve ->onUpdate
-        let onUpdate to insert new data if object does not exit,
-    */
 
 /* $end */
 }
@@ -202,7 +276,6 @@ corto_resultIter _mongodb_Connector_onRequest(
     corto_request *request)
 {
 /* $begin(recorto/mongodb/Connector/onRequest) */
-
     corto_resultIter result;
 
     CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
@@ -234,40 +307,106 @@ corto_object _mongodb_Connector_onResume(
     corto_object o)
 {
 /* $begin(recorto/mongodb/Connector/onResume) */
+    corto_id pathb;
+    corto_id path;
+    sprintf(path, "%s/%s", parent, name);
+    corto_cleanpath(pathb, path);
 
-    if (o == NULL)
+    char *ptr = pathb, ch;
+    while ((ch = *ptr))
     {
-        corto_type t = (corto_type)corto_resolve(NULL, (char*)_this->objtype);
-        o = corto_declareChild(corto_mount(_this)->mount, name, t);
+        if (ch == '/')
+        {
+            *ptr = '.';
+        }
+        ptr++;
     }
+
     CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
     mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
 
     bsoncxx::builder::stream::document filter_builder;
-    filter_builder << std::string(_this->keyname) << std::string(name);
+    filter_builder << std::string(_this->keyname) << std::string(pathb);
 
     auto curso = coll.find_one(filter_builder.view());
     if (curso)
     {
+        bool newObject = false;
         std::string json_obj = bsoncxx::to_json(curso.value());
-
-        if (mongo_json::json_deserialize(o, (char*)json_obj.c_str()))
+        if (o == nullptr)
         {
-            corto_seterr("Fail: to deserialize %s: %s", name, corto_lasterr());
+            corto_object parent_o = corto_resolve(corto_mount(_this)->mount, parent);
+            if (parent_o != nullptr)
+            {
+                corto_object type_o = corto_resolve(NULL, (char*)_this->objtype);
+                if (type_o != nullptr)
+                {
+                    o = corto_declareChild(parent_o, name, (corto_type)type_o);
+                    if (o == nullptr)
+                    {
+                        corto_seterr("Failed to create object %s/%s: %s", parent, name, corto_lasterr());
+                    }
+                    newObject = true;
+                    corto_release(type_o);
+                }
+                corto_release(parent_o);
+            }
         }
-
-        corto_type obj_type = (corto_type)corto_resolve(NULL, (char*)_this->objtype);
-        corto_member mid = corto_interface_resolveMember(obj_type, "_id");
-        if (mid != NULL && mid->type == corto_type(corto_string_o))
+        if (o != nullptr)
         {
+            if (mongo_json::json_deserialize(o, (char*)json_obj.c_str()))
+            {
+                corto_seterr("Fail: to deserialize %s/%s: %s", parent, name, corto_lasterr());
+            }
+            else
+            {
+                if(newObject)
+                {
+                    if (corto_define(o))
+                    {
+                        corto_seterr("Failed to define object %s/%s: %s", parent, name, corto_lasterr());
+                    }
+                }
 
-            std::string oid_s = curso->view()["_id"].get_oid().value.to_string();
-            corto_string *id = (corto_string*)CORTO_OFFSET(o, mid->offset);
-            corto_setstr(id, (char*)oid_s.c_str());
+                corto_type obj_type = (corto_type)corto_resolve(NULL, (char*)_this->objtype);
+                if (obj_type !=nullptr)
+                {
+                    corto_member mid = corto_interface_resolveMember(obj_type, "_id");
+                    if (mid != NULL && mid->type == corto_type(corto_string_o))
+                    {
+                        std::string oid_s = curso->view()["_id"].get_oid().value.to_string();
+                        corto_string *id = (corto_string*)CORTO_OFFSET(o, mid->offset);
+                        corto_setstr(id, (char*)oid_s.c_str());
+                    }
+                    corto_release(obj_type);
+                }
+            }
+        }
+    } else {
+        if (o != nullptr)
+        {
+            mongodb_ConnectorUpdateDb(_this, o);
+        }
+        else
+        {
+            corto_object parent_o = corto_resolve(corto_mount(_this)->mount, parent);
+            if (parent_o != nullptr)
+            {
+                corto_object type_o = corto_resolve(NULL, (char*)_this->objtype);
+                if (type_o != nullptr)
+                {
+                    o = corto_declareChild(parent_o, name, (corto_type)type_o);
+                    if (o == nullptr)
+                    {
+                        corto_seterr("Failed to create object %s/%s: %s", parent, name, corto_lasterr());
+                    }
+                    corto_release(type_o);
+                }
+                corto_release(parent_o);
+            }
         }
     }
     return o;
-
 /* $end */
 }
 
@@ -276,57 +415,6 @@ corto_void _mongodb_Connector_onUpdate(
     corto_object observable)
 {
 /* $begin(recorto/mongodb/Connector/onUpdate) */
-
-    corto_id path;
-
-    corto_type obj_type = (corto_type)corto_resolve(NULL, _this->objtype);
-    if (corto_instanceof(obj_type, observable) == false)
-    {
-        corto_seterr("Observable not instance of %s", _this->objtype);
-        return;
-    }
-    corto_member mkey = corto_interface_resolveMember(obj_type, _this->keyname);
-    corto_string *key = (corto_string*)CORTO_OFFSET(observable, mkey->offset);
-
-    corto_path(path, corto_mount(_this)->mount, observable, ".");
-
-    corto_setstr(key, (char*)path);
-
-    CMongoClient *p_client = (CMongoClient*)corto_olsGet(_this, MONGOCLIENT_HANDLE);
-    mongocxx::collection coll = p_client->conn[_this->dbname][_this->collection];
-
-    bsoncxx::builder::stream::document filter_builder;
-
-    std::string json_obj = std::string(mongo_json::json_serialize(observable));
-    filter_builder << std::string(_this->keyname) << std::string(*key);
-
-    auto curso = coll.find_one(filter_builder.view());
-    if (!curso)
-    {
-        std::string json_obj = std::string(mongo_json::json_serialize(observable));
-        bsoncxx::document::value doc = bsoncxx::from_json(json_obj);
-        auto result = coll.insert_one(doc.view());
-
-        corto_member mid = corto_interface_resolveMember(obj_type, "_id");
-        if (mid != NULL && result && mid->type == corto_type(corto_string_o))
-        {
-            std::string oid_s = result->inserted_id().get_oid().value.to_string();
-            corto_string *id = (corto_string*)CORTO_OFFSET(observable, mid->offset);
-            corto_setstr(id, (char*)oid_s.c_str());
-        }
-    }
-    else
-    {
-        bsoncxx::document::value val = bsoncxx::from_json(json_obj);
-        auto result = coll.replace_one(filter_builder.view(), val.view());
-
-        corto_member mid = corto_interface_resolveMember(obj_type, "_id");
-        if (mid != NULL && result && result->upserted_id() && mid->type == corto_type(corto_string_o))
-        {
-            std::string oid_s = (*result->upserted_id())["_id"].get_oid().value.to_string();
-            corto_string *id = (corto_string*)CORTO_OFFSET(observable, mid->offset);
-            corto_setstr(id, (char*)oid_s.c_str());
-        }
-    }
+    mongodb_ConnectorUpdateDb(_this, observable);
 /* $end */
 }

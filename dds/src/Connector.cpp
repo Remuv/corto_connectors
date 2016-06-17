@@ -14,6 +14,7 @@
 
 #define StdSharedPtr_SyncAdapter(obj)((std::shared_ptr<CSyncAdapter>*)obj)
 #define NULLWORD 0
+#define NEWLINEDELIM "EOL\n"
 
 corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
 {
@@ -80,10 +81,6 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
                 obj = corto_resolve(corto_mount(_this)->mount, e.name);
                 if (obj != NULL)
                 {
-                    if (value.empty() == false)
-                    {
-                        value += "\n";
-                    }
                     corto_path(name, corto_mount(_this)->mount, obj, ".");
                     corto_fullpath(type, corto_typeof(obj));
                     corto_string cstr = corto_str(obj, 0);
@@ -95,6 +92,7 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
                     {
                         value += std::string(type)+","+std::string(name)+",{"+std::string(cstr)+"}";
                     }
+                    value += NEWLINEDELIM;
                     corto_dealloc(cstr);
                     corto_release(obj);
                 }
@@ -172,22 +170,37 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
     }
 }
 
+std::vector<std::string> StrSplit(std::string str, std::string delim)
+{
+    std::vector<std::string> lines;
+    int start = 0;
+    size_t end = 0;
+
+    while ((end = str.find(delim, start)) != std::string::npos)
+    {
+        int size = end - start;
+        lines.push_back( str.substr(start, size));
+        start = end+delim.size();
+    }
+    return lines;
+}
+
 corto_void dds_Connector_OnData(dds_Connector _this, CCortoDataSubscriber::Sample &sample)
 {
     Corto::Data data = sample.data();
     if (data.type().empty())
     {
-        std::stringstream iss(data.value());
-        std::string line;
+        std::vector<std::string> lines = StrSplit(data.value(), NEWLINEDELIM);
 
-        while(std::getline(iss, line, '\n'))
+        for (size_t i = 0; i < lines.size(); i++)
         {
+            std::string line = lines[i];
             if(line.empty() == false)
             {
                 size_t n;
                 size_t v;
                 if ( ((n = line.find(',')) != std::string::npos) &&
-                     ((v = line.find(',', n+1)) != std::string::npos) )
+                     ((v = line.find(',', n+1)) != std::string::npos))
                 {
                     std::string type = line.substr(0,n);
                     std::string name = line.substr(n+1,v - (n+1));
@@ -265,7 +278,6 @@ corto_void _dds_Connector_destruct(
     dds_Connector _this)
 {
 /* $begin(recorto/dds/Connector/destruct) */
-
     if(_this->dds_adapter == NULLWORD)
     {
         return;
@@ -276,7 +288,6 @@ corto_void _dds_Connector_destruct(
     adapter->reset();
     delete adapter;
     _this->dds_adapter = NULLWORD;
-
 /* $end */
 }
 
@@ -285,8 +296,6 @@ corto_void _dds_Connector_onDeclare(
     corto_object observable)
 {
 /* $begin(recorto/dds/Connector/onDeclare) */
-
-    /* << Insert implementation >> */
 
 /* $end */
 }
@@ -297,8 +306,6 @@ corto_void _dds_Connector_onDelete(
 {
 /* $begin(recorto/dds/Connector/onDelete) */
 
-    /* << Insert implementation >> */
-
 /* $end */
 }
 
@@ -307,9 +314,8 @@ corto_resultIter _dds_Connector_onRequest(
     corto_request *request)
 {
 /* $begin(recorto/dds/Connector/onRequest) */
-
+    /* << Insert implementation >> */
     return corto_mount_onRequest_v(_this, request);
-
 /* $end */
 }
 
@@ -320,9 +326,7 @@ corto_object _dds_Connector_onResume(
     corto_object o)
 {
 /* $begin(recorto/dds/Connector/onResume) */
-
     return o;
-
 /* $end */
 }
 
@@ -331,9 +335,7 @@ corto_void _dds_Connector_onUpdate(
     corto_object observable)
 {
 /* $begin(recorto/dds/Connector/onUpdate) */
-
     dds_Connector_SendData(_this, observable);
-
 /* $end */
 }
 
@@ -344,7 +346,6 @@ corto_void _dds_Connector_sendRequest(
     corto_string value)
 {
 /* $begin(recorto/dds/Connector/sendRequest) */
-
     if(_this->dds_adapter == NULLWORD)
     {
         return;
@@ -352,6 +353,5 @@ corto_void _dds_Connector_sendRequest(
     std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
 
     (*adapter)->SendRequest(name, type, value);
-
 /* $end */
 }
