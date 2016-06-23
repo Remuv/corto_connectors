@@ -16,18 +16,58 @@
 #define NULLWORD 0
 #define NEWLINEDELIM "EOL\n"
 
+corto_object corto_createChildsRecurisve(corto_object parent, corto_string path, corto_object type)
+{
+    corto_object retObj = parent;
+    if (*path != '\0')
+    {
+        if (type == nullptr)
+        {
+            type = corto_void_o;
+        }
+        corto_id name;
+        char *ptr1 = path, *ptr2 = &name[0];
+        while (*ptr1 != '\0')
+        {
+            if(*ptr1 == '.')
+            {
+                ptr1++;
+                *ptr2 = '\0';
+                break;
+            }
+            *ptr2 = *ptr1;
+            ptr1++;
+            ptr2++;
+        }
+        corto_object obj = corto_declareChild(parent, name, type);
+        if (obj != nullptr)
+        {
+            corto_define(obj);
+            retObj = corto_createChildsRecurisve(obj, ptr1, type);
+        }
+    }
+    return retObj;
+}
+
 corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
 {
     if(_this->dds_adapter == NULLWORD)
     {
         return;
     }
+
+    corto_object parent_o = corto_parentof(obj);
+
     std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
 
-    corto_id name;
     corto_id type;
-    corto_path(name, corto_mount(_this)->mount, obj, ".");
+    corto_id parent;
+    corto_string name;
+
     corto_fullpath(type, corto_typeof(obj));
+    name = corto_idof(obj);
+    corto_path(parent, corto_mount(_this)->mount, parent_o, "/");
+
     corto_string cstr = corto_str(obj, 0);
     std::string value;
     if(cstr[0] == '{')
@@ -38,7 +78,7 @@ corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
     {
         value = "{"+std::string(cstr)+"}";
     }
-    (*adapter)->SendData(name, type, value);
+    (*adapter)->SendData(type, parent, name, value);
     corto_dealloc(cstr);
 }
 
@@ -58,7 +98,7 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
             {
                 if (corto_fromStr(&obj, (char*)value) != 0)
                 {
-                    corto_error("Failed to deserialize for %s: %s (%s)", (char*)name, corto_lasterr(), (char*)value);
+                    corto_error("[OnRequest] Failed to deserialize for %s: %s (%s)", (char*)name, corto_lasterr(), (char*)value);
                 }
                 corto_updateEnd(obj);
             }
@@ -69,28 +109,29 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
     {
         if (strcmp(request.name().c_str(), "*") == 0)
         {
-            corto_object obj = NULL;
-            corto_id name;
-            corto_id type;
-            corto_id path;
-            corto_fullpath(path, corto_mount(_this)->mount);
-            corto_iter iter = corto_select(path, "*").iter(NULL);
-
             std::string value;
+
+            corto_object obj = NULL;
+            corto_id path;
+
+            corto_fullpath(path, corto_mount(_this)->mount);
+            corto_iter iter = corto_select(path, "//*").iter(NULL);
+
             corto_resultIterForeach(iter, e) {
-                obj = corto_resolve(corto_mount(_this)->mount, e.name);
+                sprintf(path, "%s/%s", e.parent, e.name);
+                corto_cleanpath(path, path);
+
+                obj = corto_resolve(corto_mount(_this)->mount, path);
                 if (obj != NULL)
                 {
-                    corto_path(name, corto_mount(_this)->mount, obj, ".");
-                    corto_fullpath(type, corto_typeof(obj));
                     corto_string cstr = corto_str(obj, 0);
                     if(cstr[0] == '{')
                     {
-                        value += std::string(type)+","+std::string(name)+","+std::string(cstr);
+                        value += std::string(e.type)+","+std::string(e.parent)+","+std::string(e.name)+","+std::string(cstr);
                     }
                     else
                     {
-                        value += std::string(type)+","+std::string(name)+",{"+std::string(cstr)+"}";
+                        value += std::string(e.type)+","+std::string(e.parent)+","+std::string(e.name)+",{"+std::string(cstr)+"}";
                     }
                     value += NEWLINEDELIM;
                     corto_dealloc(cstr);
@@ -98,7 +139,7 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
                 }
             }
             std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
-            (*adapter)->SendData("", "", value);
+            (*adapter)->SendData("","", "", value);
         }
         else
         {
@@ -113,9 +154,23 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
     }
 }
 
-corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_string name, corto_string value)
+corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_string parent, corto_string name, corto_string value)
 {
-    corto_object obj = corto_resolve(corto_mount(_this)->mount, name);
+
+    corto_object parent_o = corto_resolve(corto_mount(_this)->mount, parent);
+    if (parent_o == nullptr)
+    {
+        if (parent == nullptr)
+        {
+            parent_o = corto_mount(_this)->mount;
+        }
+        else
+        {
+            corto_object typeo = corto_resolve(NULL,type);
+            parent_o = corto_createChildsRecurisve(corto_mount(_this)->mount, parent, typeo);
+        }
+    }
+    corto_object obj = corto_resolve(parent_o, name);
     if (obj != nullptr)
     {
         corto_string cstr = corto_str(obj, 0);
@@ -128,6 +183,7 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
         {
             valStr = "{"+std::string(cstr)+"}";
         }
+
         corto_dealloc(cstr);
 
         if (strcmp(value, valStr.c_str()) != 0)
@@ -136,7 +192,7 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
             {
                 if (corto_fromStr(&obj, value) != 0)
                 {
-                    corto_error("Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
+                    corto_error("[SetData] Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
                 }
                 corto_updateEnd(obj);
             }
@@ -151,7 +207,7 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
             corto_error("Type %s not found", type);
             return;
         }
-        obj = corto_declareChild(corto_mount(_this)->mount, name, typeo);
+        obj = corto_declareChild(parent_o, name, typeo);
         corto_release(typeo);
         if (obj == NULL)
         {
@@ -160,7 +216,7 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
         }
         if (corto_fromStr(&obj, value) != 0)
         {
-            corto_error("Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
+            corto_error("[SetData, new obj] Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
             return;
         }
         if (corto_define(obj) != 0)
@@ -197,25 +253,30 @@ corto_void dds_Connector_OnData(dds_Connector _this, CCortoDataSubscriber::Sampl
             std::string line = lines[i];
             if(line.empty() == false)
             {
+                size_t p;
                 size_t n;
                 size_t v;
-                if ( ((n = line.find(',')) != std::string::npos) &&
-                     ((v = line.find(',', n+1)) != std::string::npos))
+                if ( ((p = line.find(',')) != std::string::npos) &&     //find index of parent
+                     ((n = line.find(',', p+1)) != std::string::npos) &&//find index of name
+                     ((v = line.find(',', n+1)) != std::string::npos))  //find index of value
                 {
-                    std::string type = line.substr(0,n);
-                    std::string name = line.substr(n+1,v - (n+1));
-                    std::string value = line.substr(v+1);
-                    dds_Connector_SetData(_this, (char*)type.c_str(), (char*)name.c_str(), (char*)value.c_str());
+                    std::string type   = line.substr(0,p);
+                    std::string parent = line.substr(p+1, n-(p+1));
+                    std::string name   = line.substr(n+1, v-(n+1));
+                    std::string value  = line.substr(v+1);
+                    dds_Connector_SetData(_this, (char*)type.c_str(), (char*)parent.c_str(), (char*)name.c_str(), (char*)value.c_str());
                 }
             }
         }
     }
     else
     {
-        char *name = (char*)data.name().c_str();
-        char *type = (char*)data.type().c_str();
-        char *value = (char*)data.value().c_str();
-        dds_Connector_SetData(_this, type, name, value);
+        char *type   = (char*)data.type().c_str();
+        char *parent = (char*)data.parent().c_str();
+        char *name   = (char*)data.name().c_str();
+        char *value  = (char*)data.value().c_str();
+
+        dds_Connector_SetData(_this, type, parent, name, value);
     }
 }
 /* $end */
@@ -265,7 +326,7 @@ corto_int16 _dds_Connector_construct(
             return -1;
         }
     }
-    corto_setstr(&corto_mount(_this)->type, "/noType");
+    //corto_setstr(&corto_mount(_this)->type, "/noType");
 
     corto_mount(_this)->mask = CORTO_ON_SCOPE | CORTO_ON_TREE;
     corto_mount(_this)->kind = CORTO_SINK;

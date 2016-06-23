@@ -30,7 +30,7 @@ public:
 
     bool SetUpDataSubscriber(CCortoDataSubscriber::DataNotifyCallback callback);
 
-    void SendData(std::string name, std::string type, std::string value);
+    void SendData(std::string type, std::string parent, std::string name, std::string value);
 
     void SendRequest(std::string name, std::string type, std::string value);
 
