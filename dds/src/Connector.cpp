@@ -16,7 +16,7 @@
 #define NULLWORD 0
 #define NEWLINEDELIM "EOL\n"
 
-corto_object corto_createChildsRecurisve(corto_object parent, corto_string path, corto_object type)
+corto_object corto_createChildrenRecursive(corto_object parent, corto_string path, corto_object type)
 {
     corto_object retObj = parent;
     if (*path != '\0')
@@ -43,7 +43,7 @@ corto_object corto_createChildsRecurisve(corto_object parent, corto_string path,
         if (obj != nullptr)
         {
             corto_define(obj);
-            retObj = corto_createChildsRecurisve(obj, ptr1, type);
+            retObj = corto_createChildrenRecursive(obj, ptr1, type);
         }
     }
     return retObj;
@@ -167,7 +167,7 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
         else
         {
             corto_object typeo = corto_resolve(NULL,type);
-            parent_o = corto_createChildsRecurisve(corto_mount(_this)->mount, parent, typeo);
+            parent_o = corto_createChildrenRecursive(corto_mount(_this)->mount, parent, typeo);
         }
     }
     corto_object obj = corto_resolve(parent_o, name);
