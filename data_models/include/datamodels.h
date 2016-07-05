@@ -8,11 +8,11 @@
 
 #include <corto/corto.h>
 #include <recorto/datamodels/_interface.h>
+#include <recorto/recorto.h>
+
 #include <recorto/datamodels/_type.h>
 #include <recorto/datamodels/_api.h>
 #include <recorto/datamodels/_meta.h>
-
-#include <recorto/recorto.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -12,15 +12,14 @@
 /* You can put your own definitions here! */
 /* $end */
 
-#include <recorto/dds/_type.h>
-#include <recorto/dds/_api.h>
-#include <recorto/dds/_meta.h>
-
 #include <common/base/base.h>
-#include <common/logger/logger.h>
 #include <common/dds/interface/corto/corto.h>
 #include <recorto/recorto.h>
 #include <vendor/dds/dds.h>
+
+#include <recorto/dds/_type.h>
+#include <recorto/dds/_api.h>
+#include <recorto/dds/_meta.h>
 
 #ifdef __cplusplus
 extern "C" {

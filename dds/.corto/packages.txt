@@ -1,5 +1,4 @@
 /common/base
-/common/logger
 /common/dds/interface/corto
 /recorto
 /vendor/dds

@@ -14,7 +14,6 @@
 
 #include <common/base/base.h>
 #include <common/generics/generics.h>
-#include <common/logger/logger.h>
 #include <common/dds/manager/manager.h>
 #include <datamodels/corto/corto.h>
 #include <vendor/dds/dds.h>
