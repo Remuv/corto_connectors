@@ -3,7 +3,7 @@
 /common/dds/manager
 /datamodels/corto
 /vendor/dds
-/common/dds/interface/corto
+/common/interface/corto
 /recorto/dds
 /corto/test
 /recorto/datamodels

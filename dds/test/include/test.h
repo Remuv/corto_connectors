@@ -17,7 +17,7 @@
 #include <common/dds/manager/manager.h>
 #include <datamodels/corto/corto.h>
 #include <vendor/dds/dds.h>
-#include <common/dds/interface/corto/corto.h>
+#include <common/interface/corto/corto.h>
 #include <corto/dds/dds.h>
 #include <corto/test/test.h>
 #include <recorto/datamodels/datamodels.h>

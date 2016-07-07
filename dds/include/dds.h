@@ -13,7 +13,7 @@
 /* $end */
 
 #include <common/base/base.h>
-#include <common/dds/interface/corto/corto.h>
+#include <common/interface/corto/corto.h>
 #include <recorto/recorto.h>
 #include <vendor/dds/dds.h>
 
