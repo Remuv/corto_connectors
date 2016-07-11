@@ -64,8 +64,6 @@ corto_int16 _clmdb_Connector_construct(
     {
         _this->handle = (corto_word)handle;
     }
-    corto_mount(_this)->mask |= CORTO_ON_DECLARE | CORTO_ON_DEFINE | CORTO_ON_DELETE |
-               CORTO_ON_UPDATE | CORTO_ON_RESUME;
 
     corto_mount(_this)->kind = CORTO_SINK;
     return corto_mount_construct(_this);

@@ -10,6 +10,9 @@
 
 /* $header() */
 #include <string>
+
+
+
 /* $end */
 
 corto_void _test_clmdbTest_StartTest(
@@ -22,20 +25,21 @@ corto_void _test_clmdbTest_StartTest(
     corto_error(path);
     corto_dealloc(path);
     admin_serverCreateChild(root_o, "admin", 9000);
-
+    corto_eventMask mask = CORTO_ON_DECLARE | CORTO_ON_DEFINE | CORTO_ON_DELETE |
+               CORTO_ON_UPDATE | CORTO_ON_RESUME | CORTO_ON_SCOPE | CORTO_ON_TREE;
     corto_object mount1 = corto_voidCreateChild(root_o, "mount1");
 
     corto_object mount2 =  corto_voidCreateChild(root_o, "mount2");
 
     //_parent, _name, mount, mask, path, flags, mode,  map_size
     clmdb_Connector connector1 = clmdb_ConnectorCreateChild(root_o,
-                                    "lmdb1", mount1, CORTO_ON_SCOPE | CORTO_ON_TREE,
+                                    "lmdb1", mount1, mask,
                                     "/home/rfloresx/test.db", 0, 0664, 1UL*1024UL*1024UL*1024UL);
 
     clmdb_Connector connector2 = clmdb_ConnectorCreateChild(root_o,
-                                    "lmdb2", mount2, CORTO_ON_SCOPE | CORTO_ON_TREE,
+                                    "lmdb2", mount2, mask,
                                     "/home/rfloresx/test.db", 0, 0664, 1UL*1024UL*1024UL*1024UL);
-    std::string sub_fix = "test_key_s";
+    std::string sub_fix = "tesst_keydss_sa";
     for (int i = 0; i < 10; i++)
     {
         std::string name = sub_fix+std::to_string(i);
