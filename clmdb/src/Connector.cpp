@@ -50,15 +50,12 @@ MDB_env *create_env(const char * path, unsigned int flags, mdb_mode_t mode, unsi
     }
     return ret;
 }
-
-
 /* $end */
 
 corto_int16 _clmdb_Connector_construct(
     clmdb_Connector _this)
 {
 /* $begin(recorto/clmdb/Connector/construct) */
-
     MDB_env *handle = create_env(_this->path, _this->flags, _this->mode, _this->map_size);
     if (handle != nullptr)
     {
@@ -67,7 +64,6 @@ corto_int16 _clmdb_Connector_construct(
 
     corto_mount(_this)->kind = CORTO_SINK;
     return corto_mount_construct(_this);
-
 /* $end */
 }
 
@@ -240,7 +236,7 @@ corto_void _clmdb_Connector_onUpdate(
         if (rc == 0)
         {
             std::string key_str;    //Key
-            std::string data_str;   //Data = typeName{value}
+            std::string data_str;   //Data = typeName:value
 
             corto_id typeName;
             corto_string value = nullptr;

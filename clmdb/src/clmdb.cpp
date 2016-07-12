@@ -10,9 +10,6 @@
 
 int clmdbMain(int argc, char* argv[]) {
 /* $begin(main) */
-
-    /* Insert code that must be run when component is loaded */
-
     return 0;
 /* $end */
 }
