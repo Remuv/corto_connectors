@@ -15,7 +15,7 @@
 #include <common/base/base.h>
 #include <common/interface/corto/corto.h>
 #include <recorto/recorto.h>
-#include <vendor/dds/dds.h>
+#include <common/dds/vendor/vendor.h>
 
 #include <recorto/dds/_type.h>
 #include <recorto/dds/_api.h>

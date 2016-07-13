@@ -1,0 +1,39 @@
+#package /recorto/data_models
+
+class server_Data::
+    _id : string, hidden
+    interface : string
+    type : string
+    rin : string
+    alias : string
+    access : string
+    __v : string
+
+class sockjs_Data::
+    type : string
+    uuid : string
+    value : string
+
+class net_ValueType::
+    m_b: bool
+    m_c: char
+    m_i8: int8
+    m_u_i8: uint8
+    m_i16: int16
+    m_u_i16: uint16
+    m_i32: int32
+    m_u_i32: uint32
+    m_i64: int64
+    m_u_i64: uint64
+    m_f: float32
+    m_d: float64
+    m_s : string
+    hint : int32
+
+struct net_Data::
+    hint: int32
+    actual: net_ValueType
+    target: net_ValueType
+
+struct object_ptr::
+    ptr : word

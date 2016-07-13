@@ -1,0 +1,16 @@
+# Hashes of file build rules.
+77d8abcadbab92d6ec15db1c7e29b3f4 CMakeFiles/docs
+ea70ad05be5ad0cb14040948ecfd897b CMakeFiles/format
+13d6af849d263305f501ffb9133e4072 CMakeFiles/format-lint
+f9f6928c8262f16926901899684b349b examples/CMakeFiles/examples
+f9f6928c8262f16926901899684b349b examples/CMakeFiles/run-examples
+d5b1abf722f1ab25c42b38ae8aaa4308 src/bsoncxx/third_party/CMakeFiles/EP_mnmlstc_core
+95ec93e1f3a915067bca4b41eb3f7231 src/bsoncxx/third_party/CMakeFiles/EP_mnmlstc_core-complete
+b0b3e2f2986be22929ea589a505a6604 src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core-stamp/EP_mnmlstc_core-build
+4e98cdc5a1592c9e2b7be2237acf98bd src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core-stamp/EP_mnmlstc_core-configure
+3754c6ad99cd136654f89909f17feae1 src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core-stamp/EP_mnmlstc_core-download
+e0fb96fc24490d38c88070022149f5a5 src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core-stamp/EP_mnmlstc_core-fix-includes
+40a7937982b8280f278ade878920635b src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core-stamp/EP_mnmlstc_core-install
+c5db5938077b678156bada357f3e5811 src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core-stamp/EP_mnmlstc_core-mkdir
+a9f14c787ae37615b0a31e4e93bedb4f src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core-stamp/EP_mnmlstc_core-patch
+1251ddb6335e66df5df2e912d064cdcb src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core-stamp/EP_mnmlstc_core-update

@@ -87,3 +87,5 @@ _wrapper.h
 ehthumbs.db
 Thumbs.db
 core
+!core/
+.tag*

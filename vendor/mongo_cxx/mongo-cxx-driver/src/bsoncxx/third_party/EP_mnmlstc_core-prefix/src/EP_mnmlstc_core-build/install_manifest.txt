@@ -1,0 +1,14 @@
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/share/cmake/core/core-config-version.cmake
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/share/cmake/core/core-config.cmake
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/type_traits.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/functional.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/memory.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/algorithm.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/numeric.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/variant.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/range.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/string.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/utility.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/any.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/optional.hpp
+/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi/bsoncxx/third_party/mnmlstc/./core/iterator.hpp

@@ -1,0 +1,10 @@
+
+PACKAGE = 'test'
+
+LOCAL = true
+
+LANGUAGE = 'c4cpp'
+
+COVERAGE = false 
+
+require "#{ENV['CORTO_BUILD']}/package"

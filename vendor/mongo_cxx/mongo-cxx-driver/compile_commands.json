@@ -1,0 +1,1172 @@
+[
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/array/element.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/element.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/element.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/array/value.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/value.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/value.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/array/view.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/view.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/view.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/builder/core.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/builder/core.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/builder/core.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/document/element.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/element.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/element.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/document/value.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/value.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/value.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/document/view.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/view.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/view.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/exception/error_code.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/exception/error_code.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/exception/error_code.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/json.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/json.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/json.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/oid.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/oid.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/oid.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/private/itoa.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/private/itoa.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/private/itoa.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/string/view_or_value.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/string/view_or_value.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/string/view_or_value.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/types.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/types.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/types.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/types/value.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/types/value.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/types/value.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_EXPORT -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx.dir/validate.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/validate.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/validate.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/array/element.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/element.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/element.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/array/value.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/value.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/value.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/array/view.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/view.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/array/view.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/builder/core.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/builder/core.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/builder/core.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/document/element.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/element.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/element.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/document/value.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/value.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/value.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/document/view.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/view.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/document/view.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/exception/error_code.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/exception/error_code.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/exception/error_code.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/json.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/json.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/json.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/oid.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/oid.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/oid.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/private/itoa.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/private/itoa.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/private/itoa.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/string/view_or_value.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/string/view_or_value.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/string/view_or_value.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/types.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/types.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/types.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/types/value.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/types/value.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/types/value.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bsoncxx_static.dir/validate.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/validate.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/validate.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_bson.dir/bson_b_date.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/bson_b_date.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/bson_b_date.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_bson.dir/bson_builder.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/bson_builder.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/bson_builder.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_bson.dir/bson_get_values.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/bson_get_values.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/bson_get_values.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_bson.dir/bson_util_itoa.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/bson_util_itoa.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/bson_util_itoa.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_bson.dir/bson_validate.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/bson_validate.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/bson_validate.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_bson.dir/json.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/json.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/json.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_bson.dir/new_tests.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/new_tests.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/new_tests.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_bson.dir/view_or_value.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/view_or_value.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/test/view_or_value.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/client.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/client.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/client.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/cursor.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/cursor.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/cursor.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/database.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/database.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/database.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/exception/error_code.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/error_code.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/error_code.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/exception/server_error_code.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/server_error_code.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/server_error_code.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/exception/operation_exception.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/operation_exception.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/operation_exception.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/hint.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/hint.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/hint.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/insert_many_builder.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/insert_many_builder.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/insert_many_builder.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/instance.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/instance.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/instance.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/logger.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/logger.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/logger.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/model/delete_many.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_many.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_many.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/model/delete_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/model/insert_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/insert_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/insert_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/model/replace_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/replace_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/replace_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/model/update_many.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_many.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_many.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/model/update_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/model/write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/aggregate.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/aggregate.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/aggregate.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/client.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/client.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/client.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/count.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/count.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/count.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/create_collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/create_collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/create_collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/distinct.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/distinct.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/distinct.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/find.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/find_one_and_delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/find_one_and_replace.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_replace.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_replace.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/find_one_and_update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/index.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/index.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/index.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/insert.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/insert.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/insert.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/modify_collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/modify_collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/modify_collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/ssl.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/ssl.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/ssl.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/options/update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/pipeline.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pipeline.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pipeline.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/pool.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pool.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pool.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/private/libbson.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libbson.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libbson.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/private/libmongoc.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libmongoc.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libmongoc.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/read_concern.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_concern.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_concern.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/read_preference.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_preference.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_preference.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/result/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/result/delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/result/insert_many.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_many.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_many.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/result/insert_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/result/replace_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/replace_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/replace_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/result/update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/uri.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/uri.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/uri.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/validation_criteria.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/validation_criteria.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/validation_criteria.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DMONGOCXX_EXPORTS -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx.dir/write_concern.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/write_concern.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/write_concern.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/client.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/client.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/client.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/cursor.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/cursor.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/cursor.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/database.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/database.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/database.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/exception/error_code.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/error_code.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/error_code.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/exception/server_error_code.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/server_error_code.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/server_error_code.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/exception/operation_exception.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/operation_exception.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/operation_exception.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/hint.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/hint.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/hint.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/insert_many_builder.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/insert_many_builder.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/insert_many_builder.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/instance.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/instance.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/instance.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/logger.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/logger.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/logger.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/model/delete_many.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_many.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_many.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/model/delete_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/model/insert_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/insert_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/insert_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/model/replace_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/replace_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/replace_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/model/update_many.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_many.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_many.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/model/update_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/model/write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/aggregate.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/aggregate.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/aggregate.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/client.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/client.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/client.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/count.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/count.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/count.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/create_collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/create_collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/create_collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/distinct.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/distinct.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/distinct.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/find.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/find_one_and_delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/find_one_and_replace.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_replace.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_replace.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/find_one_and_update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/index.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/index.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/index.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/insert.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/insert.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/insert.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/modify_collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/modify_collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/modify_collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/ssl.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/ssl.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/ssl.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/options/update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/pipeline.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pipeline.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pipeline.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/pool.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pool.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pool.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/private/libbson.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libbson.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libbson.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/private/libmongoc.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libmongoc.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libmongoc.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/read_concern.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_concern.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_concern.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/read_preference.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_preference.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_preference.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/result/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/result/delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/result/insert_many.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_many.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_many.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/result/insert_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/result/replace_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/replace_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/replace_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/result/update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/uri.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/uri.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/uri.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/validation_criteria.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/validation_criteria.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/validation_criteria.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_mocked.dir/write_concern.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/write_concern.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/write_concern.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/client.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/client.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/client.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/cursor.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/cursor.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/cursor.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/database.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/database.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/database.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/exception/error_code.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/error_code.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/error_code.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/exception/server_error_code.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/server_error_code.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/server_error_code.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/exception/operation_exception.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/operation_exception.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/exception/operation_exception.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/hint.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/hint.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/hint.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/insert_many_builder.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/insert_many_builder.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/insert_many_builder.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/instance.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/instance.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/instance.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/logger.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/logger.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/logger.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/model/delete_many.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_many.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_many.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/model/delete_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/delete_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/model/insert_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/insert_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/insert_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/model/replace_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/replace_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/replace_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/model/update_many.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_many.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_many.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/model/update_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/update_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/model/write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/model/write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/aggregate.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/aggregate.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/aggregate.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/client.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/client.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/client.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/count.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/count.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/count.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/create_collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/create_collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/create_collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/distinct.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/distinct.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/distinct.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/find.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/find_one_and_delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/find_one_and_replace.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_replace.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_replace.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/find_one_and_update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/find_one_and_update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/index.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/index.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/index.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/insert.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/insert.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/insert.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/modify_collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/modify_collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/modify_collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/ssl.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/ssl.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/ssl.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/options/update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/options/update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/pipeline.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pipeline.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pipeline.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/pool.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pool.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/pool.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/private/libbson.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libbson.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libbson.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/private/libmongoc.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libmongoc.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/private/libmongoc.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/read_concern.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_concern.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_concern.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/read_preference.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_preference.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/read_preference.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/result/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/result/delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/result/insert_many.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_many.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_many.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/result/insert_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/insert_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/result/replace_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/replace_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/replace_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/result/update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/result/update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/uri.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/uri.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/uri.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/validation_criteria.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/validation_criteria.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/validation_criteria.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/mongocxx_static.dir/write_concern.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/write_concern.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/write_concern.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/__/__/third_party/catch/main.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/main.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/main.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/client.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/client.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/client.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/collection_mocked.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/collection_mocked.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/collection_mocked.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/database.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/database.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/database.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/hint.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/hint.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/hint.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/model/update_many.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/model/update_many.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/model/update_many.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/options/aggregate.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/aggregate.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/aggregate.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/options/create_collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/create_collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/create_collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/options/find.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/find.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/find.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/options/find_one_and_delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/find_one_and_delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/find_one_and_delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/options/find_one_and_replace.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/find_one_and_replace.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/find_one_and_replace.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/options/find_one_and_update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/find_one_and_update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/find_one_and_update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/options/index.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/index.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/index.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/options/insert.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/insert.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/insert.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/options/modify_collection.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/modify_collection.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/modify_collection.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/options/update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/options/update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/pool.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/pool.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/pool.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/private/scoped_bson_t.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/private/scoped_bson_t.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/private/scoped_bson_t.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/private/write_concern.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/private/write_concern.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/private/write_concern.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/read_concern.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/read_concern.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/read_concern.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/read_preference.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/read_preference.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/read_preference.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/result/delete.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/result/delete.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/result/delete.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/result/insert_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/result/insert_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/result/insert_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/result/replace_one.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/result/replace_one.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/result/replace_one.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/result/update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/result/update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/result/update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/validation_criteria.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/validation_criteria.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/validation_criteria.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_driver.dir/write_concern.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/write_concern.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/write_concern.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_instance.dir/__/__/third_party/catch/main.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/main.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/main.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test",
+  "command": "/usr/bin/c++   -DBSONCXX_STATIC -DMONGOCXX_STATIC -DMONGOCXX_TESTING -DMONGO_CXX_DRIVER_COMPILING -O3 -DNDEBUG -I/usr/local/include/libbson-1.0 -I/usr/local/include/libmongoc-1.0 -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/third_party/catch/include -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/test_instance.dir/instance.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/instance.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/mongocxx/test/instance.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/builder_basic.dir/builder_basic.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx/builder_basic.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx/builder_basic.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/builder_core.dir/builder_core.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx/builder_core.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx/builder_core.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/builder_stream.dir/builder_stream.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx/builder_stream.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx/builder_stream.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/getting_values.dir/getting_values.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx/getting_values.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx/getting_values.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/view_and_value.dir/view_and_value.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx/view_and_value.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/bsoncxx/view_and_value.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/mongocxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/aggregate.dir/aggregate.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/aggregate.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/aggregate.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/mongocxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/bulk_write.dir/bulk_write.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/bulk_write.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/bulk_write.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/mongocxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/create.dir/create.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/create.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/create.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/mongocxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/document_validation.dir/document_validation.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/document_validation.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/document_validation.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/mongocxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/exception.dir/exception.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/exception.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/exception.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/mongocxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/index.dir/index.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/index.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/index.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/mongocxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/query.dir/query.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/query.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/query.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/mongocxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/remove.dir/remove.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/remove.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/remove.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/mongocxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/update.dir/update.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/update.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/update.cpp"
+},
+{
+  "directory": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx",
+  "command": "/usr/bin/c++    -O3 -DNDEBUG -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/bsoncxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/install/include/mongocxx/v_noabi -I/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include    -std=c++11 -o CMakeFiles/view_or_value_variant.dir/view_or_value_variant.cpp.o -c /home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/view_or_value_variant.cpp",
+  "file": "/home/hendren/dev/remuv/src/recorto/vendor/mongo_cxx/mongo-cxx-driver/examples/mongocxx/view_or_value_variant.cpp"
+}
+]

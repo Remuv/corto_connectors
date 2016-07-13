@@ -1,4 +1,4 @@
 /common/base
 /common/interface/corto
 /recorto
-/vendor/dds
+/common/dds/vendor

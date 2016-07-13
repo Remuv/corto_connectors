@@ -3,14 +3,14 @@
  * This file contains generated code. Do not modify!
  */
 
-#ifndef RECORTO_DATAMODELS_OBJECT_PTR_H
-#define RECORTO_DATAMODELS_OBJECT_PTR_H
+#ifndef RECORTO_DATA_MODELS_OBJECT_PTR_H
+#define RECORTO_DATA_MODELS_OBJECT_PTR_H
 
 #include <corto/corto.h>
-#include <recorto/datamodels/_interface.h>
-#include <recorto/datamodels/_type.h>
-#include <recorto/datamodels/_api.h>
-#include <recorto/datamodels/_meta.h>
+#include <recorto/data_models/_interface.h>
+#include <recorto/data_models/_type.h>
+#include <recorto/data_models/_api.h>
+#include <recorto/data_models/_meta.h>
 
 #ifdef __cplusplus
 extern "C" {

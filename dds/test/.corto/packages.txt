@@ -1,9 +1,9 @@
 /common/base
 /common/generics
 /common/dds/manager
-/datamodels/corto
-/vendor/dds
+/common/data_models/corto
+/common/dds/vendor
 /common/interface/corto
 /recorto/dds
 /corto/test
-/recorto/datamodels
+/recorto/data_models

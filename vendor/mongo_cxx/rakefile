@@ -1,0 +1,26 @@
+
+PACKAGE = 'recorto/vendor/mongo_cxx'
+
+INCLUDE = [
+  "$(CORTO_INCLUDE)",
+  "$(CORTO_INCLUDE)/bsoncxx",
+  "$(CORTO_INCLUDE)/mongocxx"
+]
+
+LIB = [
+  "bsoncxx",
+  "mongocxx"
+]
+
+NOCORTO = true
+
+LANGUAGE = 'c++'
+
+task :src_build do
+    print "build"
+    system("sh build.sh")
+end
+
+task :prebuild => [:src_build]
+
+require "#{ENV['CORTO_BUILD']}/package"

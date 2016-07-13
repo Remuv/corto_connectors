@@ -1,5 +1,3 @@
 /corto/fmt/json
 /recorto
-/vendor/mongo/bson
-/vendor/mongo/cdriver
-/vendor/mongo/cxx
+/recorto/vendor/mongo_cxx

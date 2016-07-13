@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3 -DNDEBUG   CMakeFiles/test_instance.dir/__/__/third_party/catch/main.cpp.o CMakeFiles/test_instance.dir/instance.cpp.o  -o test_instance  -L/usr/local/lib -rdynamic ../libmongocxx_mocked.a ../../bsoncxx/libbsoncxx.a -lssl -lcrypto -lrt -lmongoc-1.0 -lbson-1.0 -Wl,-rpath,/usr/local/lib 

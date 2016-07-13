@@ -1,5 +1,5 @@
 /corto/test
 /recorto/mongodb
-/vendor/mongo/bson
-/vendor/mongo/cdriver
-/vendor/mongo/cxx
+/recorto/mongo_db/vendor/bson
+/recorto/mongo_db/vendor/cdriver
+/recorto/mongo_db/vendor/cxx
