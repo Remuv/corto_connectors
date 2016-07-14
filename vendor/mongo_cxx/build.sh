@@ -24,17 +24,15 @@ echo Build libbson
 make
 sudo make install
 cp ${BSON_LIB_DIR}/*.so* ${LIB_TARGET}
-cp ${BSON_INC_DIR}/*.h* ${INC_TARGET}/bson
 
 ### Build Mongo Dir
-echo build mongo c driver
+echo Build mongo c driver
 cd ${MONGO_C_DRIVER_DIR}
 ./autogen.sh
 make
 sudo make install
 
 cp ${MONGO_C_DRIVER_LIB_DIR}/*.so* ${LIB_TARGET}
-cp ${MONGO_C_DRIVER_INC_DIR}/*.h* ${INC_TARGET}/mongoc
 
 ### Build MongoCXX
 echo Build MongoCXX
