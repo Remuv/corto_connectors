@@ -1,4 +1,4 @@
-ompiled Object files
+# Compiled Object files
 *.slo
 *.lo
 *.o
@@ -70,6 +70,7 @@ _type.cpp
 _wrapper.c
 _wrapper.cpp
 _wrapper.h
+doc/
 
 # Code Coverage (GCC) #
 #######################
@@ -87,5 +88,11 @@ _wrapper.h
 ehthumbs.db
 Thumbs.db
 core
-!core/
-.tag*
+
+# Build System #
+################
+CMakeCache.txt
+
+# IDE Generated Files #
+######################
+.tags
