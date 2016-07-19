@@ -20,7 +20,12 @@ task :src_build do
     print "build"
     system("sh build.sh")
 end
-
 task :prebuild => [:src_build]
+
+task :ldconfig do
+   print "Execute LD Config For ReCorto Vendor MongoCXX"
+   system("sudo ldconfig")
+ end
+ task :postbuild => [:ldconfig]
 
 require "#{ENV['CORTO_BUILD']}/package"
