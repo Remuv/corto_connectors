@@ -183,6 +183,7 @@ src/bsoncxx/clean: src/bsoncxx/test/clean
 .PHONY : src/bsoncxx/clean
 
 # Convenience name for "preinstall" pass in the directory.
+src/bsoncxx/preinstall: src/bsoncxx/CMakeFiles/bsoncxx.dir/preinstall
 src/bsoncxx/preinstall: src/bsoncxx/third_party/preinstall
 src/bsoncxx/preinstall: src/bsoncxx/config/preinstall
 src/bsoncxx/preinstall: src/bsoncxx/test/preinstall
@@ -213,6 +214,15 @@ src/bsoncxx/CMakeFiles/bsoncxx.dir/rule: cmake_check_build_system
 # Convenience name for target.
 bsoncxx: src/bsoncxx/CMakeFiles/bsoncxx.dir/rule
 .PHONY : bsoncxx
+
+# Pre-install relink rule for target.
+src/bsoncxx/CMakeFiles/bsoncxx.dir/preinstall:
+	$(MAKE) -f src/bsoncxx/CMakeFiles/bsoncxx.dir/build.make src/bsoncxx/CMakeFiles/bsoncxx.dir/preinstall
+.PHONY : src/bsoncxx/CMakeFiles/bsoncxx.dir/preinstall
+
+# Prepare target for install.
+preinstall: src/bsoncxx/CMakeFiles/bsoncxx.dir/preinstall
+.PHONY : preinstall
 
 # clean rule for target.
 src/bsoncxx/CMakeFiles/bsoncxx.dir/clean:
@@ -393,6 +403,7 @@ src/mongocxx/clean: src/mongocxx/test/clean
 .PHONY : src/mongocxx/clean
 
 # Convenience name for "preinstall" pass in the directory.
+src/mongocxx/preinstall: src/mongocxx/CMakeFiles/mongocxx.dir/preinstall
 src/mongocxx/preinstall: src/mongocxx/config/preinstall
 src/mongocxx/preinstall: src/mongocxx/test/preinstall
 .PHONY : src/mongocxx/preinstall
@@ -422,6 +433,15 @@ src/mongocxx/CMakeFiles/mongocxx.dir/rule: cmake_check_build_system
 # Convenience name for target.
 mongocxx: src/mongocxx/CMakeFiles/mongocxx.dir/rule
 .PHONY : mongocxx
+
+# Pre-install relink rule for target.
+src/mongocxx/CMakeFiles/mongocxx.dir/preinstall:
+	$(MAKE) -f src/mongocxx/CMakeFiles/mongocxx.dir/build.make src/mongocxx/CMakeFiles/mongocxx.dir/preinstall
+.PHONY : src/mongocxx/CMakeFiles/mongocxx.dir/preinstall
+
+# Prepare target for install.
+preinstall: src/mongocxx/CMakeFiles/mongocxx.dir/preinstall
+.PHONY : preinstall
 
 # clean rule for target.
 src/mongocxx/CMakeFiles/mongocxx.dir/clean:

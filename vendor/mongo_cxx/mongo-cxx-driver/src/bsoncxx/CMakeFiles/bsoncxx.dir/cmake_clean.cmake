@@ -18,6 +18,10 @@ file(REMOVE_RECURSE
   "libbsoncxx.so"
   "libbsoncxx.so.3.0.0"
   "libbsoncxx.so._noabi"
+  "libbsoncxx.pdb"
+  "CMakeFiles/CMakeRelink.dir/libbsoncxx.so"
+  "CMakeFiles/CMakeRelink.dir/libbsoncxx.so.3.0.0"
+  "CMakeFiles/CMakeRelink.dir/libbsoncxx.so._noabi"
 )
 
 # Per-language clean rules from dependency scanning.

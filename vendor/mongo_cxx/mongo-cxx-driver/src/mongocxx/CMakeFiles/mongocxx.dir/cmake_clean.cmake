@@ -53,6 +53,10 @@ file(REMOVE_RECURSE
   "libmongocxx.so"
   "libmongocxx.so.3.0.0"
   "libmongocxx.so._noabi"
+  "libmongocxx.pdb"
+  "CMakeFiles/CMakeRelink.dir/libmongocxx.so"
+  "CMakeFiles/CMakeRelink.dir/libmongocxx.so.3.0.0"
+  "CMakeFiles/CMakeRelink.dir/libmongocxx.so._noabi"
 )
 
 # Per-language clean rules from dependency scanning.

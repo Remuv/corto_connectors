@@ -53,3 +53,10 @@ fi
 cp -r ${MONGO_DIR}/install/include/bsoncxx/v_noabi/* ${INC_TARGET}/
 cp -r ${MONGO_DIR}/install/include/mongocxx/v_noabi/* ${INC_TARGET}/
 cp ${MONGO_DIR}/install/lib/*.so* ${LIB_TARGET}/
+
+cd ${BSON_DIR}
+make clean
+cd ${MONGO_C_DRIVER_DIR}
+make clean
+cd ${MONGO_DIR}
+make clean
