@@ -10,6 +10,16 @@
 #include <recorto/clmdb/_interface.h>
 /* $header() */
 /* You can put your own definitions here! */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <corto/fmt/json/json.h>
+
+#ifdef __cplusplus
+}
+#endif
+
 /* $end */
 
 #include <corto/corto.h>
@@ -30,4 +40,3 @@ extern "C" {
 }
 #endif
 #endif
-
