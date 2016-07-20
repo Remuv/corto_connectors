@@ -1,3 +1,0 @@
-repository='https://github.com/mnmlstc/core'
-module=''
-tag=''
