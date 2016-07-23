@@ -8,7 +8,7 @@
 class CSyncAdapter : public std::enable_shared_from_this<CSyncAdapter>
 {
 private:
-    typedef std::map<std::string, core::InstanceHandle> HandlerMap;
+    typedef std::map<std::string, dds::core::InstanceHandle> HandlerMap;
 
     std::string m_ddsTopic;
 

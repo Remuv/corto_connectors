@@ -68,7 +68,7 @@ void CSyncAdapter::SendData(std::string type, std::string parent, std::string na
         return;
     }
     Corto::Data data(type, parent, name, value);
-    core::InstanceHandle handler = m_dataHandlers[data.name()];
+    dds::core::InstanceHandle handler = m_dataHandlers[data.name()];
     if (handler.is_nil())
     {
         handler = m_pDataPublisher->RegisterInstance(data);
@@ -84,7 +84,7 @@ void CSyncAdapter::SendRequest(std::string name, std::string type, std::string v
         return;
     }
     Corto::Request request(name, type, value);
-    core::InstanceHandle handler = m_requestHandlers[request.name()];
+    dds::core::InstanceHandle handler = m_requestHandlers[request.name()];
 
     if (handler.is_nil())
     {
