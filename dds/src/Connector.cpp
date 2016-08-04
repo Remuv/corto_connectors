@@ -115,7 +115,8 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
             corto_id path;
 
             corto_fullpath(path, corto_mount(_this)->mount);
-            corto_iter iter = corto_select(path, "//*").iter(NULL);
+            corto_resultIter iter;
+            corto_select(path, "//*").iter(&iter);
 
             corto_resultIterForeach(iter, e) {
                 sprintf(path, "%s/%s", e.parent, e.name);
@@ -309,7 +310,7 @@ corto_int16 _dds_Connector_construct(
             return -1;
         }
     }
-    if (_this->type & Dds_Subscriber)
+    if (_this->type & Dds_subscriber)
     {
         CCortoDataSubscriber::DataNotifyCallback callback =
                 [_this](CCortoDataSubscriber::Sample &sample)
