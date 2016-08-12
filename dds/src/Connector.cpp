@@ -310,7 +310,7 @@ corto_int16 _dds_Connector_construct(
             return -1;
         }
     }
-    if (_this->type & Dds_subscriber)
+    if (_this->type & Dds_Subscriber)
     {
         CCortoDataSubscriber::DataNotifyCallback callback =
                 [_this](CCortoDataSubscriber::Sample &sample)

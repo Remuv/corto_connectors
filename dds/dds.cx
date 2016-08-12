@@ -1,8 +1,8 @@
 #package /recorto/dds
 
 bitmask DdsType::
-    Publisher,
-    Subscriber
+    constant Publisher
+    constant Subscriber
 
 class Connector : core/mount, hidden::
     alias mount : mount/mount
