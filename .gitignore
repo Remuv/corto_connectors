@@ -88,6 +88,7 @@ doc/
 ehthumbs.db
 Thumbs.db
 core
+!core/
 
 # Build System #
 ################
