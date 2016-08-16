@@ -1,4 +1,0 @@
-/recorto/mongo_db/vendor/bson
-/recorto/mongo_db/vendor/cdriver
-/recorto/mongo_db/vendor/cxx
-/corto/test

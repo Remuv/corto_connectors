@@ -9,3 +9,4 @@
 #include <corto/corto.h>
 #include <_interface.h>
 #include <corto/test/test.h>
+#include <recorto/mongodb/mongodb.h>

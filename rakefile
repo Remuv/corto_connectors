@@ -2,7 +2,11 @@
 PACKAGE = 'recorto'
 
 COMPONENTS = %w(
-   vendor data_models mongo_db dds clmdb
+   data_models 
+   mongo_db/lib
+   mongo_db 
+   dds 
+   clmdb
 )
 
 require "#{ENV['CORTO_BUILD']}/package"

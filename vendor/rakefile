@@ -1,4 +1,0 @@
-COMPONENTS = %w(
-  mongo_cxx
-)
-require "#{ENV['CORTO_BUILD']}/forward"

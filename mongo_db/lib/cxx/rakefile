@@ -1,0 +1,4 @@
+COMPONENTS = %w(
+  bsoncxx mongocxx
+)
+require "#{ENV['CORTO_BUILD']}/forward"

@@ -1,0 +1,4 @@
+COMPONENTS = %w(
+  bson c_driver cxx
+)
+require "#{ENV['CORTO_BUILD']}/forward"
