@@ -13,9 +13,11 @@ INPUTS_FILE="`pwd`/lib_input.txt"
 THIRD_PARTY_LIB="/usr/local/lib/*.so*"
 
 echo "INPUTS_FILE=${INPUTS_FILE}"
+echo "Package Libs"
+sudo find ${LIB_DIR} -name "*.so"
 
 display_usage() {
-	echo "package.sh <BUILD_VERSION> <BUILD_RELEASE> <DEP_DIR>"
+	echo "package.sh <BUILD_VERSION> <BUILD_RELEASE>"
 }
 
 ####################
@@ -40,25 +42,6 @@ fi
 if [ "$2" != "" ]; then
   RELEASE=$2
 fi
-
-####################
-## REMOVE Dep PKGs
-####################
-removePackages()
-{
-  BUFFER=`sudo dpkg --info ${1} | grep Package: `
-  PACKAGE=$(echo ${BUFFER} | awk '{ print $2 }')
-  sudo dpkg --purge ${PACKAGE}
-}
-
-DIR=${3}
-if [ "${DIR}" = "." ]
-then
-  DIR=`pwd`
-fi
-
-export -f removePackages
-find ${DIR}/* -prune  -iname "*.deb" -exec bash -c 'removePackages  "$0"' {} \;
 
 ####################
 ## BUILD INPUTS_FILE
