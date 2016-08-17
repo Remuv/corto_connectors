@@ -1,9 +1,9 @@
 
-PACKAGE = 'recorto/mongo_db/lib/bsoncxx'
+PACKAGE = 'recorto/mongo_db/driver/mongocxx'
 
 INCLUDE = [
     "$(CORTO_INCLUDE)",
-    "$(CORTO_INCLUDE)/bsoncxx"
+    "$(CORTO_INCLUDE)/mongocxx"
 ]
 
 LANGUAGE = 'c++'

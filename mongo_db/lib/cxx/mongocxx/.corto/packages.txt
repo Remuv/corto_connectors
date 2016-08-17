@@ -1,2 +1,0 @@
-/recorto/mongo_db/lib/c_driver
-/recorto/mongo_db/lib/bsoncxx

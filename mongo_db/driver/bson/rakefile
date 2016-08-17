@@ -1,5 +1,5 @@
 
-PACKAGE = 'recorto/mongo_db/lib/bson'
+PACKAGE = 'recorto/mongo_db/driver/bson'
 
 INCLUDE = [
 	"$(CORTO_INCLUDE)",

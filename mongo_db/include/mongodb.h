@@ -10,7 +10,7 @@
 #include <recorto/mongodb/_interface.h>
 #include <corto/fmt/json/json.h>
 #include <recorto/recorto.h>
-#include <recorto/mongo_db/lib/mongocxx/mongocxx.h>
+#include <recorto/mongo_db/driver/mongocxx/mongocxx.h>
 
 #include <recorto/mongodb/_type.h>
 #include <recorto/mongodb/_api.h>
