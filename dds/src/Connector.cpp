@@ -29,16 +29,17 @@ corto_object corto_createChildrenRecursive(corto_object parent, corto_string pat
         char *ptr1 = path, *ptr2 = &name[0];
         while (*ptr1 != '\0')
         {
-            if(*ptr1 == '.')
+            if(*ptr1 == '.' || *ptr1 == '/')
             {
                 ptr1++;
-                *ptr2 = '\0';
                 break;
             }
             *ptr2 = *ptr1;
             ptr1++;
             ptr2++;
         }
+        *ptr2 = '\0';
+
         corto_object obj = corto_declareChild(parent, name, type);
         if (obj != nullptr)
         {
