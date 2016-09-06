@@ -13,7 +13,6 @@ class Connector : core/mount, hidden::
     int16 construct()
     void destruct()
 
-    resultIter onRequest(core/request request)
     void onDeclare(object observable)
     void onUpdate(object observable)
     void onDelete(object observable)

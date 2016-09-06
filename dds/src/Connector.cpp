@@ -19,7 +19,7 @@
 corto_object corto_createChildrenRecursive(corto_object parent, corto_string path, corto_object type)
 {
     corto_object retObj = parent;
-    if (*path != '\0')
+    if (path != nullptr && *path != '\0')
     {
         if (type == nullptr)
         {
@@ -68,7 +68,7 @@ corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
     corto_fullpath(type, corto_typeof(obj));
     name = corto_idof(obj);
     corto_path(parent, corto_mount(_this)->mount, parent_o, "/");
-
+    corto_cleanpath(parent, parent);
     corto_string cstr = corto_str(obj, 0);
     std::string value;
     if(cstr[0] == '{')
@@ -89,7 +89,7 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
 
     if (strcmp(request.type().c_str(), "UPDATE") == 0)
     {
-        corto_object obj = corto_resolve(corto_mount(_this)->mount, (char*)request.name().c_str());
+        corto_object obj = corto_lookup(corto_mount(_this)->mount, (char*)request.name().c_str());
         if (obj != nullptr)
         {
             const char *name = request.name().c_str();
@@ -117,13 +117,14 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
 
             corto_fullpath(path, corto_mount(_this)->mount);
             corto_resultIter iter;
+
             corto_select(path, "//*").iter(&iter);
 
             corto_resultIterForeach(iter, e) {
                 sprintf(path, "%s/%s", e.parent, e.name);
                 corto_cleanpath(path, path);
 
-                obj = corto_resolve(corto_mount(_this)->mount, path);
+                obj = corto_lookup(corto_mount(_this)->mount, path);
                 if (obj != NULL)
                 {
                     corto_string cstr = corto_str(obj, 0);
@@ -145,7 +146,7 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
         }
         else
         {
-            corto_object obj = corto_resolve(corto_mount(_this)->mount, (char*)request.name().c_str());
+            corto_object obj = corto_lookup(corto_mount(_this)->mount, (char*)request.name().c_str());
 
             if (obj != nullptr)
             {
@@ -159,10 +160,10 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
 corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_string parent, corto_string name, corto_string value)
 {
 
-    corto_object parent_o = corto_resolve(corto_mount(_this)->mount, parent);
+    corto_object parent_o = corto_lookup(corto_mount(_this)->mount, parent);
     if (parent_o == nullptr)
     {
-        if (parent == nullptr)
+        if (parent == nullptr || *parent == '\0' || *parent == '.')
         {
             parent_o = corto_mount(_this)->mount;
         }
@@ -170,9 +171,10 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
         {
             corto_object typeo = corto_resolve(NULL,type);
             parent_o = corto_createChildrenRecursive(corto_mount(_this)->mount, parent, typeo);
+            corto_release(typeo);
         }
     }
-    corto_object obj = corto_resolve(parent_o, name);
+    corto_object obj = corto_lookup(parent_o, name);
     if (obj != nullptr)
     {
         corto_string cstr = corto_str(obj, 0);
@@ -237,7 +239,7 @@ std::vector<std::string> StrSplit(std::string str, std::string delim)
     while ((end = str.find(delim, start)) != std::string::npos)
     {
         int size = end - start;
-        lines.push_back( str.substr(start, size));
+        lines.push_back(str.substr(start, size));
         start = end+delim.size();
     }
     return lines;
@@ -258,7 +260,7 @@ corto_void dds_Connector_OnData(dds_Connector _this, CCortoDataSubscriber::Sampl
                 size_t p;
                 size_t n;
                 size_t v;
-                if ( ((p = line.find(',')) != std::string::npos) &&     //find index of parent
+                if (((p = line.find(',')) != std::string::npos) &&     //find index of parent
                      ((n = line.find(',', p+1)) != std::string::npos) &&//find index of name
                      ((v = line.find(',', n+1)) != std::string::npos))  //find index of value
                 {
@@ -359,7 +361,7 @@ corto_void _dds_Connector_onDeclare(
     corto_object observable)
 {
 /* $begin(recorto/dds/Connector/onDeclare) */
-
+    dds_Connector_SendData(_this, observable);
 /* $end */
 }
 
@@ -369,16 +371,6 @@ corto_void _dds_Connector_onDelete(
 {
 /* $begin(recorto/dds/Connector/onDelete) */
 
-/* $end */
-}
-
-corto_resultIter _dds_Connector_onRequest(
-    dds_Connector _this,
-    corto_request *request)
-{
-/* $begin(recorto/dds/Connector/onRequest) */
-    /* << Insert implementation >> */
-    return corto_mount_onRequest_v(_this, request);
 /* $end */
 }
 
@@ -398,6 +390,9 @@ corto_void _dds_Connector_onUpdate(
     corto_object observable)
 {
 /* $begin(recorto/dds/Connector/onUpdate) */
+    //corto_id name;
+    //corto_fullpath(name, observable);
+    //printf("OnUpdate %s\n", name);
     dds_Connector_SendData(_this, observable);
 /* $end */
 }

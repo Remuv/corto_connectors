@@ -12,6 +12,7 @@ corto_void _test_ddsConnectorTest_StartTest(
     test_ddsConnectorTest _this)
 {
 /* $begin(test/ddsConnectorTest/StartTest) */
+    corto_verbosity(corto_err::CORTO_TRACE);
     corto_object mount = corto_voidCreateChild(NULL, "mount");
     corto_object sync_mount = corto_voidCreateChild(NULL, "sync_mount");
 
@@ -24,7 +25,7 @@ corto_void _test_ddsConnectorTest_StartTest(
     {
         std::string name = "Child"+std::to_string(i);
         std::string val = std::to_string(i);
-        common/data_models_sockjs_Data data = common/data_models_sockjs_DataCreateChild(mount, (char*)name.c_str(), "Hello", "uuid", (char*)val.c_str());
+        data_models_sockjs_Data data = data_models_sockjs_DataCreateChild(mount, (char*)name.c_str(), "Hello", "uuid", (char*)val.c_str());
         CORTO_UNUSED(data);
     }
     corto_trace("Create DDS Connector on 'sync_mount'");
@@ -34,8 +35,9 @@ corto_void _test_ddsConnectorTest_StartTest(
     dds_Connector_sendRequest(sync_net, "*", "REQUEST", "");
     usleep(1000*1000);
 
-    corto_int16 ret;
-    corto_iter iter = corto_select("sync_mount", "*").iter(&ret);
+    corto_iter iter;
+
+    corto_select("sync_mount", "*").iter(&iter);
 
     int count = 0;
     corto_resultIterForeach(iter, e) {
@@ -45,9 +47,9 @@ corto_void _test_ddsConnectorTest_StartTest(
     corto_trace("Found %i childs on 'sync_mount'", count);
     test_assert(count == size);
 
-    common/data_models_sockjs_Data data = common/data_models_sockjs_DataCreateChild(mount, "data1", "Hello", "uuid", "val");
+    data_models_sockjs_Data data = data_models_sockjs_DataCreateChild(mount, "data1", "Hello", "uuid", "val");
     usleep(1000*100);
-    common/data_models_sockjs_Data sn_data = (common/data_models_sockjs_Data)corto_resolve(sync_mount, "data1");
+    data_models_sockjs_Data sn_data = (data_models_sockjs_Data)corto_resolve(sync_mount, "data1");
     if(sn_data == NULL)
     {
         corto_seterr("sync_mount does not resolve data1");
@@ -57,7 +59,7 @@ corto_void _test_ddsConnectorTest_StartTest(
     {
         std::string v = "Hello "+std::to_string(i);
         corto_trace("Set Value 'mount/data1->value' to  %s", (char*)v.c_str());
-        common/data_models_sockjs_DataUpdate(data, "hello", "uuid", (char*)v.c_str());
+        data_models_sockjs_DataUpdate(data, "hello", "uuid", (char*)v.c_str());
         usleep(1000*100);
         corto_trace("Value on 'sync_mount/data1->value' %s", sn_data->value);
         if ( strcmp(data->value,sn_data->value) != 0)
@@ -73,9 +75,9 @@ corto_void _test_ddsConnectorTest_StartTest(
     corto_delete(sync_net);
     corto_delete(mount);
     corto_delete(net);
-    usleep(1000*1000);
+    //usleep(1000*1000);
 
     test_assert(true);
-//*/
+
 /* $end */
 }
