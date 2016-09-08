@@ -71,7 +71,11 @@ corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
     corto_cleanpath(parent, parent);
     corto_string cstr = corto_str(obj, 0);
     std::string value;
-    if(cstr[0] == '{')
+    if(cstr == nullptr)
+    {
+        value = std::string("{}");
+    }
+    else if(cstr[0] == '{')
     {
         value = std::string(cstr);
     }
@@ -80,7 +84,10 @@ corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
         value = "{"+std::string(cstr)+"}";
     }
     (*adapter)->SendData(type, parent, name, value);
-    corto_dealloc(cstr);
+    if (cstr != nullptr)
+    {
+        corto_dealloc(cstr);
+    }
 }
 
 corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber::Sample &sample)
