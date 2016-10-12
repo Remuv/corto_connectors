@@ -75,19 +75,19 @@ corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
     {
         value = std::string("{}");
     }
-    else if(cstr[0] == '{')
-    {
-        value = std::string(cstr);
-    }
     else
     {
-        value = "{"+std::string(cstr)+"}";
-    }
-    (*adapter)->SendData(type, parent, name, value);
-    if (cstr != nullptr)
-    {
+        if(cstr[0] == '{')
+        {
+            value = std::string(cstr);
+        }
+        else
+        {
+            value = "{"+std::string(cstr)+"}";
+        }
         corto_dealloc(cstr);
     }
+    (*adapter)->SendData(type, parent, name, value);
 }
 
 corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber::Sample &sample)
@@ -135,16 +135,23 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
                 if (obj != NULL)
                 {
                     corto_string cstr = corto_str(obj, 0);
-                    if(cstr[0] == '{')
+                    if (cstr == nullptr)
                     {
-                        value += std::string(e.type)+","+std::string(e.parent)+","+std::string(e.name)+","+std::string(cstr);
+                        value += std::string(e.type)+","+std::string(e.parent)+","+std::string(e.name)+",{}";
                     }
                     else
                     {
-                        value += std::string(e.type)+","+std::string(e.parent)+","+std::string(e.name)+",{"+std::string(cstr)+"}";
+                        if (cstr[0] == '{')
+                        {
+                            value += std::string(e.type)+","+std::string(e.parent)+","+std::string(e.name)+","+std::string(cstr);
+                        }
+                        else
+                        {
+                            value += std::string(e.type)+","+std::string(e.parent)+","+std::string(e.name)+",{"+std::string(cstr)+"}";
+                        }
+                        corto_dealloc(cstr);
                     }
                     value += NEWLINEDELIM;
-                    corto_dealloc(cstr);
                     corto_release(obj);
                 }
             }
@@ -186,16 +193,23 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
     {
         corto_string cstr = corto_str(obj, 0);
         std::string valStr;
-        if(cstr[0] == '{')
+
+        if (cstr == nullptr)
         {
-            valStr = std::string(cstr);
+            valStr = "{}";
         }
         else
         {
-            valStr = "{"+std::string(cstr)+"}";
+            if (cstr[0] == '{')
+            {
+                valStr = std::string(cstr);
+            }
+            else
+            {
+                valStr = "{"+std::string(cstr)+"}";
+            }
+            corto_dealloc(cstr);
         }
-
-        corto_dealloc(cstr);
 
         if (strcmp(value, valStr.c_str()) != 0)
         {

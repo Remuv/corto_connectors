@@ -1,6 +1,6 @@
 #ifndef __CORTO_MONGODB_JSON_UTIL__
 #define __CORTO_MONGODB_JSON_UTIL__
-
+#include <corto/corto.h>
 namespace mongo_json{
     /* JSON serializer data */
     typedef struct json_ser_t {

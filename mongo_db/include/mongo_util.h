@@ -8,11 +8,11 @@
 class CMongoClient
 {
 public:
-    mongocxx::instance inst;
     mongocxx::client conn;
 
-    CMongoClient(std::string user, std::string password, std::string hostaddr, std::string port) : inst()
+    CMongoClient(std::string user, std::string password, std::string hostaddr, std::string port)
     {
+        mongocxx::instance::current();
         std::string auth = "";
         if (!user.empty())
         {
