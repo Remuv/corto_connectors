@@ -22,7 +22,6 @@ extern "C" {
 
 /* $end */
 
-#include <corto/corto.h>
 #include <corto/fmt/json/json.h>
 #include <recorto/recorto.h>
 
