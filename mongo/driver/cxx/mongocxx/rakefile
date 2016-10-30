@@ -1,0 +1,13 @@
+
+PACKAGE = 'remuv/mongo/driver/mongocxx'
+
+INCLUDE = [
+    "$(CORTO_INCLUDE)",
+    "$(CORTO_INCLUDE)/mongocxx"
+]
+
+LANGUAGE = 'c++'
+
+NOCORTO = true
+
+require "#{ENV['CORTO_BUILD']}/package"
