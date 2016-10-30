@@ -1,0 +1,13 @@
+
+PACKAGE = 'recorto/mongo/driver/bsoncxx'
+
+INCLUDE = [
+    "$(CORTO_INCLUDE)",
+    "$(CORTO_INCLUDE)/bsoncxx"
+]
+
+LANGUAGE = 'c++'
+
+NOCORTO = true
+
+require "#{ENV['CORTO_BUILD']}/package"

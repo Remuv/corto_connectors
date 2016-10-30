@@ -16,4 +16,4 @@ class Connector : core/mount, hidden::
 
     void onUpdate(object observable)
     void onDelete(object observable)
-    object onResume(string parent, string name, object obj)
+    object onResume(string parent, string name, object o)

@@ -9,8 +9,12 @@
 #include <recorto/dds/dds.h>
 
 /* $header() */
+
+#include <sys/types.h>
+
 #include "sync_adapter.h"
 #include <sstream>
+
 
 #define StdSharedPtr_SyncAdapter(obj)((std::shared_ptr<CSyncAdapter>*)obj)
 #define NULLWORD 0
@@ -56,7 +60,6 @@ corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
     {
         return;
     }
-
     corto_object parent_o = corto_parentof(obj);
 
     std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
@@ -173,7 +176,7 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
 
 corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_string parent, corto_string name, corto_string value)
 {
-
+    corto_object prev = corto_setOwner(_this);
     corto_object parent_o = corto_lookup(corto_mount(_this)->mount, parent);
     if (parent_o == nullptr)
     {
@@ -217,7 +220,11 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
             {
                 if (corto_fromStr(&obj, value) != 0)
                 {
-                    corto_error("[SetData] Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
+                    corto_error("[SetData] Failed to deserialize for %s,%s: (%s) error: %s",
+                        type,
+                        name,
+                        value,
+                        corto_lasterr());
                 }
                 corto_updateEnd(obj);
             }
@@ -237,18 +244,17 @@ corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_s
         if (obj == NULL)
         {
             corto_error("Failed to create object %s", name);
-            return;
         }
-        if (corto_fromStr(&obj, value) != 0)
+        else if (corto_fromStr(&obj, value) != 0)
         {
             corto_error("[SetData, new obj] Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
-            return;
         }
-        if (corto_define(obj) != 0)
+        else if (corto_define(obj) != 0)
         {
             corto_error("Failed to define %s", corto_idof(obj));
         }
     }
+    corto_setOwner(prev);
 }
 
 std::vector<std::string> StrSplit(std::string str, std::string delim)

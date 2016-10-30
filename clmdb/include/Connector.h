@@ -34,8 +34,8 @@ RECORTO_CLMDB_EXPORT corto_object _clmdb_Connector_onResume(
     clmdb_Connector _this,
     corto_string parent,
     corto_string name,
-    corto_object obj);
-#define clmdb_Connector_onResume(_this, parent, name, obj) _clmdb_Connector_onResume(clmdb_Connector(_this), parent, name, obj)
+    corto_object o);
+#define clmdb_Connector_onResume(_this, parent, name, o) _clmdb_Connector_onResume(clmdb_Connector(_this), parent, name, o)
 
 RECORTO_CLMDB_EXPORT corto_void _clmdb_Connector_onUpdate(
     clmdb_Connector _this,

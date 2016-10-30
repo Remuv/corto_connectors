@@ -1,0 +1,37 @@
+#package /recorto/test_data
+
+enum net_Type::
+    net_bool
+    net_char
+    net_int8
+    net_uint8
+    net_int16
+    net_uint16
+    net_int32
+    net_uint32
+    net_int64
+    net_uint64
+    net_float
+    net_double
+    net_string
+
+struct net_ValueType:
+    value : word
+    type : net_Type
+
+
+union net_ValueType: net_Type::
+    m_b:     {0},  bool
+    m_c:     {1},  char
+    m_i8:    {2},  int8
+    m_u_i8:  {3},  uint8
+    m_i16:   {4},  int16
+    m_u_i16: {5},  uint16
+    m_i32:   {6},  int32
+    m_u_i32: {7},  uint32
+    m_i64:   {8},  int64
+    m_u_i64: {9},  uint64
+    m_f:     {10}, float32
+    m_d:     {11}, float64
+    m_s:     {12}, string
+    default data: int64

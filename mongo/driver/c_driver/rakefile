@@ -1,0 +1,10 @@
+
+PACKAGE = 'recorto/mongo/driver/c_driver'
+
+INCLUDE = ["$(CORTO_INCLUDE)"]
+
+LIB = ["ssl"]
+
+NOCORTO = true
+
+require "#{ENV['CORTO_BUILD']}/package"

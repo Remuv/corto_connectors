@@ -92,12 +92,12 @@ corto_object _clmdb_Connector_onResume(
     clmdb_Connector _this,
     corto_string parent,
     corto_string name,
-    corto_object obj)
+    corto_object o)
 {
 /* $begin(recorto/clmdb/Connector/onResume) */
     if (_this->handle == NULLWORD)
     {
-        return obj;
+        return o;
     }
 
     corto_id path;
@@ -155,7 +155,7 @@ corto_object _clmdb_Connector_onResume(
                     ptr2++;
                 }
                 bool newObject = false;
-                if (obj == nullptr)
+                if (o == nullptr)
                 {
                     corto_object parent_o = corto_resolve(corto_mount(_this)->mount, parent);
                     if (parent_o != nullptr)
@@ -163,8 +163,8 @@ corto_object _clmdb_Connector_onResume(
                         corto_object type_o = corto_resolve(NULL, type);
                         if (type_o != nullptr)
                          {
-                            obj = corto_declareChild(parent_o, name, type_o);
-                            if (obj == nullptr)
+                            o = corto_declareChild(parent_o, name, type_o);
+                            if (o == nullptr)
                             {
                                 corto_trace_error("failed to create object %s/%s: %s",parent, name, corto_lasterr());
                             }
@@ -174,17 +174,17 @@ corto_object _clmdb_Connector_onResume(
                         corto_release(parent_o);
                     }
                 }
-                if (obj != nullptr)
+                if (o != nullptr)
                 {
-                    if (json_deserialize(obj, value) != 0)
+                    if (json_deserialize(o, value) != 0)
                     {
                         corto_trace_error("Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
                     }
                     else if (newObject)
                     {
-                        if (corto_define(obj) != 0)
+                        if (corto_define(o) != 0)
                         {
-                            corto_trace_error("Failed to define %s", corto_idof(obj));
+                            corto_trace_error("Failed to define %s", corto_idof(o));
                         }
                     }
                 }
@@ -209,7 +209,7 @@ corto_object _clmdb_Connector_onResume(
 
     corto_unlock(_this);
 
-    return obj;
+    return o;
 /* $end */
 }
 
