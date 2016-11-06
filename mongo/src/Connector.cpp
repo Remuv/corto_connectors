@@ -29,7 +29,7 @@ using bsoncxx::document::element;
 
 extern corto_uint8 MONGOPOOL_HANDLE;
 
-void mongo_Connector_update(
+void mongo_Connector_update (
     mongo_Connector _this,
     corto_string parent,
     corto_string id,
@@ -55,13 +55,13 @@ void mongo_Connector_update(
         mongocxx::collection coll = (*pClient)[database][collection];
 
         bsoncxx::builder::stream::document filter_builder;
-        filter_builder << "id" << name;
+        filter_builder << "_id" << name;
 
         auto cursor = coll.find_one(filter_builder.view());
         if (!cursor)
         {
             bsoncxx::builder::stream::document update_builder;
-            update_builder  << "id" << name
+            update_builder  << "_id" << name
                             << "value" << _data
                             << "meta" << open_document
                               << "type" << _type
@@ -109,7 +109,7 @@ void mongo_Connector_delete(
         mongocxx::collection coll = (*pClient)[database][collection];
 
         bsoncxx::builder::stream::document filter_builder;
-        filter_builder << "id" << name;
+        filter_builder << "_id" << name;
 
         coll.delete_many(filter_builder.view());
     }
@@ -186,7 +186,7 @@ corto_void _mongo_Connector_onNotify(
 bool check_document(bsoncxx::document::view &doc)
 {
 
-    element name = doc["id"];
+    element name = doc["_id"];
     if (!name || name.type() != bsoncxx::type::k_utf8)
     {
         return false;
@@ -235,7 +235,7 @@ void *mongodb_iterNext(corto_iter *iter)
     mongodb_iterData *pData = (mongodb_iterData*)iter->udata;
     bsoncxx::document::view data = *pData->iter;
 
-    element name = data["id"];
+    element name = data["_id"];
     corto_setstr(&pData->result.id, (char*)name.get_utf8().value.to_string().c_str());
 
     element value = data["value"];
@@ -319,7 +319,7 @@ corto_resultIter _mongo_Connector_onRequest(
         else
         {
             bsoncxx::builder::stream::document filter_builder;
-            filter_builder << "id" << bsoncxx::types::b_regex(expr,"i");
+            filter_builder << "_id" << bsoncxx::types::b_regex(expr,"i");
 
             data->res = coll.find(filter_builder.view());
             data->iter = data->res.begin();
@@ -328,7 +328,7 @@ corto_resultIter _mongo_Connector_onRequest(
     else
     {
         bsoncxx::builder::stream::document filter_builder;
-        filter_builder << "id" << expr;
+        filter_builder << "_id" << expr;
 
         data->res = coll.find(filter_builder.view());
         data->iter = data->res.begin();
