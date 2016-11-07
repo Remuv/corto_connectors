@@ -1,18 +1,13 @@
-/* test.h
+/* clmdbTest.h
  *
  * This file contains generated code. Do not modify!
  */
 
-#ifndef TEST_H
-#define TEST_H
+#ifndef TEST_CLMDBTEST_H
+#define TEST_CLMDBTEST_H
 
 #include <corto/corto.h>
 #include <_interface.h>
-#include <corto/test/test.h>
-#include <corto/fmt/json/json.h>
-#include <recorto/clmdb/clmdb.h>
-#include <corto/admin/admin.h>
-
 #include <_type.h>
 #include <_api.h>
 #include <_meta.h>
@@ -21,9 +16,10 @@
 extern "C" {
 #endif
 
-#include <clmdbTest.h>
-#include <Data.h>
-#include <Vec2.h>
+
+TEST_EXPORT corto_void _test_clmdbTest_StartTest(
+    test_clmdbTest _this);
+#define test_clmdbTest_StartTest(_this) _test_clmdbTest_StartTest(test_clmdbTest(_this))
 
 #ifdef __cplusplus
 }

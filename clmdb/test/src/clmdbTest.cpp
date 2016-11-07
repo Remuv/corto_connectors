@@ -19,69 +19,87 @@ corto_void _test_clmdbTest_StartTest(
     test_clmdbTest _this)
 {
 /* $begin(test/clmdbTest/StartTest) */
-    bool pass = true;
 
-    corto_eventMask mask = CORTO_ON_UPDATE | CORTO_ON_SCOPE | CORTO_ON_TREE; //CORTO_ON_SELF
+    corto_object mount = corto_voidCreateChild(root_o, "mount");
+    clmdb_Connector connector1 = clmdb_ConnectorCreateChild(
+        root_o,
+        "lmdb",
+        mount,
+        CORTO_ON_TREE,
+        "/home/rfloresx/test.db",
+        0,
+        0664,
+        1UL*1024UL*1024UL*1024UL
+    );
 
-    corto_object mount1 = corto_voidCreateChild(root_o, "mount1");
+    corto_float32 *A = corto_float32CreateChild(mount, "A", 0);
+    corto_float32 *B = corto_float32CreateChild(A, "B", 0);
+    corto_float32 *C = corto_float32CreateChild(A, "C", 0);
+    corto_float32 *D = corto_float32CreateChild(mount, "D", 0);
+    corto_float32 *E = corto_float32CreateChild(D, "E", 0);
 
-    corto_object mount2 = corto_voidCreateChild(root_o, "mount2");
+    test_Vec2 v0 = test_Vec2CreateChild(B, "v0", 1, 2);
+    test_Vec2 v1 = test_Vec2CreateChild(B, "v1", 3, 4);
+    test_Vec2 v2 = test_Vec2CreateChild(B, "v2", 5, 6);
+    test_Vec2 v3 = test_Vec2CreateChild(B, "v3", 7, 8);
 
-    clmdb_Connector connector1 = clmdb_ConnectorCreateChild(root_o,
-                                    "lmdb1", mount1, mask,
-                                    "/home/rfloresx/test.db", 0, 0664, 1UL*1024UL*1024UL*1024UL);
+    test_Vec2 v = test_Vec2Create(34,52);
+    test_Data d0 =  test_DataCreateChild(A, "d0", "v0", 1, .1f, .01, v);
+    test_Data d1 =  test_DataCreateChild(A, "d1", "v1", 2, .2f, .02, v);
+    test_Data d2 =  test_DataCreateChild(A, "d2", "v2", 3, .3f, .03, v);
+    test_Data d3 =  test_DataCreateChild(A, "d3", "v3", 4, .4f, .04, v);
 
-    clmdb_Connector connector2 = clmdb_ConnectorCreateChild(root_o,
-                                    "lmdb2", mount2, mask,
-                                    "/home/rfloresx/test.db", 0, 0664, 1UL*1024UL*1024UL*1024UL);
+    corto_release(v);
+    corto_release(A);
+    corto_release(B);
+    corto_release(C);
+    corto_release(D);
+    corto_release(E);
+    corto_delete(v0);
+    corto_delete(v1);
+    corto_release(v2);
+    corto_release(v3);
+    corto_release(d0);
+    corto_release(d1);
+    corto_release(d2);
+    corto_release(d3);
 
+    corto_resultIter it;
+    printf("%s\n", "corto_select(\"mount\",\"//A\")");
+    corto_select("mount", "//A").contentType("text/json").iter(&it);
 
-    //clmdb_ConnectorRegisterOnUpdate(child);
-
-    std::string sub_fix = "test";
-    for (int i = 0; i < 10; i++)
-    {
-        corto_attr attr;
-        if (i%2 != 0)
-        {
-            attr = corto_setAttr(0);
-        }
-        std::string name = sub_fix+std::to_string(i);
-        corto_object child = test_DataCreateChild(mount1, (char*)name.c_str(), (char*)name.c_str());
-        if (i%2 == 0)
-        {
-            if (!corto_checkAttr(child, CORTO_ATTR_PERSISTENT))
-            {
-                corto_error("no Pass");
-            }
-        }
-        else
-        {
-            if (corto_checkAttr(child, CORTO_ATTR_PERSISTENT))
-            {
-                corto_error("Does not Pass");
-            }
-        }
-        if (i%2 != 0)
-        {
-            attr = corto_setAttr(attr);
-        }
-        CORTO_UNUSED(child);
-    }
-    
-    for (int i = 0; i < 10; i++)
-    {
-        std::string name = sub_fix+std::to_string(i);
-        corto_object child = corto_resolve(mount2, (char*)name.c_str());
-        if (child == nullptr && i%2 == 0)
-        {
-            corto_error("Failed to resolve");
-            pass = false;
-        }
+    corto_resultIterForeach(it, r1) {
+        printf("Query returned '%s' with value '%s'\n", r1.id, (corto_string)r1.value);
     }
 
-    corto_delete(connector1);
-    corto_delete(connector2);
-    test_assert(pass);
+    printf("%s\n", "corto_select(\"mount\",\"A//*\")");
+    corto_select("mount", "A//*").contentType("text/json").iter(&it);
+
+    corto_resultIterForeach(it, r2) {
+        printf("Query returned '%s' with value '%s'\n", r2.id, (corto_string)r2.value);
+    }
+
+    printf("%s\n", "corto_select(\"mount\",\"/*\")");
+    corto_select("mount", "/*").contentType("text/json").iter(&it);
+
+    corto_resultIterForeach(it, r3) {
+        printf("Query returned '%s' with value '%s'\n", r3.id, (corto_string)r3.value);
+    }
+
+    printf("%s\n", "corto_select(\"mount\",\"//A*\")");
+    corto_select("mount", "//A*").contentType("text/json").iter(&it);
+
+    corto_resultIterForeach(it, r4) {
+        printf("Query returned '%s' with value '%s'\n", r4.id, (corto_string)r4.value);
+    }
+
+    printf("%s\n", "corto_select(\"mount\",\"//A*\")");
+    corto_select("mount", "//*").contentType("text/json").iter(&it);
+
+    corto_resultIterForeach(it, r5) {
+        printf("Query returned '%s' with value '%s'\n", r5.id, (corto_string)r5.value);
+    }
+    //corto_delete(connector2);
+    test_assert(true);
 /* $end */
 }

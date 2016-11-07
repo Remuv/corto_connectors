@@ -25,22 +25,16 @@ RECORTO_CLMDB_EXPORT corto_void _clmdb_Connector_destruct(
     clmdb_Connector _this);
 #define clmdb_Connector_destruct(_this) _clmdb_Connector_destruct(clmdb_Connector(_this))
 
-RECORTO_CLMDB_EXPORT corto_void _clmdb_Connector_onDelete(
+RECORTO_CLMDB_EXPORT corto_void _clmdb_Connector_onNotify(
     clmdb_Connector _this,
-    corto_object observable);
-#define clmdb_Connector_onDelete(_this, observable) _clmdb_Connector_onDelete(clmdb_Connector(_this), observable)
+    corto_eventMask event,
+    corto_result *object);
+#define clmdb_Connector_onNotify(_this, event, object) _clmdb_Connector_onNotify(clmdb_Connector(_this), event, object)
 
-RECORTO_CLMDB_EXPORT corto_object _clmdb_Connector_onResume(
+RECORTO_CLMDB_EXPORT corto_resultIter _clmdb_Connector_onRequest(
     clmdb_Connector _this,
-    corto_string parent,
-    corto_string name,
-    corto_object o);
-#define clmdb_Connector_onResume(_this, parent, name, o) _clmdb_Connector_onResume(clmdb_Connector(_this), parent, name, o)
-
-RECORTO_CLMDB_EXPORT corto_void _clmdb_Connector_onUpdate(
-    clmdb_Connector _this,
-    corto_object observable);
-#define clmdb_Connector_onUpdate(_this, observable) _clmdb_Connector_onUpdate(clmdb_Connector(_this), observable)
+    corto_request *request);
+#define clmdb_Connector_onRequest(_this, request) _clmdb_Connector_onRequest(clmdb_Connector(_this), request)
 
 #ifdef __cplusplus
 }

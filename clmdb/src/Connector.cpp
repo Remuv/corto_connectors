@@ -9,58 +9,61 @@
 #include <recorto/clmdb/clmdb.h>
 
 /* $header() */
-#include <lmdb.h>
-#include <string>
+#include <lmdb_util.h>
 
-#define corto_trace_error(msg, args...) corto_error("%s:%i: " msg, __FILE__, __LINE__, ##args)
+#define TRACE() printf("%s:%i\n",__FILE__, __LINE__)
 
-//convert from address to MDB_env *
-#define lmdb_env(ptr) ((MDB_env*)ptr)
-#define NULLWORD 0
+#define SAFE_STRING(str) std::string( str != nullptr ? str : "")
 
-MDB_env *create_env(const char * path, unsigned int flags, mdb_mode_t mode, unsigned long map_size)
+
+void clmdb_Connector_update (
+    clmdb_Connector _this,
+    corto_string parent,
+    corto_string id,
+    corto_string type,
+    corto_string json
+)
 {
-    int rc = 0;
-    MDB_env *ret = nullptr;
-    rc = mdb_env_create(&ret);
+    std::string path = SAFE_STRING(_this->path);
 
-    if (rc == 0)
-    {
-        rc = mdb_env_set_mapsize(ret, map_size);
-        if (rc != 0)
-        {
-            corto_trace_error("Failed to set mapsize to %lu, error code %i",map_size, rc);
-            mdb_env_close(ret);
-            ret = nullptr;
-        }
-        else
-        {
-            rc = mdb_env_open(ret, path, flags, mode);
-            if (rc != 0)
-            {
-                corto_trace_error("Failed to open env %s, error code %i", path, rc);
-                mdb_env_close(ret);
-                ret = nullptr;
-            }
-        }
-    }
-    else
-    {
-        corto_trace_error("Failed to mdb_env_create %s, error code %i",rc);
-    }
-    return ret;
+    std::string db = SAFE_STRING(parent);
+    std::string name = SAFE_STRING(id);
+    std::string _type = SAFE_STRING(type);
+    std::string _json = SAFE_STRING(json);
+
+    std::string data = _type + ":"+_json;
+
+    MDB_val mdb_data;
+    mdb_data.mv_size = data.size();
+    mdb_data.mv_data = (void*)data.data();
+
+    CLMDB::SetData(path, db, name, mdb_data);
 }
+
+void clmdb_Connector_delete(
+    clmdb_Connector _this,
+    corto_string parent,
+    corto_string id
+)
+{
+    std::string path = SAFE_STRING(_this->path);
+
+    std::string db = SAFE_STRING(parent);
+    std::string name = SAFE_STRING(id);
+
+    CLMDB::Delete(path, db, name);
+}
+
 /* $end */
 
 corto_int16 _clmdb_Connector_construct(
     clmdb_Connector _this)
 {
 /* $begin(recorto/clmdb/Connector/construct) */
-    MDB_env *handle = create_env(_this->path, _this->flags, _this->mode, _this->map_size);
-    if (handle != nullptr)
-    {
-        _this->handle = (corto_word)handle;
-    }
+
+    CLMDB::Initialize(_this->path, _this->flags, _this->mode, _this->map_size);
+
+    corto_mount_setContentType(_this, "text/json");
 
     corto_mount(_this)->kind = CORTO_SINK;
     return corto_mount_construct(_this);
@@ -71,218 +74,136 @@ corto_void _clmdb_Connector_destruct(
     clmdb_Connector _this)
 {
 /* $begin(recorto/clmdb/Connector/destruct) */
-    if (_this->handle != NULLWORD)
-    {
-        mdb_env_close(lmdb_env(_this->handle));
-        _this->handle = NULLWORD;
-    }
-/* $end */
-}
-
-corto_void _clmdb_Connector_onDelete(
-    clmdb_Connector _this,
-    corto_object observable)
-{
-/* $begin(recorto/clmdb/Connector/onDelete) */
 
 /* $end */
 }
 
-corto_object _clmdb_Connector_onResume(
+corto_void _clmdb_Connector_onNotify(
     clmdb_Connector _this,
-    corto_string parent,
-    corto_string name,
-    corto_object o)
+    corto_eventMask event,
+    corto_result *object)
 {
-/* $begin(recorto/clmdb/Connector/onResume) */
-    if (_this->handle == NULLWORD)
+/* $begin(recorto/clmdb/Connector/onNotify) */
+    if (event & CORTO_ON_DEFINE)
     {
-        return o;
+        corto_string json = (corto_string)(void*)object->value;
+
+        clmdb_Connector_update(_this,
+                                object->parent,
+                                object->id,
+                                object->type,
+                                json);
     }
-
-    corto_id path;
-    sprintf(path, "%s/%s", parent, name);
-    corto_cleanpath(path, path);
-
-    char *ptr = path, ch;
-    while ((ch = *ptr))
+    else if (event & CORTO_ON_UPDATE)
     {
-        if (ch == '/')
+        corto_string json = (corto_string)(void*)object->value;
+
+        clmdb_Connector_update(_this,
+                                object->parent,
+                                object->id,
+                                object->type,
+                                json);
+    }
+    else if (event & CORTO_ON_DELETE)
+    {
+        clmdb_Connector_delete(_this,
+                                object->parent,
+                                object->id);
+    }
+/* $end */
+}
+
+/* $header(recorto/clmdb/Connector/onRequest) */
+
+struct clmdb_iterData
+{
+    CLMDB::Cursor cursor;
+    std::string   parent;
+    corto_result  result;
+};
+
+void *clmdb_iterNext(corto_iter *iter)
+{
+    clmdb_iterData *pData = (clmdb_iterData*)iter->udata;
+
+    CLMDB::Cursor::Data data = pData->cursor.GetData();
+
+    corto_id type;
+    corto_string json;
+
+    char *ptr = (char*)data.data;
+    char *ptr2 = &type[0];
+    while (*ptr)
+    {
+        if (*ptr == ':')
         {
-            *ptr = '.';
+            *ptr2 = '\0';
+            json = ++ptr;
+            break;
         }
+        *ptr2 = *ptr;
         ptr++;
+        ptr2++;
     }
 
-    corto_lock(_this);
-    int rc = 0;
+    corto_setstr(&pData->result.id,(char*)data.key.c_str());
+    corto_setstr(&pData->result.type, type);
+    corto_setstr(&pData->result.parent, (char*)pData->parent.c_str());
+    pData->result.value = (corto_word)corto_strdup(json);
 
-    MDB_env *env = lmdb_env(_this->handle);
-    MDB_txn *txn = nullptr;
+    pData->cursor.Next();
 
-    rc = mdb_txn_begin(env, nullptr, 0, &txn);
-    if (rc == 0)
-    {
-        MDB_dbi dbi = 0;
-        rc = mdb_dbi_open(txn, nullptr, 0, &dbi);
-        if (rc == 0)
-        {
-            MDB_val key;
-            MDB_val data;
-            std::string key_str = std::string(path);
-            key.mv_size = key_str.size();
-            key.mv_data = (void*)key_str.data();
-
-            rc = mdb_get(txn, dbi, &key, &data);
-            if ( rc == 0)
-            {
-                //type{data}
-                corto_id type;
-                corto_string value;
-                char *ptr = (char*)data.mv_data;
-                char *ptr2 = &type[0];
-
-                while (*ptr)
-                {
-                    if (*ptr == ':')
-                    {
-                        value = ++ptr;
-                        *ptr2 = '\0';
-                        break;
-                    }
-                    *ptr2 = *ptr;
-                    ptr++;
-                    ptr2++;
-                }
-                bool newObject = false;
-                if (o == nullptr)
-                {
-                    corto_object parent_o = corto_resolve(corto_mount(_this)->mount, parent);
-                    if (parent_o != nullptr)
-                    {
-                        corto_object type_o = corto_resolve(NULL, type);
-                        if (type_o != nullptr)
-                         {
-                            o = corto_declareChild(parent_o, name, type_o);
-                            if (o == nullptr)
-                            {
-                                corto_trace_error("failed to create object %s/%s: %s",parent, name, corto_lasterr());
-                            }
-                            newObject = true;
-                            corto_release(type_o);
-                        }
-                        corto_release(parent_o);
-                    }
-                }
-                if (o != nullptr)
-                {
-                    if (json_deserialize(o, value) != 0)
-                    {
-                        corto_trace_error("Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
-                    }
-                    else if (newObject)
-                    {
-                        if (corto_define(o) != 0)
-                        {
-                            corto_trace_error("Failed to define %s", corto_idof(o));
-                        }
-                    }
-                }
-                mdb_txn_commit(txn);
-            }
-            else
-            {
-                mdb_txn_abort(txn);
-            }
-        }
-        else
-        {
-            corto_trace_error("Failed to open dbi: error code %i", rc);
-            mdb_txn_abort(txn);
-        }
-
-    }
-    else
-    {
-        corto_trace_error("Failed to open txn: error code %i", rc);
-    }
-
-    corto_unlock(_this);
-
-    return o;
-/* $end */
+    return &pData->result;
 }
 
-corto_void _clmdb_Connector_onUpdate(
-    clmdb_Connector _this,
-    corto_object observable)
+int clmdb_iterHasNext(corto_iter *iter)
 {
-/* $begin(recorto/clmdb/Connector/onUpdate) */
-    if (_this->handle == NULLWORD)
+    clmdb_iterData *pData =(clmdb_iterData*)iter->udata;
+
+    int retVal = 0;
+
+    if (pData->cursor.HasNext())
     {
-        return;
-    }
-    corto_lock(_this);
-    int rc = 0;
-
-    MDB_env *env = lmdb_env(_this->handle);
-    MDB_txn *txn = nullptr;
-
-    rc = mdb_txn_begin(env, nullptr, 0, &txn);
-    if (rc == 0)
-    {
-        MDB_dbi dbi = 0;
-        rc = mdb_dbi_open(txn, nullptr, 0, &dbi);
-        if (rc == 0)
-        {
-            std::string key_str;    //Key
-            std::string data_str;   //Data = typeName:value
-
-            corto_id typeName;
-            corto_string value = nullptr;
-
-            key_str = std::string(corto_path(nullptr, corto_mount(_this)->mount, observable, "."));
-
-            corto_fullpath(typeName, corto_typeof(observable));
-            value = json_serialize(observable);
-            data_str = std::string(typeName)+":"+std::string(value);
-            corto_dealloc(value);
-
-            MDB_val key;
-            MDB_val data;
-
-            key.mv_size = key_str.size();
-            key.mv_data = (void*)key_str.data();
-
-            data.mv_size = data_str.size();
-            data.mv_data = (void*)data_str.data();
-
-            rc = mdb_put(txn, dbi, &key, &data, 0);
-            if (rc == 0)
-            {
-                rc = mdb_txn_commit(txn);
-                if (rc != 0)
-                {
-                    corto_trace_error("Failed to commit: error code %i", rc);
-                }
-            }
-            else
-            {
-                mdb_txn_abort(txn);
-                corto_trace_error("Failed to mdb put: error code %i", rc);
-            }
-        }
-        else
-        {
-            corto_trace_error("Failed to open dbi: error code %i", rc);
-            mdb_txn_abort(txn);
-        }
-    }
-    else
-    {
-        corto_trace_error("Failed to open txn: error code %i", rc);
+        retVal = 1;
     }
 
-    corto_unlock(_this);
+    return retVal;
+}
+
+void clmdb_iterRelease(corto_iter *iter)
+{
+    clmdb_iterData *pData = (clmdb_iterData*)iter->udata;
+    delete pData;
+}
+
+/* $end */
+corto_resultIter _clmdb_Connector_onRequest(
+    clmdb_Connector _this,
+    corto_request *request)
+{
+/* $begin(recorto/clmdb/Connector/onRequest) */
+    corto_resultIter result;
+    std::string path = SAFE_STRING(_this->path);
+    std::string parent = SAFE_STRING(request->parent);
+    std::string expr = SAFE_STRING(request->expr);
+
+    clmdb_iterData *data = (clmdb_iterData*)corto_calloc(sizeof(clmdb_iterData));
+
+    new (&data->parent) std::string(parent);
+    new (&data->cursor) CLMDB::Cursor(CLMDB::GetCursor(path, parent, expr));
+
+    data->result.id = NULL;
+    data->result.name = NULL;
+    data->result.parent = NULL;
+    data->result.type = NULL;
+    data->result.value = 0;
+    data->result.leaf = false;
+
+    result.udata = data;
+    result.hasNext = clmdb_iterHasNext;
+    result.next = clmdb_iterNext;
+    result.release = clmdb_iterRelease;
+
+    return result;
 /* $end */
 }
