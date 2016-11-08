@@ -1,0 +1,9 @@
+PACKAGE = "remuv/clmdb"
+
+INCLUDE = ["$(CORTO_INCLUDE)"]
+
+LIB = ["lmdb"]
+
+LANGUAGE = "c4cpp"
+
+require "#{ENV['CORTO_BUILD']}/package"

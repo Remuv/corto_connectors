@@ -2,6 +2,7 @@
 PACKAGE = 'remuv'
 
 COMPONENTS = %w(
+   clmdb
    mongo/driver
    mongo
 )

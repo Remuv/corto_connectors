@@ -1,0 +1,99 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.gch
+*.pch
+*.d
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*app
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+package/
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.deb
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# Corto Generated    #
+######################
+install.sh
+dep.rb
+_api.c
+_api.cpp
+_api.h
+_load.h
+_load.c
+_load.cpp
+_interface.h
+_interface.c
+_interface.cpp
+_meta.c
+_meta.cpp
+_meta.h
+_type.h
+_type.c
+_type.cpp
+_wrapper.c
+_wrapper.cpp
+_wrapper.h
+doc/
+
+# Code Coverage (GCC) #
+#######################
+*.gcda
+*.gcno
+*.gcov
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+core
+!core/
+
+# Build System #
+################
+CMakeCache.txt
+
+# IDE Generated Files #
+######################
+.tags
