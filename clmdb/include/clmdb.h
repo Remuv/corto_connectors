@@ -7,7 +7,7 @@
 #define RECORTO_CLMDB_H
 
 #include <corto/corto.h>
-#include <recorto/clmdb/_interface.h>
+#include <recorto/clmdb/_project.h>
 /* $header() */
 /* You can put your own definitions here! */
 #ifdef __cplusplus
@@ -27,7 +27,7 @@ extern "C" {
 
 #include <recorto/clmdb/_type.h>
 #include <recorto/clmdb/_api.h>
-#include <recorto/clmdb/_meta.h>
+#include <recorto/clmdb/_load.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -7,10 +7,10 @@
 #define RECORTO_CLMDB_CONNECTOR_H
 
 #include <corto/corto.h>
-#include <recorto/clmdb/_interface.h>
+#include <recorto/clmdb/_project.h>
 #include <recorto/clmdb/_type.h>
 #include <recorto/clmdb/_api.h>
-#include <recorto/clmdb/_meta.h>
+#include <recorto/clmdb/_load.h>
 
 #ifdef __cplusplus
 extern "C" {

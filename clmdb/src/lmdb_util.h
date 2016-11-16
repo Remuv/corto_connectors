@@ -59,10 +59,12 @@ public:
 
     static int SetData(std::string path, std::string db, std::string key, MDB_val &data);
     static int GetData(std::string path, std::string db, std::string key, MDB_val &out);
+    static void FreeData(MDB_val &data);
 
     static int Delete(std::string path, std::string db, std::string key);
 
     static Cursor GetCursor(std::string path, std::string db, std::string expr);
+
 };
 
 #endif
