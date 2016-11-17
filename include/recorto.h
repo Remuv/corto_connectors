@@ -7,11 +7,11 @@
 #define RECORTO_H
 
 #include <corto/corto.h>
-#include <recorto/_interface.h>
+#include <recorto/_project.h>
 
 #include <recorto/_type.h>
 #include <recorto/_api.h>
-#include <recorto/_meta.h>
+#include <recorto/_load.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -47,6 +47,8 @@ void mongo_Connector_update(
     {
         CMongoPool *pPool = (CMongoPool*)corto_olsGet(_this, MONGOPOOL_HANDLE);
 
+        std::string parent_s = collection;
+
         if (collection == ".") {
             collection = "/";
         }
@@ -65,7 +67,7 @@ void mongo_Connector_update(
                             << "value" << _data
                             << "meta" << open_document
                               << "type" << _type
-                              << "parent" << collection
+                              << "parent" << parent_s
                             << close_document;
             coll.insert_one(update_builder.view());
         }
@@ -76,7 +78,7 @@ void mongo_Connector_update(
                             << "value" << _data
                             << "meta" << open_document
                               << "type" << _type
-                              << "parent" << collection
+                              << "parent" << parent_s
                             << close_document
                            << close_document;
             coll.update_one(filter_builder.view(), update_builder.view());

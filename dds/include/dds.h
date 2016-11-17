@@ -7,7 +7,7 @@
 #define RECORTO_DDS_H
 
 #include <corto/corto.h>
-#include <recorto/dds/_interface.h>
+#include <recorto/dds/_project.h>
 /* $header() */
 /* You can put your own definitions here! */
 /* $end */
@@ -19,7 +19,7 @@
 
 #include <recorto/dds/_type.h>
 #include <recorto/dds/_api.h>
-#include <recorto/dds/_meta.h>
+#include <recorto/dds/_load.h>
 
 #ifdef __cplusplus
 extern "C" {

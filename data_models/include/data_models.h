@@ -7,12 +7,12 @@
 #define RECORTO_DATA_MODELS_H
 
 #include <corto/corto.h>
-#include <recorto/data_models/_interface.h>
+#include <recorto/data_models/_project.h>
 #include <recorto/recorto.h>
 
 #include <recorto/data_models/_type.h>
 #include <recorto/data_models/_api.h>
-#include <recorto/data_models/_meta.h>
+#include <recorto/data_models/_load.h>
 
 #ifdef __cplusplus
 extern "C" {

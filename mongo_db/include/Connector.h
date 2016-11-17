@@ -7,10 +7,10 @@
 #define RECORTO_MONGODB_CONNECTOR_H
 
 #include <corto/corto.h>
-#include <recorto/mongodb/_interface.h>
+#include <recorto/mongodb/_project.h>
 #include <recorto/mongodb/_type.h>
 #include <recorto/mongodb/_api.h>
-#include <recorto/mongodb/_meta.h>
+#include <recorto/mongodb/_load.h>
 
 #ifdef __cplusplus
 extern "C" {

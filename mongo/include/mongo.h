@@ -7,14 +7,14 @@
 #define RECORTO_MONGO_H
 
 #include <corto/corto.h>
-#include <recorto/mongo/_interface.h>
+#include <recorto/mongo/_project.h>
 #include <corto/fmt/json/json.h>
 #include <recorto/mongo/driver/mongocxx/mongocxx.h>
 #include <recorto/recorto.h>
 
 #include <recorto/mongo/_type.h>
 #include <recorto/mongo/_api.h>
-#include <recorto/mongo/_meta.h>
+#include <recorto/mongo/_load.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -7,10 +7,10 @@
 #define RECORTO_MONGO_CONNECTOR_H
 
 #include <corto/corto.h>
-#include <recorto/mongo/_interface.h>
+#include <recorto/mongo/_project.h>
 #include <recorto/mongo/_type.h>
 #include <recorto/mongo/_api.h>
-#include <recorto/mongo/_meta.h>
+#include <recorto/mongo/_load.h>
 
 #ifdef __cplusplus
 extern "C" {
