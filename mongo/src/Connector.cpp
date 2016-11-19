@@ -250,8 +250,7 @@ void *mongodb_iterNext(corto_iter *iter)
     element type = view["type"];
     corto_setstr(&pData->result.type, (char*)type.get_utf8().value.to_string().c_str());
 
-    element parent = view["parent"];
-    corto_setstr(&pData->result.parent, (char*)parent.get_utf8().value.to_string().c_str());
+    corto_setstr(&pData->result.parent, ".");
 
     pData->result.name = NULL;
     pData->iter++;
