@@ -26,6 +26,7 @@ using bsoncxx::builder::stream::finalize;
 using bsoncxx::document::element;
 
 #define SAFE_STRING(str) std::string( str != nullptr ? str : "")
+#define TO_LOWERCASE(str) std::transform(str.begin(), str.end(), str.begin(), ::tolower)
 
 extern corto_uint8 MONGOPOOL_HANDLE;
 
@@ -42,6 +43,9 @@ void mongo_Connector_update(
     std::string name = SAFE_STRING(id);
     std::string _type = SAFE_STRING(type);
     std::string _data = SAFE_STRING(json);
+
+    TO_LOWERCASE(name);
+    TO_LOWERCASE(collection);
 
     try
     {
@@ -99,6 +103,10 @@ void mongo_Connector_delete(
     std::string database = SAFE_STRING(_this->dbname);
     std::string collection = SAFE_STRING(parent);
     std::string name = SAFE_STRING(id);
+
+    TO_LOWERCASE(name);
+    TO_LOWERCASE(collection);
+
     try
     {
         CMongoPool *pPool = (CMongoPool*)corto_olsGet(_this, MONGOPOOL_HANDLE);
@@ -294,10 +302,9 @@ corto_resultIter _mongo_Connector_onRequest(
     std::string expr = SAFE_STRING(request->expr);
     std::string type = SAFE_STRING(request->type);
 
-    //uint64_t offset = request->offset;
-    //uint64_t limit = request->limit;
-    //bool content = request->content;
-
+    TO_LOWERCASE(expr);
+    TO_LOWERCASE(parent);
+    
     CMongoPool *pPool = (CMongoPool*)corto_olsGet(_this, MONGOPOOL_HANDLE);
     mongodb_iterData *data = (mongodb_iterData*)corto_calloc(sizeof(mongodb_iterData));
     new (&data->client) MongoClientPtr();
