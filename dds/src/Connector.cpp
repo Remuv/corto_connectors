@@ -15,6 +15,7 @@
 #include "sync_adapter.h"
 #include <sstream>
 
+#define SAFE_STRING(str) std::string(str != nullptr ? str : "")
 
 #define StdSharedPtr_SyncAdapter(obj)((std::shared_ptr<CSyncAdapter>*)obj)
 #define NULLWORD 0
@@ -90,7 +91,11 @@ corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
         }
         corto_dealloc(cstr);
     }
-    (*adapter)->SendData(type, parent, name, value);
+    if ((*adapter)->SendData(type, parent, name, value) == false)
+    {
+        std::string rin = SAFE_STRING(parent) + "/" + SAFE_STRING(name);
+        (*adapter)->SendRequest(rin, "UPDATE", value);
+    }
 }
 
 corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber::Sample &sample)
@@ -104,7 +109,6 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
         {
             const char *name = request.name().c_str();
             const char *value = request.value().c_str();
-
             if (corto_updateBegin(obj) == 0)
             {
                 if (corto_fromStr(&obj, (char*)value) != 0)

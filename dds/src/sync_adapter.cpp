@@ -61,11 +61,11 @@ bool CSyncAdapter::SetUpDataSubscriber(CCortoDataSubscriber::DataNotifyCallback 
     return true;
 }
 
-void CSyncAdapter::SendData(std::string type, std::string parent, std::string name, std::string value)
+bool CSyncAdapter::SendData(std::string type, std::string parent, std::string name, std::string value)
 {
     if (m_pDataPublisher == nullptr)
     {
-        return;
+        return false;
     }
     Corto::Data data(type, parent, name, value);
     dds::core::InstanceHandle handler = m_dataHandlers[data.name()];
@@ -75,6 +75,7 @@ void CSyncAdapter::SendData(std::string type, std::string parent, std::string na
         m_dataHandlers[data.name()] = handler;
     }
     m_pDataPublisher->Write(data, handler);
+    return true;
 }
 
 void CSyncAdapter::SendRequest(std::string name, std::string type, std::string value)

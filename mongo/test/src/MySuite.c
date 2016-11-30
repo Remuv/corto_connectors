@@ -94,6 +94,25 @@ corto_void _test_MySuite_testSomething(
         printf("Query returned '%s' with value '%s'\n", r5.id, (corto_string)r5.value);
     }
 
+    {
+        printf("%s\n", "corto_select(\"mount\",\"//*\")");
+        corto_select("mount", "//*").contentType("text/json").iter(&it);
+
+        corto_resultIterForeach(it, r6) {
+            printf("Query returned '%s/%s' with value '%s'\n", r6.parent, r6.id, (corto_string)r6.value);
+        }
+    }
+    
+    corto_object t = corto_resolve(mount, "A");
+    corto_delete(t);
+    {
+        printf("%s\n", "corto_select(\"mount\",\"//*\")");
+        corto_select("mount", "//*").contentType("text/json").iter(&it);
+
+        corto_resultIterForeach(it, r6) {
+            printf("Query returned '%s/%s' with value '%s'\n", r6.parent, r6.id, (corto_string)r6.value);
+        }
+    }
     /* << Insert implementation >> */
     test_assert(1);
 /* $end */
