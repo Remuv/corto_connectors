@@ -363,7 +363,7 @@ corto_int16 _dds_Connector_construct(
     }
     //corto_setstr(&corto_mount(_this)->type, "/noType");
 
-    corto_mount(_this)->mask = CORTO_ON_SCOPE | CORTO_ON_TREE;
+    corto_observer(_this)->mask = CORTO_ON_SCOPE | CORTO_ON_TREE;
     corto_mount(_this)->kind = CORTO_SINK;
     return corto_mount_construct(_this);
 

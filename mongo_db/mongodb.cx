@@ -5,7 +5,7 @@ list stringList{string}
 class Connector : core/mount, hidden::
     int16 construct()
     alias mount: mount/mount
-    alias mask : mount/mask
+    alias mask : observer/mask
     dbname : string
     collection : string
     keyname : string
