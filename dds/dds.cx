@@ -5,7 +5,7 @@ bitmask DdsType::
     constant Subscriber
 
 class Connector : core/mount, hidden::
-    alias mask : mount/mount
+    alias mount : mount/mount
     type : DdsType
     topic : string
     dds_adapter : word, private
