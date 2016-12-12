@@ -2,6 +2,7 @@
 
 class Connector : core/mount, hidden::
     alias mount: mount/mount
+    alias mask : mount/mask
 
     path : string
     flags : uint32

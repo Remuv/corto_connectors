@@ -180,8 +180,6 @@ corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber:
 
 corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_string parent, corto_string name, corto_string value)
 {
-    //printf("SetData: t=%s, p=%s, n=%s, val=%s\n", type, parent, name, value);
-
     corto_object prev = corto_setOwner(_this);
     corto_object parent_o = corto_lookup(corto_mount(_this)->mount, parent);
     if (parent_o == nullptr)
@@ -365,6 +363,7 @@ corto_int16 _dds_Connector_construct(
     }
     //corto_setstr(&corto_mount(_this)->type, "/noType");
 
+    corto_mount(_this)->mask = CORTO_ON_SCOPE | CORTO_ON_TREE;
     corto_mount(_this)->kind = CORTO_SINK;
     return corto_mount_construct(_this);
 
