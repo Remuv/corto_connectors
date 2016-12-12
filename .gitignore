@@ -1,3 +1,27 @@
+#Project Generated Files
+.corto/_project.c
+.corto/packages.txt
+clmdb/.corto/_project.cpp
+clmdb/include/Connector.h
+clmdb/include/_project.h
+data_models/.corto/_project.cpp
+data_models/include/_project.h
+data_models/include/net_Data.h
+data_models/include/net_ValueType.h
+data_models/include/object_ptr.h
+data_models/include/server_Data.h
+data_models/include/sockjs_Data.h
+dds/.corto/_project.cpp
+dds/include/Connector.h
+dds/include/_project.h
+include/_project.h
+mongo/.corto/_project.cpp
+mongo/include/Connector.h
+mongo/include/_project.h
+mongo_db/.corto/_project.cpp
+mongo_db/include/Connector.h
+mongo_db/include/_project.h
+
 # Compiled Object files
 *.slo
 *.lo
@@ -67,6 +91,9 @@ _meta.h
 _type.h
 _type.c
 _type.cpp
+_project.c
+_project.cpp
+_project.h
 _wrapper.c
 _wrapper.cpp
 _wrapper.h
