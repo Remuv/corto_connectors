@@ -7,32 +7,36 @@
 
 class CSyncAdapter : public std::enable_shared_from_this<CSyncAdapter>
 {
+public:
+    typedef CCortoDataSubscriber::Sample Sample;
+    typedef CCortoDataSubscriber::SampleSeq SampleSeq;
+    typedef std::vector<std::string> ParamVector;
+    //typedef CCortoDataSubscriber::ParamVector ParamVector;
+
+    typedef CCortoDataSubscriber::DataNotifyCallback DataNotifyCallback;
+
 private:
     typedef std::map<std::string, dds::core::InstanceHandle> HandlerMap;
 
+    CRemuvUuid  m_uuid;
     std::string m_ddsTopic;
 
-    CCortoDataPublisher *m_pDataPublisher;
+    CCortoDataPublisher  *m_pDataPublisher;
     CCortoDataSubscriber *m_pDataSubscriber;
 
-    CCortoRequestPublisher *m_pRequestPublisher;
-    CCortoRequestSubscriber *m_pRequestSubscriber;
-
     HandlerMap m_dataHandlers;
-    HandlerMap m_requestHandlers;
 
 public:
     CSyncAdapter(std::string topic);
-
     ~CSyncAdapter();
 
-    bool SetUpDataPublisher(CCortoRequestSubscriber::DataNotifyCallback callback);
-
-    bool SetUpDataSubscriber(CCortoDataSubscriber::DataNotifyCallback callback);
+    bool Initialize(DataNotifyCallback callback);
 
     bool SendData(std::string type, std::string parent, std::string name, std::string value);
 
-    void SendRequest(std::string name, std::string type, std::string value);
+    bool Query(SampleSeq &sampleSeq, std::string expression, ParamVector params);
+
+    bool Query(SampleSeq &sampleSeq, std::string expression);
 
     void Close();
 };

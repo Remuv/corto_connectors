@@ -43,6 +43,10 @@ corto_void _test_MySuite_testSomething(
     test_Data d2 =  test_DataCreateChild(A, "v2", "v2", 3, .3f, .03, v);
     test_Data d3 =  test_DataCreateChild(A, "v3", "v3", 4, .4f, .04, v);
 
+
+    test_Test data = test_TestCreate(1);
+    test_Data complex = test_ObjectPtrCreateChild(mount, "complex", 1, data);
+
     corto_release(v);
     corto_release(A);
     corto_release(B);
@@ -102,7 +106,7 @@ corto_void _test_MySuite_testSomething(
             printf("Query returned '%s/%s' with value '%s'\n", r6.parent, r6.id, (corto_string)r6.value);
         }
     }
-    
+
     corto_object t = corto_resolve(mount, "A");
     corto_delete(t);
     {

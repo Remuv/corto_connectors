@@ -84,6 +84,11 @@ corto_void _clmdb_Connector_onNotify(
     corto_result *object)
 {
 /* $begin(recorto/clmdb/Connector/onNotify) */
+    if (object->object != nullptr && !corto_checkAttr(object->object, CORTO_ATTR_PERSISTENT))
+    {
+        return;
+    }
+
     if (event & CORTO_ON_DEFINE)
     {
         corto_string json = (corto_string)(void*)object->value;
@@ -172,8 +177,14 @@ int clmdb_iterHasNext(corto_iter *iter)
 
 void clmdb_iterRelease(corto_iter *iter)
 {
+    typedef std::string CString;
+    typedef CLMDB::Cursor CCursor;
     clmdb_iterData *pData = (clmdb_iterData*)iter->udata;
-    delete pData;
+
+    pData->parent.~CString();
+    pData->cursor.~CCursor();
+
+    corto_dealloc(pData);
 }
 
 /* $end */

@@ -1,21 +1,12 @@
 #package /recorto/dds
 
-bitmask DdsType::
-    constant Publisher
-    constant Subscriber
-
 class Connector : core/mount, hidden::
-    alias mount : mount/mount
-    type : DdsType
+    alias mount : core/mount/mount
     topic : string
     dds_adapter : word, private
 
     int16 construct()
     void destruct()
 
-    void onDeclare(object observable)
-    void onUpdate(object observable)
-    void onDelete(object observable)
-    object onResume(string parent, string name, object o)
-
-    void sendRequest(string name, string type, string value)
+    resultIter onRequest(core/request request)
+    void onNotify(core/eventMask event, core/result object)

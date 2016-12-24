@@ -8,76 +8,131 @@
 
 #include <test.h>
 
+/* $header() */
+void OnNotify (
+    corto_object _this,
+    corto_eventMask event,
+    corto_result *result,
+    corto_subscriber subscriber
+)
+{
+    printf("OnNotify p = %s, id = %s, t = %s, v = %s\n", result->parent, result->id, result->type, (char*)result->value );
+}
+
+/* $end */
+
 corto_void _test_ddsConnectorTest_StartTest(
     test_ddsConnectorTest _this)
 {
 /* $begin(test/ddsConnectorTest/StartTest) */
+    corto_time timeout = {60, 0};
+    test_setTimeout(&timeout);
+
     corto_verbosity(corto_err::CORTO_TRACE);
-    corto_object mount = corto_voidCreateChild(NULL, "mount");
-    corto_object sync_mount = corto_voidCreateChild(NULL, "sync_mount");
+    corto_object myRoot = corto_voidCreateChild(root_o, "myRoot");
+
+    corto_object mount = corto_voidCreateChild(myRoot, "mount");
+    corto_object sync_mount = corto_voidCreateChild(myRoot, "sync");
 
     corto_trace("Create DDS Connector on 'mount'");
-    dds_Connector net = dds_ConnectorCreateChild(NULL, "net", mount, Dds_Publisher, "TestTopic");
+    dds_Connector net = dds_ConnectorCreateChild(root_o, "net", mount, "SyncTest");
 
-    int size = 10;
-    corto_trace("Creathe %i childs on 'mount'", size);
-    for(int i = 0; i < size; i++)
-    {
-        std::string name = "Child"+std::to_string(i);
-        std::string val = std::to_string(i);
-        data_models_sockjs_Data data = data_models_sockjs_DataCreateChild(mount, (char*)name.c_str(), "Hello", "uuid", (char*)val.c_str());
-        CORTO_UNUSED(data);
-    }
-    corto_trace("Create DDS Connector on 'sync_mount'");
-    dds_Connector sync_net = dds_ConnectorCreateChild(NULL, "sync_net", sync_mount, Dds_Subscriber, "TestTopic");
+    corto_object A = corto_int64CreateChild(mount, "A", 1); usleep(1000*100);
 
-    corto_trace("Request All childs");
-    dds_Connector_sendRequest(sync_net, "*", "REQUEST", "");
+     corto_object Aa = corto_int64CreateChild(A, "a", 11); usleep(1000*100);
+     corto_object Ab = corto_int64CreateChild(A, "b", 12); usleep(1000*100);
+     corto_object Ac = corto_int64CreateChild(A, "c", 13); usleep(1000*100);
+     corto_object Ad = corto_int64CreateChild(A, "d", 14); usleep(1000*100);
+     corto_object Ae = corto_int64CreateChild(A, "e", 15); usleep(1000*100);
+      corto_object Aea = corto_int64CreateChild(Ae, "a", 16); usleep(1000*100);
+      corto_object Aeb = corto_int64CreateChild(Ae, "b", 17); usleep(1000*100);
+      corto_object Aec = corto_int64CreateChild(Ae, "c", 18); usleep(1000*100);
+      corto_object Aed = corto_int64CreateChild(Ae, "d", 19); usleep(1000*100);
+
     usleep(1000*1000);
+    dds_Connector sync = dds_ConnectorCreateChild(root_o, "sync_net", sync_mount, "SyncTest");
+    usleep(1000*1000);
+    corto_object B = corto_int64CreateChild(mount, "B", 2); usleep(1000*100);
+     corto_object Ba = corto_int64CreateChild(B, "a", 21); usleep(1000*100);
+     corto_object Bb = corto_int64CreateChild(B, "b", 22); usleep(1000*100);
+     corto_object Bc = corto_int64CreateChild(B, "c", 23); usleep(1000*100);
+     corto_object Bd = corto_int64CreateChild(B, "d", 24); usleep(1000*100);
+     corto_object Be = corto_int64CreateChild(B, "e", 25); usleep(1000*100);
 
-    corto_iter iter;
 
-    corto_select("sync_mount", "*").iter(&iter);
 
-    int count = 0;
-    corto_resultIterForeach(iter, e) {
-        corto_trace("id: %s, name: %s, parent: %s, type: %s, value: %llu", e.id, e.name, e.parent, e.type, e.value);
-        count++;
+    corto_subscriber subscriber = corto_subscribe(CORTO_ON_UPDATE, "/myRoot", "mount/A")
+                                        .contentType("text/json")
+                                        .callback(OnNotify);
+    corto_subscriber subscriber2 = corto_subscribe(CORTO_ON_UPDATE, "/myRoot", "sync/A")
+                                        .contentType("text/json")
+                                        .callback(OnNotify);
+    //
+    printf("\n");
+    corto_int64Update(A, 124); //usleep(1000*100);
+    corto_int64Update(A, 122); //usleep(1000*100);
+    corto_int64Update(A, 1232); //usleep(1000*100);
+    corto_int64Update(A, 12); //usleep(1000*100);
+
+    corto_unsubscribe(subscriber, nullptr);
+    corto_release(Aea);
+    corto_release(Aeb);
+    corto_release(Aec);
+    corto_release(Aed);
+    corto_release(Ae);
+    corto_release(Ad);
+    corto_release(Ac);
+    corto_release(Ab);
+    corto_release(Aa);
+    corto_release(A);
+
+    corto_release(Be);
+    corto_release(Bd);
+    corto_release(Bc);
+    corto_release(Bb);
+    corto_release(Ba);
+    corto_release(B);
+
+    //usleep(2000*2000);
+    printf("\n\n");
+    corto_resultIter it;
+    printf("%s\n", "corto_select(\"myRoot\",\"mount//*\")");
+    corto_select("myRoot", "mount//*").contentType("text/json").iter(&it);
+
+    corto_resultIterForeach(it, r1) {
+        printf("    Query returned '%s/%s' with value '%s'\n", r1.parent, r1.id, (corto_string)r1.value);
     }
-    corto_trace("Found %i childs on 'sync_mount'", count);
-    test_assert(count == size);
 
-    data_models_sockjs_Data data = data_models_sockjs_DataCreateChild(mount, "data1", "Hello", "uuid", "val");
-    usleep(1000*100);
-    data_models_sockjs_Data sn_data = (data_models_sockjs_Data)corto_resolve(sync_mount, "data1");
-    if(sn_data == NULL)
-    {
-        corto_seterr("sync_mount does not resolve data1");
+    printf("\n\n");
+    corto_resultIter it2;
+    printf("%s\n", "corto_select(\"sync\",\"//*\")");
+    corto_select("myRoot", "sync//*").contentType("text/json").iter(&it2);
+
+    corto_resultIterForeach(it2, r2) {
+        printf("    Query returned '%s/%s' with value '%s'\n", r2.parent, r2.id, (corto_string)r2.value);
     }
-    test_assert(sn_data != NULL);
-    for (int i = 0; i < 10; i++)
-    {
-        std::string v = "Hello "+std::to_string(i);
-        corto_trace("Set Value 'mount/data1->value' to  %s", (char*)v.c_str());
-        data_models_sockjs_DataUpdate(data, "hello", "uuid", (char*)v.c_str());
-        usleep(1000*100);
-        corto_trace("Value on 'sync_mount/data1->value' %s", sn_data->value);
-        if ( strcmp(data->value,sn_data->value) != 0)
-        {
-            corto_trace("Fail to sync childs mount/data1 and sync_mount/data1");
-            test_assert(false);
-        }
-    }
+
+    // printf("%s\n", "corto_select(\"sync\",\"A//*\")");
+    // corto_select("sync", "A//*").contentType("text/json").iter(&it);
+    //
+    // corto_resultIterForeach(it, r2) {
+    //     printf("    Query returned '%s.%s' with value '%s'\n", r2.parent, r2.id, (corto_string)r2.value);
+    // }
+    //
+    // printf("%s\n", "corto_select(\"sync\",\"/*\")");
+    // corto_select("sync", "/*").contentType("text/json").iter(&it);
+    //
+    // corto_resultIterForeach(it, r3) {
+    //     printf("    Query returned '%s.%s' with value '%s'\n", r3.parent, r3.id, (corto_string)r3.value);
+    // }
+    //
+    // printf("%s\n", "corto_select(\"sync\",\"//*\")");
+    // corto_select("sync", "//*").contentType("text/json").iter(&it);
+    //
+    // corto_resultIterForeach(it, r4) {
+    //     printf("    Query returned '%s.%s' with value '%s'\n", r4.parent, r4.id, (corto_string)r4.value);
+    // }
+
     test_assert(true);
-    usleep(1000*2000);
-
-    corto_delete(sync_mount);
-    corto_delete(sync_net);
-    corto_delete(mount);
-    corto_delete(net);
-    //usleep(1000*1000);
-
-    test_assert(true);
-
 /* $end */
 }

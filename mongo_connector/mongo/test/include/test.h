@@ -21,6 +21,8 @@ extern "C" {
 
 #include <Data.h>
 #include <MySuite.h>
+#include <ObjectPtr.h>
+#include <Test.h>
 #include <Vec2.h>
 
 #ifdef __cplusplus

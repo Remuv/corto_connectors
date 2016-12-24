@@ -1,5 +1,0 @@
-/corto/test
-/recorto/mongodb
-/recorto/mongo_db/vendor/bson
-/recorto/mongo_db/vendor/cdriver
-/recorto/mongo_db/vendor/cxx

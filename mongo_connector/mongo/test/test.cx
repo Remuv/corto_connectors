@@ -11,5 +11,12 @@ class Data::
     d : float64
     p : Vec2
 
+class Test::
+    v : target{int32}
+
+class ObjectPtr::
+    ptr : word
+    data : object
+
 test::Suite MySuite::
     void testSomething()

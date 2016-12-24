@@ -9,311 +9,45 @@
 #include <recorto/dds/dds.h>
 
 /* $header() */
-
+#define TRACE(fmt, args...) printf("%s:%i, %s: " fmt "\n", __FILE__, __LINE__, __func__, args)
 #include <sys/types.h>
 
 #include "sync_adapter.h"
 #include <sstream>
 
+#define REPLACE_CHR(str, from, to) std::replace(str.begin(), str.end(), from, to)
 #define SAFE_STRING(str) std::string(str != nullptr ? str : "")
 
 #define StdSharedPtr_SyncAdapter(obj)((std::shared_ptr<CSyncAdapter>*)obj)
 #define NULLWORD 0
-#define NEWLINEDELIM "EOL\n"
-
-corto_object corto_createChildrenRecursive(corto_object parent, corto_string path, corto_object type)
-{
-    corto_object retObj = parent;
-    if (path != nullptr && *path != '\0')
-    {
-        if (type == nullptr)
-        {
-            type = corto_void_o;
-        }
-        corto_id name;
-        char *ptr1 = path, *ptr2 = &name[0];
-        while (*ptr1 != '\0')
-        {
-            if(*ptr1 == '.' || *ptr1 == '/')
-            {
-                ptr1++;
-                break;
-            }
-            *ptr2 = *ptr1;
-            ptr1++;
-            ptr2++;
-        }
-        *ptr2 = '\0';
-
-        corto_object obj = corto_declareChild(parent, name, type);
-        if (obj != nullptr)
-        {
-            corto_define(obj);
-            retObj = corto_createChildrenRecursive(obj, ptr1, type);
-        }
-    }
-    return retObj;
-}
-
-corto_void dds_Connector_SendData(dds_Connector _this, corto_object obj)
-{
-    if(_this->dds_adapter == NULLWORD)
-    {
-        return;
-    }
-    corto_object parent_o = corto_parentof(obj);
-
-    std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
-
-    corto_id type;
-    corto_id parent;
-    corto_string name;
-
-    corto_fullpath(type, corto_typeof(obj));
-    name = corto_idof(obj);
-    corto_path(parent, corto_mount(_this)->mount, parent_o, "/");
-    corto_cleanpath(parent, parent);
-    corto_string cstr = corto_str(obj, 0);
-    std::string value;
-    if(cstr == nullptr)
-    {
-        value = std::string("{}");
-    }
-    else
-    {
-        if(cstr[0] == '{')
-        {
-            value = std::string(cstr);
-        }
-        else
-        {
-            value = "{"+std::string(cstr)+"}";
-        }
-        corto_dealloc(cstr);
-    }
-    if ((*adapter)->SendData(type, parent, name, value) == false)
-    {
-        std::string rin = SAFE_STRING(parent) + "/" + SAFE_STRING(name);
-        (*adapter)->SendRequest(rin, "UPDATE", value);
-    }
-}
-
-corto_void dds_Connector_OnRequest(dds_Connector _this, CCortoRequestSubscriber::Sample &sample)
-{
-    Corto::Request request = sample.data();
-
-    if (strcmp(request.type().c_str(), "UPDATE") == 0)
-    {
-        corto_object obj = corto_lookup(corto_mount(_this)->mount, (char*)request.name().c_str());
-        if (obj != nullptr)
-        {
-            const char *name = request.name().c_str();
-            const char *value = request.value().c_str();
-            if (corto_updateBegin(obj) == 0)
-            {
-                if (corto_fromStr(&obj, (char*)value) != 0)
-                {
-                    corto_error("[OnRequest] Failed to deserialize for %s: %s (%s)", (char*)name, corto_lasterr(), (char*)value);
-                }
-                corto_updateEnd(obj);
-            }
-            corto_release(obj);
-        }
-    }
-    else if (strcmp(request.type().c_str(), "REQUEST") == 0)
-    {
-        if (strcmp(request.name().c_str(), "*") == 0)
-        {
-            std::string value;
-
-            corto_object obj = NULL;
-            corto_id path;
-
-            corto_fullpath(path, corto_mount(_this)->mount);
-            corto_resultIter iter;
-
-            corto_select(path, "//*").iter(&iter);
-
-            corto_resultIterForeach(iter, e) {
-                sprintf(path, "%s/%s", e.parent, e.name);
-                corto_cleanpath(path, path);
-
-                obj = corto_lookup(corto_mount(_this)->mount, path);
-                if (obj != NULL)
-                {
-                    corto_string cstr = corto_str(obj, 0);
-                    if (cstr == nullptr)
-                    {
-                        value += std::string(e.type)+","+std::string(e.parent)+","+std::string(e.name)+",{}";
-                    }
-                    else
-                    {
-                        if (cstr[0] == '{')
-                        {
-                            value += std::string(e.type)+","+std::string(e.parent)+","+std::string(e.name)+","+std::string(cstr);
-                        }
-                        else
-                        {
-                            value += std::string(e.type)+","+std::string(e.parent)+","+std::string(e.name)+",{"+std::string(cstr)+"}";
-                        }
-                        corto_dealloc(cstr);
-                    }
-                    value += NEWLINEDELIM;
-                    corto_release(obj);
-                }
-            }
-            std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
-            (*adapter)->SendData("","", "", value);
-        }
-        else
-        {
-            corto_object obj = corto_lookup(corto_mount(_this)->mount, (char*)request.name().c_str());
-
-            if (obj != nullptr)
-            {
-                dds_Connector_SendData(_this, obj);
-                corto_release(obj);
-            }
-        }
-    }
-}
-
-corto_void dds_Connector_SetData(dds_Connector _this, corto_string type, corto_string parent, corto_string name, corto_string value)
-{
-    corto_object prev = corto_setOwner(_this);
-    corto_object parent_o = corto_lookup(corto_mount(_this)->mount, parent);
-    if (parent_o == nullptr)
-    {
-        if (parent == nullptr || *parent == '\0' || *parent == '.')
-        {
-            parent_o = corto_mount(_this)->mount;
-        }
-        else
-        {
-            corto_object typeo = corto_resolve(NULL,type);
-            parent_o = corto_createChildrenRecursive(corto_mount(_this)->mount, parent, typeo);
-            corto_release(typeo);
-        }
-    }
-    corto_object obj = corto_lookup(parent_o, name);
-    if (obj != nullptr)
-    {
-        corto_string cstr = corto_str(obj, 0);
-        std::string valStr;
-
-        if (cstr == nullptr)
-        {
-            valStr = "{}";
-        }
-        else
-        {
-            if (cstr[0] == '{')
-            {
-                valStr = std::string(cstr);
-            }
-            else
-            {
-                valStr = "{"+std::string(cstr)+"}";
-            }
-            corto_dealloc(cstr);
-        }
-
-        if (strcmp(value, valStr.c_str()) != 0)
-        {
-            if (corto_updateBegin(obj) == 0)
-            {
-                if (corto_fromStr(&obj, value) != 0)
-                {
-                    corto_error("[SetData] Failed to deserialize for %s,%s: (%s) error: %s",
-                        type,
-                        name,
-                        value,
-                        corto_lasterr());
-                }
-                corto_updateEnd(obj);
-            }
-        }
-        corto_release(obj);
-    }
-    else
-    {
-        corto_object typeo = corto_resolve(NULL,type);
-        if (typeo == NULL)
-        {
-            corto_error("Type %s not found", type);
-            return;
-        }
-        obj = corto_declareChild(parent_o, name, typeo);
-        corto_release(typeo);
-        if (obj == NULL)
-        {
-            corto_error("Failed to create object %s", name);
-        }
-        else if (corto_fromStr(&obj, value) != 0)
-        {
-            corto_error("[SetData, new obj] Failed to deserialize for %s,%s: %s (%s)", type, name, corto_lasterr(), value);
-        }
-        else if (corto_define(obj) != 0)
-        {
-            corto_error("Failed to define %s", corto_idof(obj));
-        }
-    }
-    corto_setOwner(prev);
-}
-
-std::vector<std::string> StrSplit(std::string str, std::string delim)
-{
-    std::vector<std::string> lines;
-    int start = 0;
-    size_t end = 0;
-
-    while ((end = str.find(delim, start)) != std::string::npos)
-    {
-        int size = end - start;
-        lines.push_back(str.substr(start, size));
-        start = end+delim.size();
-    }
-    return lines;
-}
 
 corto_void dds_Connector_OnData(dds_Connector _this, CCortoDataSubscriber::Sample &sample)
 {
     Corto::Data data = sample.data();
-    if (data.type().empty())
-    {
-        std::vector<std::string> lines = StrSplit(data.value(), NEWLINEDELIM);
 
-        for (size_t i = 0; i < lines.size(); i++)
-        {
-            std::string line = lines[i];
-            if(line.empty() == false)
-            {
-                size_t p;
-                size_t n;
-                size_t v;
-                if (((p = line.find(',')) != std::string::npos) &&     //find index of parent
-                     ((n = line.find(',', p+1)) != std::string::npos) &&//find index of name
-                     ((v = line.find(',', n+1)) != std::string::npos))  //find index of value
-                {
-                    std::string type   = line.substr(0,p);
-                    std::string parent = line.substr(p+1, n-(p+1));
-                    std::string name   = line.substr(n+1, v-(n+1));
-                    std::string value  = line.substr(v+1);
-                    dds_Connector_SetData(_this, (char*)type.c_str(), (char*)parent.c_str(), (char*)name.c_str(), (char*)value.c_str());
-                }
-            }
-        }
-    }
-    else
-    {
-        char *type   = (char*)data.type().c_str();
-        char *parent = (char*)data.parent().c_str();
-        char *name   = (char*)data.name().c_str();
-        char *value  = (char*)data.value().c_str();
+    std::string path = SAFE_STRING(corto_subscriber(_this)->parent);
 
-        dds_Connector_SetData(_this, type, parent, name, value);
+    if (data.parent().size() > 0 && data.parent()[0] != '.')
+    {
+        path += "/" + data.parent();
     }
+
+    path += "/" + data.name();
+
+    REPLACE_CHR(path, '.', '/');
+
+    char *type   = (char*)data.type().c_str();
+    char *value  = (char*)data.value().c_str();
+
+    // TRACE("ON_DATA[%s]: path:%s, t:%s, v:%s", corto_idof(_this), (char*)path.c_str(), type, value);
+
+    corto_object prev = corto_setOwner(_this);
+
+    corto_publish(CORTO_ON_UPDATE, (char*)path.c_str(), type, "text/json", value);
+
+    corto_setOwner(prev);
 }
+
 /* $end */
 
 corto_int16 _dds_Connector_construct(
@@ -326,47 +60,27 @@ corto_int16 _dds_Connector_construct(
 
     _this->dds_adapter = (corto_word)adapter;
 
-    if (_this->type & Dds_Publisher)
-    {
-        CCortoRequestSubscriber::DataNotifyCallback callback =
-                [_this](CCortoRequestSubscriber::Sample &sample)
-                {
-                    dds_Connector_OnRequest(_this, sample);
-                };
+    CSyncAdapter::DataNotifyCallback callback =
+            [_this](CSyncAdapter::Sample &sample)
+            {
+                dds_Connector_OnData(_this, sample);
+            };
 
-        if ((*adapter)->SetUpDataPublisher(callback) == false)
-        {
-            (*adapter)->Close();
-            adapter->reset();
-            delete adapter;
-            _this->dds_adapter = NULLWORD;
-            corto_seterr("Fail to Initialize Data Publisher");
-            return -1;
-        }
-    }
-    if (_this->type & Dds_Subscriber)
+    if ((*adapter)->Initialize(callback) == false)
     {
-        CCortoDataSubscriber::DataNotifyCallback callback =
-                [_this](CCortoDataSubscriber::Sample &sample)
-                {
-                    dds_Connector_OnData(_this, sample);
-                };
-        if ((*adapter)->SetUpDataSubscriber(callback) == false)
-        {
-            (*adapter)->Close();
-            adapter->reset();
-            delete adapter;
-            _this->dds_adapter = NULLWORD;
-            corto_seterr("Fail to Initialize Data Subscriber");
-            return -1;
-        }
+        (*adapter)->Close();
+        adapter->reset();
+        delete adapter;
+        _this->dds_adapter = NULLWORD;
+        corto_seterr("Failed to Initialize DDS Interface");
+        return -1;
     }
-    //corto_setstr(&corto_mount(_this)->type, "/noType");
 
-    corto_observer(_this)->mask = CORTO_ON_SCOPE | CORTO_ON_TREE;
+    corto_observer(_this)->mask = CORTO_ON_TREE;
     corto_mount(_this)->kind = CORTO_SINK;
-    return corto_mount_construct(_this);
+    corto_mount_setContentType(_this, "text/json");
 
+    return corto_mount_construct(_this);
 /* $end */
 }
 
@@ -387,60 +101,142 @@ corto_void _dds_Connector_destruct(
 /* $end */
 }
 
-corto_void _dds_Connector_onDeclare(
+corto_void _dds_Connector_onNotify(
     dds_Connector _this,
-    corto_object observable)
+    corto_eventMask event,
+    corto_result *object)
 {
-/* $begin(recorto/dds/Connector/onDeclare) */
-    dds_Connector_SendData(_this, observable);
-/* $end */
-}
-
-corto_void _dds_Connector_onDelete(
-    dds_Connector _this,
-    corto_object observable)
-{
-/* $begin(recorto/dds/Connector/onDelete) */
-
-/* $end */
-}
-
-corto_object _dds_Connector_onResume(
-    dds_Connector _this,
-    corto_string parent,
-    corto_string name,
-    corto_object o)
-{
-/* $begin(recorto/dds/Connector/onResume) */
-    return o;
-/* $end */
-}
-
-corto_void _dds_Connector_onUpdate(
-    dds_Connector _this,
-    corto_object observable)
-{
-/* $begin(recorto/dds/Connector/onUpdate) */
-    //corto_id name;
-    //corto_fullpath(name, observable);
-    //printf("OnUpdate %s\n", name);
-    dds_Connector_SendData(_this, observable);
-/* $end */
-}
-
-corto_void _dds_Connector_sendRequest(
-    dds_Connector _this,
-    corto_string name,
-    corto_string type,
-    corto_string value)
-{
-/* $begin(recorto/dds/Connector/sendRequest) */
+/* $begin(recorto/dds/Connector/onNotify) */
     if(_this->dds_adapter == NULLWORD)
     {
         return;
     }
     std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
 
-    (*adapter)->SendRequest(name, type, value);
+    if (event & CORTO_ON_DEFINE)
+    {
+        corto_string json = (corto_string)(void*)object->value;
+        std::string parent = SAFE_STRING(object->parent);
+        std::string name = SAFE_STRING(object->id);
+        std::string type = SAFE_STRING(object->type);
+        std::string value = SAFE_STRING(json);
+        //TRACE("ON_DEFINE[%s]: p:%s, n:%s, t:%s, v:%s",corto_idof(_this), object->parent, object->id, object->type, json);
+        (*adapter)->SendData(type, parent, name, value);
+    }
+    else if (event & CORTO_ON_UPDATE)
+    {
+        corto_string json = (corto_string)(void*)object->value;
+        std::string parent = SAFE_STRING(object->parent);
+        std::string name = SAFE_STRING(object->id);
+        std::string type = SAFE_STRING(object->type);
+        std::string value = SAFE_STRING(json);
+        //TRACE("ON_UPDATE[%s]: p:%s, n:%s, t:%s, v:%s",corto_idof(_this), object->parent, object->id, object->type, json);
+        (*adapter)->SendData(type, parent, name, value);
+    }
+    else if (event & CORTO_ON_DELETE)
+    {
+
+    }
+/* $end */
+}
+
+/* $header(recorto/dds/Connector/onRequest) */
+struct dds_iterData
+{
+    CSyncAdapter::SampleSeq::const_iterator iter;
+    CSyncAdapter::SampleSeq samples;
+    std::string parent;
+    corto_result result;
+};
+
+void *dds_iterNext(corto_iter *iter)
+{
+    dds_iterData *pData = (dds_iterData*)iter->udata;
+
+    const Corto::Data &data =(*pData->iter).data();
+
+    corto_setstr(&pData->result.id, (char*)data.name().c_str());
+    corto_setstr(&pData->result.type, (char*)data.type().c_str());
+    corto_setstr(&pData->result.parent, ".");//(char*)pData->parent.c_str()); //(char*)data.parent().c_str());
+    pData->result.value = (corto_word)corto_strdup(data.value().c_str());
+
+    pData->iter++;
+    //TRACE("%s, %s, %s, %s", pData->result.type, pData->result.parent, pData->result.id, (char*)pData->result.value);
+    return &pData->result;
+}
+
+int dds_iterHasNext(corto_iter *iter)
+{
+    bool retVal = false;
+    if (iter->udata != NULL)
+    {
+        dds_iterData *pData = (dds_iterData*)iter->udata;
+        retVal = pData->iter != pData->samples.end();
+    }
+    return retVal;
+}
+
+void dds_iterRelease(corto_iter *iter)
+{
+    if (iter->udata != NULL)
+    {
+        dds_iterData *pData = (dds_iterData*)iter->udata;
+        pData->~dds_iterData();
+        corto_dealloc(pData);
+    }
+}
+/* $end */
+corto_resultIter _dds_Connector_onRequest(
+    dds_Connector _this,
+    corto_request *request)
+{
+/* $begin(recorto/dds/Connector/onRequest) */
+
+    corto_resultIter result;
+
+    result.udata = NULL;
+    result.hasNext = dds_iterHasNext;
+    result.next = dds_iterNext;
+    result.release = dds_iterRelease;
+
+    if(_this->dds_adapter == NULLWORD)
+    {
+        return result;
+    }
+
+    std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
+
+    std::string parent = SAFE_STRING(request->parent);
+    std::string expr = SAFE_STRING(request->expr);
+
+    dds_iterData *data = (dds_iterData*)corto_calloc(sizeof(dds_iterData));
+
+    new (&data->samples) CSyncAdapter::SampleSeq();
+    new (&data->iter) CSyncAdapter::SampleSeq::const_iterator();
+    new (&data->parent) std::string(parent);
+
+    data->result.id = NULL;
+    data->result.name = NULL;
+    data->result.parent = NULL;
+    data->result.type = NULL;
+    data->result.value = 0;
+    data->result.leaf = false;
+
+    result.udata = data;
+
+    //TRACE("onRequest[%s] %s, %s", corto_idof(_this), parent.c_str(), expr.c_str());
+
+    if ((*adapter)->Query(data->samples,
+                         "parent = %0 AND name like %1",
+                         {parent, expr}) == false)
+    {
+        data->iter = data->samples.end();
+    }
+    else
+    {
+        //TRACE("Count %i", data->samples.length());
+        data->iter = data->samples.begin();
+    }
+    return result;
 /* $end */
 }
