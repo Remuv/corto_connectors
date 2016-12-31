@@ -12,15 +12,17 @@
 /* You can put your own definitions here! */
 /* $end */
 
-#include <common/base/base.h>
-#include <common/interface/corto/corto.h>
-#include <recorto/recorto.h>
 #include <common/dds/vendor/vendor.h>
+#include <recorto/recorto.h>
+#include <common/interface/corto/corto.h>
+#include <common/base/base.h>
+#include <corto/core/c/c.h>
+#include <corto/lang/c/c.h>
 
 #include <recorto/dds/_type.h>
+
 #include <recorto/dds/_api.h>
 #include <recorto/dds/_load.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif

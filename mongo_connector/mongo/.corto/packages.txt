@@ -1,3 +1,4 @@
 /corto/fmt/json
-/recorto
 /recorto/mongo_connector/driver/mongocxx
+/recorto
+/recorto/mongo_connector

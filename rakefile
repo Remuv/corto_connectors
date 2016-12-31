@@ -3,8 +3,7 @@ PACKAGE = 'recorto'
 
 COMPONENTS = %w(
    data_models
-   mongo/driver
-   mongo
+   mongo_connector
    mongo_db
    dds
    clmdb

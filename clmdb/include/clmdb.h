@@ -22,13 +22,15 @@ extern "C" {
 
 /* $end */
 
-#include <corto/fmt/json/json.h>
 #include <recorto/recorto.h>
+#include <corto/fmt/json/json.h>
+#include <corto/core/c/c.h>
+#include <corto/lang/c/c.h>
 
 #include <recorto/clmdb/_type.h>
+
 #include <recorto/clmdb/_api.h>
 #include <recorto/clmdb/_load.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif

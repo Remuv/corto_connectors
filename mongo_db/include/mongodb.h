@@ -8,14 +8,16 @@
 
 #include <corto/corto.h>
 #include <recorto/mongodb/_project.h>
-#include <corto/fmt/json/json.h>
+#include <recorto/mongo_connector/driver/mongocxx/mongocxx.h>
 #include <recorto/recorto.h>
-#include <recorto/mongo/driver/mongocxx/mongocxx.h>
+#include <corto/fmt/json/json.h>
+#include <corto/core/c/c.h>
+#include <corto/lang/c/c.h>
 
 #include <recorto/mongodb/_type.h>
+
 #include <recorto/mongodb/_api.h>
 #include <recorto/mongodb/_load.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif

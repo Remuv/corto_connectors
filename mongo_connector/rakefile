@@ -1,0 +1,9 @@
+
+PACKAGE = 'recorto/mongo_connector'
+
+COMPONENTS = %w(
+    driver
+    mongo
+)
+
+require "#{ENV['CORTO_BUILD']}/package"

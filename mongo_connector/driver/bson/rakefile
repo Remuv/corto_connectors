@@ -1,0 +1,11 @@
+
+PACKAGE = 'recorto/mongo_connector/driver/bson'
+
+INCLUDE = [
+	"$(CORTO_INCLUDE)",
+	"$(CORTO_INCLUDE)/yajl"
+]
+
+NOCORTO = true
+
+require "#{ENV['CORTO_BUILD']}/package"
