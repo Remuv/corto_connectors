@@ -7,15 +7,17 @@
 #define REMUV_MONGO_H
 
 #include <corto/corto.h>
-#include <remuv/mongo/_interface.h>
-#include <corto/fmt/json/json.h>
-#include <remuv/mongo/driver/mongocxx/mongocxx.h>
+#include <remuv/mongo/_project.h>
 #include <remuv/remuv.h>
+#include <remuv/mongo/driver/mongocxx/mongocxx.h>
+#include <corto/fmt/json/json.h>
+#include <corto/core/c/c.h>
+#include <corto/lang/c/c.h>
 
 #include <remuv/mongo/_type.h>
-#include <remuv/mongo/_api.h>
-#include <remuv/mongo/_meta.h>
 
+#include <remuv/mongo/_api.h>
+#include <remuv/mongo/_load.h>
 #ifdef __cplusplus
 extern "C" {
 #endif

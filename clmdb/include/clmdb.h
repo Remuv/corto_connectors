@@ -7,7 +7,7 @@
 #define REMUV_CLMDB_H
 
 #include <corto/corto.h>
-#include <remuv/clmdb/_interface.h>
+#include <remuv/clmdb/_project.h>
 /* $header() */
 /* You can put your own definitions here! */
 #ifdef __cplusplus
@@ -22,13 +22,15 @@ extern "C" {
 
 /* $end */
 
-#include <corto/fmt/json/json.h>
 #include <remuv/remuv.h>
+#include <corto/fmt/json/json.h>
+#include <corto/core/c/c.h>
+#include <corto/lang/c/c.h>
 
 #include <remuv/clmdb/_type.h>
-#include <remuv/clmdb/_api.h>
-#include <remuv/clmdb/_meta.h>
 
+#include <remuv/clmdb/_api.h>
+#include <remuv/clmdb/_load.h>
 #ifdef __cplusplus
 extern "C" {
 #endif

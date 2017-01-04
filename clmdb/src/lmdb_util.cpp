@@ -24,6 +24,8 @@ CLMDB::Cursor::Cursor(Cursor &&c)
     c.m_single = false;
     c.m_hasNext = false;
     c.m_cursor = nullptr;
+    c.m_data.mv_data = nullptr;
+    c.m_data.mv_size = 0;
 }
 
 CLMDB::Cursor::Cursor() :
@@ -31,12 +33,17 @@ CLMDB::Cursor::Cursor() :
     m_single(false),
     m_hasNext(false)
 {
-
+    m_data.mv_data = nullptr;
+    m_data.mv_size = 0;
 }
 
 CLMDB::Cursor::~Cursor()
 {
-    if (m_cursor != nullptr)
+    if (m_single)
+    {
+        FreeData(m_data);
+    }
+    else if (m_cursor != nullptr)
     {
         MDB_txn_data *data = (MDB_txn_data *)corto_threadTlsGet(CLMDB_TLS_KEY);
         MDB_txn *txn = mdb_cursor_txn(m_cursor);
@@ -262,16 +269,23 @@ int CLMDB::GetData(std::string path, std::string db, std::string key, MDB_val &o
             MDB_dbi dbi = 0;
             if (mdb_dbi_open(txn, db.c_str(), MDB_CREATE, &dbi) == 0)
             {
+                MDB_val data_v;
                 MDB_val key_v;
                 key_v.mv_size = key.size();
                 key_v.mv_data = (void*)key.data();
-                retCode = mdb_get(txn, dbi, &key_v, &out);
+                retCode = mdb_get(txn, dbi, &key_v, &data_v);
+
                 if (retCode != 0)
                 {
+                    out.mv_size = 0;
+                    out.mv_data = nullptr;
                     mdb_txn_abort(txn);
                 }
                 else
                 {
+                    out.mv_size = data_v.mv_size;
+                    out.mv_data = malloc(out.mv_size);
+                    memcpy(out.mv_data, data_v.mv_data, out.mv_size);
                     mdb_txn_commit(txn);
                 }
             }
@@ -282,6 +296,16 @@ int CLMDB::GetData(std::string path, std::string db, std::string key, MDB_val &o
         }
     }
     return retCode;
+}
+
+void CLMDB::FreeData(MDB_val &data)
+{
+    if (data.mv_data != nullptr)
+    {
+        free (data.mv_data);
+        data.mv_data = nullptr;
+        data.mv_size = 0;
+    }
 }
 
 int CLMDB::Delete(std::string path, std::string db, std::string key)
@@ -390,12 +414,12 @@ CLMDB::Cursor CLMDB::GetCursor(std::string path, std::string db, std::string exp
     }
     else
     {
-        retVal.m_single = true;
-
         int rc = GetData(path, db, expr, retVal.m_data);
 
         if (rc == 0)
         {
+            retVal.m_single = true;
+
             retVal.m_hasNext = true;
             retVal.m_name = expr;
         }

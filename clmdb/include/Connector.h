@@ -7,10 +7,8 @@
 #define REMUV_CLMDB_CONNECTOR_H
 
 #include <corto/corto.h>
-#include <remuv/clmdb/_interface.h>
+#include <remuv/clmdb/_project.h>
 #include <remuv/clmdb/_type.h>
-#include <remuv/clmdb/_api.h>
-#include <remuv/clmdb/_meta.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -1,10 +1,10 @@
-/* Vec2.h
+/* NewVec2.h
  *
  * This file contains generated code. Do not modify!
  */
 
-#ifndef TEST_VEC2_H
-#define TEST_VEC2_H
+#ifndef TEST_NEWVEC2_H
+#define TEST_NEWVEC2_H
 
 #include <corto/corto.h>
 #include <_project.h>

@@ -1,10 +1,10 @@
-/* Vec2.h
+/* ObjData.h
  *
  * This file contains generated code. Do not modify!
  */
 
-#ifndef TEST_VEC2_H
-#define TEST_VEC2_H
+#ifndef TEST_OBJDATA_H
+#define TEST_OBJDATA_H
 
 #include <corto/corto.h>
 #include <_project.h>

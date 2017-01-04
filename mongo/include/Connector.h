@@ -7,10 +7,8 @@
 #define REMUV_MONGO_CONNECTOR_H
 
 #include <corto/corto.h>
-#include <remuv/mongo/_interface.h>
+#include <remuv/mongo/_project.h>
 #include <remuv/mongo/_type.h>
-#include <remuv/mongo/_api.h>
-#include <remuv/mongo/_meta.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -4,12 +4,20 @@ class Vec2::
     x : float32
     y : float32
 
+class NewVec2::
+    x : target{int32}, observable
+    y : target{int32}, observable
+
+class ObjData::
+    data : object
+
 class Data::
     str : string
     i8 : int8
     f : float32
     d : float64
     p : Vec2
+
 
 test::Suite clmdbTest::
     void StartTest()

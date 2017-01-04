@@ -7,12 +7,14 @@
 #define REMUV_H
 
 #include <corto/corto.h>
-#include <remuv/_interface.h>
+#include <remuv/_project.h>
+#include <corto/core/c/c.h>
+#include <corto/lang/c/c.h>
 
 #include <remuv/_type.h>
-#include <remuv/_api.h>
-#include <remuv/_meta.h>
 
+#include <remuv/_api.h>
+#include <remuv/_load.h>
 #ifdef __cplusplus
 extern "C" {
 #endif

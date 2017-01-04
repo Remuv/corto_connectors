@@ -11,5 +11,10 @@ class Data::
     d : float64
     p : Vec2
 
+class Net::
+    type : string
+    config : string
+    dataType : string
+
 test::Suite MySuite::
     void testSomething()

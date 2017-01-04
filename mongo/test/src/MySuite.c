@@ -43,6 +43,12 @@ corto_void _test_MySuite_testSomething(
     test_Data d2 =  test_DataCreateChild(A, "v2", "v2", 3, .3f, .03, v);
     test_Data d3 =  test_DataCreateChild(A, "v3", "v3", 4, .4f, .04, v);
 
+    corto_object aa = corto_float32CreateChild(A, "a", 0);
+    corto_object aaa = corto_float32CreateChild(aa, "a", 0);
+    corto_object aaaa = corto_float32CreateChild(aaa, "a", 0);
+    corto_object aaaaa = corto_float32CreateChild(aaaa, "a", 0);
+    corto_object aaaaaa = corto_float32CreateChild(aaaaa, "a", 0);
+
     corto_release(v);
     corto_release(A);
     corto_release(B);
@@ -62,8 +68,15 @@ corto_void _test_MySuite_testSomething(
     printf("%s\n", "corto_select(\"mount\",\"//A\")");
     corto_select("mount", "//A").contentType("text/json").iter(&it);
 
+    corto_id id;
+
     corto_resultIterForeach(it, r1) {
-        printf("Query returned '%s' with value '%s'\n", r1.id, (corto_string)r1.value);
+
+        sprintf(id, "%s/%s", r1.parent, r1.id);
+
+        corto_object o = corto_resolve(root_o, id);
+
+        printf("Query returned '%s' with value '%s' obj[%s] = %o\n", r1.id, (corto_string)r1.value, id, o);
     }
 
     printf("%s\n", "corto_select(\"mount\",\"A//*\")");
@@ -92,6 +105,13 @@ corto_void _test_MySuite_testSomething(
 
     corto_resultIterForeach(it, r5) {
         printf("Query returned '%s' with value '%s'\n", r5.id, (corto_string)r5.value);
+    }
+
+    printf("%s\n", "corto_select(\"mount\",\"//*\")");
+    corto_select("mount/A", "//*").contentType("text/json").iter(&it);
+
+    corto_resultIterForeach(it, r6) {
+        printf("Query returned '%s/%s' with value '%s'\n", r6.parent, r6.id, (corto_string)r6.value);
     }
 
     /* << Insert implementation >> */
