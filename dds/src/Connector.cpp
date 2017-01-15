@@ -135,7 +135,9 @@ corto_void _dds_Connector_onNotify(
     }
     else if (event & CORTO_ON_DELETE)
     {
-
+        std::string parent = SAFE_STRING(object->parent);
+        std::string name = SAFE_STRING(object->id);
+        (*adapter)->UnregisterData(parent, name);
     }
 /* $end */
 }

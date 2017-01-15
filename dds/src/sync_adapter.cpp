@@ -61,14 +61,28 @@ bool CSyncAdapter::SendData(std::string type, std::string parent, std::string na
 
     std::string key = parent+"/"+name;
     Corto::Data data(type, parent, name, value, m_uuid.GetStr());
-    dds::core::InstanceHandle handler = m_dataHandlers[key];
-    if (handler.is_nil())
+    dds::core::InstanceHandle handle = m_dataHandlers[key];
+    if (handle.is_nil())
     {
-        handler = m_pDataPublisher->RegisterInstance(data);
-        m_dataHandlers[key] = handler;
+        handle = m_pDataPublisher->RegisterInstance(data);
+        m_dataHandlers[key] = handle;
     }
-    m_pDataPublisher->Write(data, handler);
+    m_pDataPublisher->Write(data, handle);
     return true;
+}
+
+bool CSyncAdapter::UnregisterData(std::string parent, std::string name)
+{
+    bool retVal = false;
+
+    std::string key = parent+"/"+name;
+    dds::core::InstanceHandle handle = m_dataHandlers[key];
+    if (handle.is_nil() == false)
+    {
+        m_pDataPublisher->UnregisterInstance(handle);
+    }
+
+    return retVal;
 }
 
 void CSyncAdapter::Close()

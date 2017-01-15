@@ -33,6 +33,7 @@ public:
     bool Initialize(DataNotifyCallback callback);
 
     bool SendData(std::string type, std::string parent, std::string name, std::string value);
+    bool UnregisterData(std::string parent, std::string name);
 
     bool Query(SampleSeq &sampleSeq, std::string expression, ParamVector params);
 
