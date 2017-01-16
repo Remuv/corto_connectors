@@ -60,13 +60,19 @@ corto_int16 _dds_Connector_construct(
 
     _this->dds_adapter = (corto_word)adapter;
 
-    CSyncAdapter::DataNotifyCallback callback =
+    CSyncAdapter::DataNotifyCallback newDataCallback =
             [_this](CSyncAdapter::Sample &sample)
-            {
-                dds_Connector_OnData(_this, sample);
-            };
+    {
+        dds_Connector_OnData(_this, sample);
+    };
 
-    if ((*adapter)->Initialize(callback) == false)
+    CSyncAdapter::DataNotifyCallback disposedDataCallback =
+            [_this](CSyncAdapter::Sample &sample)
+    {
+        ///TODO: Handle disposed data
+    };
+
+    if ((*adapter)->Initialize(newDataCallback, disposedDataCallback) == false)
     {
         (*adapter)->Close();
         adapter->reset();

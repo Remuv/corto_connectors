@@ -13,7 +13,8 @@ CSyncAdapter::~CSyncAdapter()
 
 }
 
-bool CSyncAdapter::Initialize(DataNotifyCallback callback)
+bool CSyncAdapter::Initialize(DataNotifyCallback newDataCallback,
+                              DataNotifyCallback disposedDataCallback)
 {
     m_uuid.Generate();
 
@@ -37,17 +38,27 @@ bool CSyncAdapter::Initialize(DataNotifyCallback callback)
         return false;
     }
 
-    CCortoDataSubscriber::DataDelegate delegate(shared_from_this(),
-        [this, callback](CCortoDataSubscriber::Sample &sample)
+    CCortoDataSubscriber::DataDelegate newDelegate(shared_from_this(),
+        [this, newDataCallback](CCortoDataSubscriber::Sample &sample)
         {
             if (this->m_uuid.Compare(sample.data().source()) == false)
             {
-                callback(sample);
+                newDataCallback(sample);
             }
         }
     );
+    m_pDataSubscriber->RegisterNewDataSubscriber(newDelegate);
 
-    m_pDataSubscriber->RegisterNewDataSubscriber(delegate);
+    CCortoDataSubscriber::DataDelegate disposedDelegate(shared_from_this(),
+        [this, disposedDataCallback](CCortoDataSubscriber::Sample &sample)
+        {
+            if (this->m_uuid.Compare(sample.data().source()) == false)
+            {
+                disposedDataCallback(sample);
+            }
+        }
+    );
+    m_pDataSubscriber->RegisterInstanceNotAliveSubscriber(disposedDelegate);
 
     return true;
 }

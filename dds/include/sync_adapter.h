@@ -30,7 +30,9 @@ public:
     CSyncAdapter(std::string topic);
     ~CSyncAdapter();
 
-    bool Initialize(DataNotifyCallback callback);
+    bool Initialize(DataNotifyCallback newDataCallback,
+                    DataNotifyCallback disposedDataCallback);
+
 
     bool SendData(std::string type, std::string parent, std::string name, std::string value);
     bool UnregisterData(std::string parent, std::string name);
