@@ -18,7 +18,8 @@ public:
 private:
     typedef std::map<std::string, dds::core::InstanceHandle> HandlerMap;
 
-    CRemuvUuid  m_uuid;
+    //CRemuvUuid  m_uuid;
+    std::string m_uuid;
     std::string m_ddsTopic;
 
     CCortoDataPublisher  *m_pDataPublisher;

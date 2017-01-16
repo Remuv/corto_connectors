@@ -19,6 +19,16 @@ void OnNotify (
     printf("OnNotify p = %s, id = %s, t = %s, v = %s\n", result->parent, result->id, result->type, (char*)result->value );
 }
 
+void OnDelete (
+    corto_object _this,
+    corto_eventMask event,
+    corto_result *result,
+    corto_subscriber subscriber
+)
+{
+    printf("OnDelete p = %s, id = %s, t = %s, v = %s\n", result->parent, result->id, result->type, (char*)result->value );
+}
+
 /* $end */
 
 corto_void _test_ddsConnectorTest_StartTest(
@@ -36,6 +46,8 @@ corto_void _test_ddsConnectorTest_StartTest(
 
     corto_trace("Create DDS Connector on 'mount'");
     dds_Connector net = dds_ConnectorCreateChild(root_o, "net", mount, "SyncTest");
+    dds_Connector sync = dds_ConnectorCreateChild(root_o, "sync_net", sync_mount, "SyncTest");
+
 
     corto_object A = corto_int64CreateChild(mount, "A", 1); usleep(1000*100);
 
@@ -49,9 +61,7 @@ corto_void _test_ddsConnectorTest_StartTest(
       corto_object Aec = corto_int64CreateChild(Ae, "c", 18); usleep(1000*100);
       corto_object Aed = corto_int64CreateChild(Ae, "d", 19); usleep(1000*100);
 
-    usleep(1000*1000);
-    dds_Connector sync = dds_ConnectorCreateChild(root_o, "sync_net", sync_mount, "SyncTest");
-    usleep(1000*1000);
+
     corto_object B = corto_int64CreateChild(mount, "B", 2); usleep(1000*100);
      corto_object Ba = corto_int64CreateChild(B, "a", 21); usleep(1000*100);
      corto_object Bb = corto_int64CreateChild(B, "b", 22); usleep(1000*100);
@@ -67,6 +77,10 @@ corto_void _test_ddsConnectorTest_StartTest(
     corto_subscriber subscriber2 = corto_subscribe(CORTO_ON_UPDATE, "/myRoot", "sync/A")
                                         .contentType("text/json")
                                         .callback(OnNotify);
+    corto_subscriber subscriber3 = corto_subscribe(CORTO_ON_DELETE, "/myRoot/sync", "//*")
+                                        .contentType("text/json")
+                                        .callback(OnDelete);
+
     //
     printf("\n");
     corto_int64Update(A, 124); //usleep(1000*100);
@@ -75,11 +89,11 @@ corto_void _test_ddsConnectorTest_StartTest(
     corto_int64Update(A, 12); //usleep(1000*100);
 
     corto_unsubscribe(subscriber, nullptr);
-    corto_release(Aea);
-    corto_release(Aeb);
-    corto_release(Aec);
-    corto_release(Aed);
-    corto_release(Ae);
+    // corto_release(Aea);
+    // corto_release(Aeb);
+    // corto_release(Aec);
+    // corto_release(Aed);
+    corto_delete(Ae);
     corto_release(Ad);
     corto_release(Ac);
     corto_release(Ab);
@@ -93,7 +107,7 @@ corto_void _test_ddsConnectorTest_StartTest(
     corto_release(Ba);
     corto_release(B);
 
-    //usleep(2000*2000);
+    usleep(2000*2000);
     printf("\n\n");
     corto_resultIter it;
     printf("%s\n", "corto_select(\"myRoot\",\"mount//*\")");

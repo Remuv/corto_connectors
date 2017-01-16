@@ -21,7 +21,7 @@
 #define StdSharedPtr_SyncAdapter(obj)((std::shared_ptr<CSyncAdapter>*)obj)
 #define NULLWORD 0
 
-corto_void dds_Connector_OnData(dds_Connector _this, CCortoDataSubscriber::Sample &sample)
+corto_void dds_Connector_OnNewData(dds_Connector _this, CCortoDataSubscriber::Sample &sample)
 {
     Corto::Data data = sample.data();
 
@@ -48,6 +48,32 @@ corto_void dds_Connector_OnData(dds_Connector _this, CCortoDataSubscriber::Sampl
     corto_setOwner(prev);
 }
 
+corto_void dds_Connector_OnDisposeData(dds_Connector _this, CCortoDataSubscriber::Sample &sample)
+{
+    Corto::Data data = sample.data();
+
+    std::string path = SAFE_STRING(corto_subscriber(_this)->parent);
+
+    if (data.parent().size() > 0 && data.parent()[0] != '.')
+    {
+        path += "/" + data.parent();
+    }
+
+    path += "/" + data.name();
+
+    REPLACE_CHR(path, '.', '/');
+
+    char *type   = (char*)data.type().c_str();
+    char *value  = (char*)data.value().c_str();
+
+    // TRACE("ON_DISPOSE[%s]: path:%s, t:%s, v:%s", corto_idof(_this), (char*)path.c_str(), type, value);
+
+    corto_object prev = corto_setOwner(_this);
+
+    corto_publish(CORTO_ON_DELETE, (char*)path.c_str(), type, "text/json", value);
+
+    corto_setOwner(prev);
+}
 /* $end */
 
 corto_int16 _dds_Connector_construct(
@@ -63,13 +89,13 @@ corto_int16 _dds_Connector_construct(
     CSyncAdapter::DataNotifyCallback newDataCallback =
             [_this](CSyncAdapter::Sample &sample)
     {
-        dds_Connector_OnData(_this, sample);
+        dds_Connector_OnNewData(_this, sample);
     };
 
     CSyncAdapter::DataNotifyCallback disposedDataCallback =
             [_this](CSyncAdapter::Sample &sample)
     {
-        ///TODO: Handle disposed data
+        dds_Connector_OnDisposeData(_this, sample);
     };
 
     if ((*adapter)->Initialize(newDataCallback, disposedDataCallback) == false)
@@ -126,7 +152,7 @@ corto_void _dds_Connector_onNotify(
         std::string name = SAFE_STRING(object->id);
         std::string type = SAFE_STRING(object->type);
         std::string value = SAFE_STRING(json);
-        //TRACE("ON_DEFINE[%s]: p:%s, n:%s, t:%s, v:%s",corto_idof(_this), object->parent, object->id, object->type, json);
+        // TRACE("ON_DEFINE[%s]: p:%s, n:%s, t:%s, v:%s",corto_idof(_this), object->parent, object->id, object->type, json);
         (*adapter)->SendData(type, parent, name, value);
     }
     else if (event & CORTO_ON_UPDATE)
@@ -136,11 +162,12 @@ corto_void _dds_Connector_onNotify(
         std::string name = SAFE_STRING(object->id);
         std::string type = SAFE_STRING(object->type);
         std::string value = SAFE_STRING(json);
-        //TRACE("ON_UPDATE[%s]: p:%s, n:%s, t:%s, v:%s",corto_idof(_this), object->parent, object->id, object->type, json);
+        // TRACE("ON_UPDATE[%s]: p:%s, n:%s, t:%s, v:%s",corto_idof(_this), object->parent, object->id, object->type, json);
         (*adapter)->SendData(type, parent, name, value);
     }
     else if (event & CORTO_ON_DELETE)
     {
+        // TRACE("ON_DELETE[%s]: p:%s, n:%s",corto_idof(_this), object->parent, object->id);
         std::string parent = SAFE_STRING(object->parent);
         std::string name = SAFE_STRING(object->id);
         (*adapter)->UnregisterData(parent, name);
@@ -169,7 +196,7 @@ void *dds_iterNext(corto_iter *iter)
     pData->result.value = (corto_word)corto_strdup(data.value().c_str());
 
     pData->iter++;
-    //TRACE("%s, %s, %s, %s", pData->result.type, pData->result.parent, pData->result.id, (char*)pData->result.value);
+    // TRACE("%s, %s, %s, %s", pData->result.type, pData->result.parent, pData->result.id, (char*)pData->result.value);
     return &pData->result;
 }
 
@@ -232,7 +259,7 @@ corto_resultIter _dds_Connector_onRequest(
 
     result.udata = data;
 
-    //TRACE("onRequest[%s] %s, %s", corto_idof(_this), parent.c_str(), expr.c_str());
+    // TRACE("onRequest[%s] %s, %s", corto_idof(_this), parent.c_str(), expr.c_str());
 
     if ((*adapter)->Query(data->samples,
                          "parent = %0 AND name like %1",
@@ -242,7 +269,7 @@ corto_resultIter _dds_Connector_onRequest(
     }
     else
     {
-        //TRACE("Count %i", data->samples.length());
+        // TRACE("Count %i", data->samples.length());
         data->iter = data->samples.begin();
     }
     return result;

@@ -16,7 +16,9 @@ CSyncAdapter::~CSyncAdapter()
 bool CSyncAdapter::Initialize(DataNotifyCallback newDataCallback,
                               DataNotifyCallback disposedDataCallback)
 {
-    m_uuid.Generate();
+    CRemuvUuid uuid;
+    uuid.Generate();
+    m_uuid = uuid.GetStr();
 
     if (m_pDataPublisher == nullptr)
     {
@@ -41,7 +43,7 @@ bool CSyncAdapter::Initialize(DataNotifyCallback newDataCallback,
     CCortoDataSubscriber::DataDelegate newDelegate(shared_from_this(),
         [this, newDataCallback](CCortoDataSubscriber::Sample &sample)
         {
-            if (this->m_uuid.Compare(sample.data().source()) == false)
+            if ((this->m_uuid == sample.data().source()) == false)
             {
                 newDataCallback(sample);
             }
@@ -52,7 +54,8 @@ bool CSyncAdapter::Initialize(DataNotifyCallback newDataCallback,
     CCortoDataSubscriber::DataDelegate disposedDelegate(shared_from_this(),
         [this, disposedDataCallback](CCortoDataSubscriber::Sample &sample)
         {
-            if (this->m_uuid.Compare(sample.data().source()) == false)
+            printf("disposedDelegate\n");
+            if ((this->m_uuid == sample.data().source()) == false)
             {
                 disposedDataCallback(sample);
             }
@@ -71,7 +74,7 @@ bool CSyncAdapter::SendData(std::string type, std::string parent, std::string na
     }
 
     std::string key = parent+"/"+name;
-    Corto::Data data(type, parent, name, value, m_uuid.GetStr());
+    Corto::Data data(type, parent, name, value, m_uuid);
     dds::core::InstanceHandle handle = m_dataHandlers[key];
     if (handle.is_nil())
     {
@@ -90,6 +93,7 @@ bool CSyncAdapter::UnregisterData(std::string parent, std::string name)
     dds::core::InstanceHandle handle = m_dataHandlers[key];
     if (handle.is_nil() == false)
     {
+        printf("UnregisterData %s\n", key.c_str());
         m_pDataPublisher->UnregisterInstance(handle);
     }
 
