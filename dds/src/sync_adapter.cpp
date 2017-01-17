@@ -54,7 +54,6 @@ bool CSyncAdapter::Initialize(DataNotifyCallback newDataCallback,
     CCortoDataSubscriber::DataDelegate disposedDelegate(shared_from_this(),
         [this, disposedDataCallback](CCortoDataSubscriber::Sample &sample)
         {
-            printf("disposedDelegate\n");
             if ((this->m_uuid == sample.data().source()) == false)
             {
                 disposedDataCallback(sample);
@@ -93,7 +92,6 @@ bool CSyncAdapter::UnregisterData(std::string parent, std::string name)
     dds::core::InstanceHandle handle = m_dataHandlers[key];
     if (handle.is_nil() == false)
     {
-        printf("UnregisterData %s\n", key.c_str());
         m_pDataPublisher->UnregisterInstance(handle);
     }
 
