@@ -20,6 +20,7 @@
 extern "C" {
 #endif
 
+#include <recorto/data_models/net_base.h>
 #include <recorto/data_models/net_bool.h>
 #include <recorto/data_models/net_char.h>
 #include <recorto/data_models/net_Data.h>

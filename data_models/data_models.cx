@@ -14,58 +14,63 @@ class sockjs_Data::
     uuid : string
     value : string
 
-class net_ValueType::
+struct net_ValueType::
     hint : int32
     str : string
     val : int64
 
-struct net_Data::
+class net_Data::
     hint: int32
     actual: net_ValueType
     target: net_ValueType
+    _callback : word
 
 struct object_ptr::
     ptr : word
 
 
-class net_bool::
+class net_base::
+    hint : int32
+    _callback : word
+
+class net_bool: net_base::
     value : target{bool}, observable
 
-class net_char::
+class net_char: net_base::
     value : target{char}, observable
 
-class net_int8::
+class net_int8: net_base::
     value : target{int8}, observable
 
-class net_int16::
+class net_int16: net_base::
     value : target{int16}, observable
 
-class net_int32::
+class net_int32: net_base::
     value : target{int32}, observable
 
-class net_int64::
+class net_int64: net_base::
     value : target{int64}, observable
 
-class net_uint8::
+class net_uint8: net_base::
     value : target{uint8}, observable
 
-class net_uint16::
+class net_uint16: net_base::
     value : target{uint16}, observable
 
-class net_uint32::
+class net_uint32: net_base::
     value : target{uint32}, observable
 
-class net_uint64::
+class net_uint64: net_base::
     value : target{uint64}, observable
 
-class net_string::
+class net_string: net_base::
     value : target{string}, observable
 
-class net_float::
+class net_float: net_base::
     value : target{float32}, observable
 
-class net_double::
+class net_double: net_base::
     value : target{float64}, observable
 
-class net_error::
+class net_error: net_base::
     value : target{string}, observable
