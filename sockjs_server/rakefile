@@ -1,0 +1,7 @@
+PACKAGE = "recorto/sockjsserver"
+
+INCLUDE = ["$(CORTO_INCLUDE)"]
+
+LANGUAGE = "c4cpp"
+
+require "#{ENV['CORTO_BUILD']}/package"

@@ -1,0 +1,20 @@
+#package /recorto/sockjsserver
+
+
+class sockjs_server : corto::web::server::SockJS::
+    handler : object, hidden
+    handler_func : word, hidden
+
+    int16 construct()
+
+    void onOpen( corto::web::server::HTTP::Connection c)
+    void onClose(corto::web::server::HTTP::Connection c)
+    void onPoll()
+    void onData(corto::web::server::HTTP::Connection c, string msg)
+    void onMessage(corto::web::server::HTTP::Connection c, string msg)
+    observer onAdded: mask=on_define|on_tree
+    observer onChanged: mask=on_update|on_tree
+    observer onRemoved: mask=on_delete|on_tree
+
+    void setHandler(object obj, word func)
+    void sendMessage(corto::web::server::HTTP::Connection c, string msg)
