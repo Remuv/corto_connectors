@@ -23,7 +23,7 @@
 
 corto_void dds_Connector_OnNewData(dds_Connector _this, CCortoDataSubscriber::Sample &sample)
 {
-    Corto::Data &data = sample.data();
+    const Corto::Data &data = sample.data();
 
     std::string path = SAFE_STRING(corto_subscriber(_this)->parent);
 
@@ -48,7 +48,7 @@ corto_void dds_Connector_OnNewData(dds_Connector _this, CCortoDataSubscriber::Sa
 
 corto_void dds_Connector_OnDisposeData(dds_Connector _this, CCortoDataSubscriber::Sample &sample)
 {
-    Corto::Data data = sample.data();
+    const Corto::Data &data = sample.data();
 
     std::string path = SAFE_STRING(corto_subscriber(_this)->parent);
 
