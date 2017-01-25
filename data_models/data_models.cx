@@ -31,46 +31,47 @@ struct object_ptr::
 
 class net_base::
     hint : int32
+    msg : string
     _callback : word
 
-class net_bool: net_base::
+class net_bool: net_base, hidden::
     value : target{bool}, observable
 
-class net_char: net_base::
+class net_char: net_base, hidden::
     value : target{char}, observable
 
-class net_int8: net_base::
+class net_int8: net_base, hidden::
     value : target{int8}, observable
 
-class net_int16: net_base::
+class net_int16: net_base, hidden::
     value : target{int16}, observable
 
-class net_int32: net_base::
+class net_int32: net_base, hidden::
     value : target{int32}, observable
 
-class net_int64: net_base::
+class net_int64: net_base, hidden::
     value : target{int64}, observable
 
-class net_uint8: net_base::
+class net_uint8: net_base, hidden::
     value : target{uint8}, observable
 
-class net_uint16: net_base::
+class net_uint16: net_base, hidden::
     value : target{uint16}, observable
 
-class net_uint32: net_base::
+class net_uint32: net_base, hidden::
     value : target{uint32}, observable
 
-class net_uint64: net_base::
+class net_uint64: net_base, hidden::
     value : target{uint64}, observable
 
-class net_string: net_base::
+class net_string: net_base, hidden::
     value : target{string}, observable
 
-class net_float: net_base::
+class net_float: net_base, hidden::
     value : target{float32}, observable
 
-class net_double: net_base::
+class net_double: net_base, hidden::
     value : target{float64}, observable
 
-class net_error: net_base::
+class net_error: net_base, hidden::
     value : target{string}, observable

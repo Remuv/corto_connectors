@@ -23,7 +23,7 @@
 
 corto_void dds_Connector_OnNewData(dds_Connector _this, CCortoDataSubscriber::Sample &sample)
 {
-    Corto::Data data = sample.data();
+    Corto::Data &data = sample.data();
 
     std::string path = SAFE_STRING(corto_subscriber(_this)->parent);
 
@@ -33,9 +33,7 @@ corto_void dds_Connector_OnNewData(dds_Connector _this, CCortoDataSubscriber::Sa
     }
 
     path += "/" + data.name();
-
-    REPLACE_CHR(path, '.', '/');
-
+    // REPLACE_CHR(path, '.', '/');
     char *type   = (char*)data.type().c_str();
     char *value  = (char*)data.value().c_str();
 
@@ -98,7 +96,7 @@ corto_int16 _dds_Connector_construct(
         dds_Connector_OnDisposeData(_this, sample);
     };
 
-    if ((*adapter)->Initialize(newDataCallback, disposedDataCallback) == false)
+    if ((*adapter)->Initialize(newDataCallback, disposedDataCallback, _this->update_rate) == false)
     {
         (*adapter)->Close();
         adapter->reset();

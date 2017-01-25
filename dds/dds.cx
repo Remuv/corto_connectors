@@ -3,6 +3,7 @@
 class Connector : core/mount, hidden::
     alias mount : core/mount/mount
     topic : string
+    update_rate : uint64
     dds_adapter : word, private
 
     int16 construct()

@@ -9,6 +9,8 @@
 #include <test.h>
 
 /* $header() */
+#include <chrono>
+
 void OnNotify (
     corto_object _this,
     corto_eventMask event,
@@ -16,6 +18,16 @@ void OnNotify (
     corto_subscriber subscriber
 )
 {
+    using namespace std::chrono;
+
+    high_resolution_clock::time_point p = high_resolution_clock::now();
+
+    milliseconds ms = duration_cast<milliseconds>(p.time_since_epoch());
+
+    std::size_t fractional_seconds = ms.count() % 1000;
+
+    std::cout << "[" << fractional_seconds << "] ";
+
     printf("OnNotify p = %s, id = %s, t = %s, v = %s\n", result->parent, result->id, result->type, (char*)result->value );
 }
 
@@ -35,18 +47,18 @@ corto_void _test_ddsConnectorTest_StartTest(
     test_ddsConnectorTest _this)
 {
 /* $begin(test/ddsConnectorTest/StartTest) */
-    corto_time timeout = {60, 0};
+    corto_time timeout = {600000, 0};
     test_setTimeout(&timeout);
 
-    corto_verbosity(corto_err::CORTO_TRACE);
+    //corto_verbosity(corto_err::CORTO_TRACE);
     corto_object myRoot = corto_voidCreateChild(root_o, "myRoot");
 
     corto_object mount = corto_voidCreateChild(myRoot, "mount");
     corto_object sync_mount = corto_voidCreateChild(myRoot, "sync");
 
     corto_trace("Create DDS Connector on 'mount'");
-    dds_Connector net = dds_ConnectorCreateChild(root_o, "net", mount, "SyncTest");
-    dds_Connector sync = dds_ConnectorCreateChild(root_o, "sync_net", sync_mount, "SyncTest");
+    dds_Connector net = dds_ConnectorCreateChild(root_o, "net", mount, "SyncTest", 50);
+    dds_Connector sync = dds_ConnectorCreateChild(root_o, "sync_net", sync_mount, "SyncTest", 50);
 
 
     corto_object A = corto_int64CreateChild(mount, "A", 1); usleep(1000*100);
@@ -85,8 +97,10 @@ corto_void _test_ddsConnectorTest_StartTest(
     printf("\n");
     corto_int64Update(A, 124); //usleep(1000*100);
     corto_int64Update(A, 122); //usleep(1000*100);
+    usleep(1000*300);
     corto_int64Update(A, 1232); //usleep(1000*100);
     corto_int64Update(A, 12); //usleep(1000*100);
+    usleep(1000*300);
 
     corto_unsubscribe(subscriber, nullptr);
     // corto_release(Aea);
