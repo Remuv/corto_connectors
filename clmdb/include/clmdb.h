@@ -24,6 +24,7 @@ extern "C" {
 
 #include <recorto/recorto.h>
 #include <corto/fmt/json/json.h>
+#include <common/vendor/lmdb/lmdb.h>
 #include <corto/core/c/c.h>
 #include <corto/lang/c/c.h>
 

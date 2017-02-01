@@ -1,7 +1,7 @@
 #ifndef __CLMDB_LMDB_UTIL_H__
 #define __CLMDB_LMDB_UTIL_H__
 
-#include <lmdb.h>
+#include <common/vendor/lmdb/lmdb.h>
 #include <string>
 #include <mutex>
 #include <map>
