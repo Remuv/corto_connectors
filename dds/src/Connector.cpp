@@ -9,11 +9,14 @@
 #include <recorto/dds/dds.h>
 
 /* $header() */
+static corto_word gCounter = 0;
+
 #define TRACE(fmt, args...) printf("%s:%i, %s: " fmt "\n", __FILE__, __LINE__, __func__, args)
 #include <sys/types.h>
 
 #include "sync_adapter.h"
 #include <sstream>
+
 
 #define REPLACE_CHR(str, from, to) std::replace(str.begin(), str.end(), from, to)
 #define SAFE_STRING(str) std::string(str != nullptr ? str : "")
@@ -32,7 +35,7 @@ corto_void dds_Connector_OnNewData(dds_Connector _this, CCortoDataSubscriber::Sa
         path += "/" + data.parent();
     }
 
-    path += "/" + data.name();
+    path += "/" + data.id();
     // REPLACE_CHR(path, '.', '/');
     char *type   = (char*)data.type().c_str();
     char *value  = (char*)data.value().c_str();
@@ -57,7 +60,7 @@ corto_void dds_Connector_OnDisposeData(dds_Connector _this, CCortoDataSubscriber
         path += "/" + data.parent();
     }
 
-    path += "/" + data.name();
+    path += "/" + data.id();
 
     REPLACE_CHR(path, '.', '/');
 
@@ -146,29 +149,39 @@ corto_void _dds_Connector_onNotify(
     if (event & CORTO_ON_DEFINE)
     {
         corto_string json = (corto_string)(void*)object->value;
-        std::string parent = SAFE_STRING(object->parent);
-        std::string name = SAFE_STRING(object->id);
         std::string type = SAFE_STRING(object->type);
+        std::string parent = SAFE_STRING(object->parent);
+        std::string id = SAFE_STRING(object->id);
+        std::string name = SAFE_STRING(object->name);
         std::string value = SAFE_STRING(json);
+        if (name.empty())
+        {
+            name = id;
+        }
         // TRACE("ON_DEFINE[%s]: p:%s, n:%s, t:%s, v:%s",corto_idof(_this), object->parent, object->id, object->type, json);
-        (*adapter)->SendData(type, parent, name, value);
+        (*adapter)->CreateData(type, parent, id, name, value);
     }
     else if (event & CORTO_ON_UPDATE)
     {
         corto_string json = (corto_string)(void*)object->value;
-        std::string parent = SAFE_STRING(object->parent);
-        std::string name = SAFE_STRING(object->id);
         std::string type = SAFE_STRING(object->type);
+        std::string parent = SAFE_STRING(object->parent);
+        std::string id = SAFE_STRING(object->id);
+        std::string name = SAFE_STRING(object->name);
         std::string value = SAFE_STRING(json);
+        if (name.empty())
+        {
+            name = id;
+        }
         // TRACE("ON_UPDATE[%s]: p:%s, n:%s, t:%s, v:%s",corto_idof(_this), object->parent, object->id, object->type, json);
-        (*adapter)->SendData(type, parent, name, value);
+        (*adapter)->UpdateData(type, parent, id, name, value);
     }
     else if (event & CORTO_ON_DELETE)
     {
         // TRACE("ON_DELETE[%s]: p:%s, n:%s",corto_idof(_this), object->parent, object->id);
         std::string parent = SAFE_STRING(object->parent);
-        std::string name = SAFE_STRING(object->id);
-        (*adapter)->UnregisterData(parent, name);
+        std::string id = SAFE_STRING(object->id);
+        (*adapter)->DeleteData(parent, id);
     }
 /* $end */
 }
@@ -188,7 +201,8 @@ void *dds_iterNext(corto_iter *iter)
 
     const Corto::Data &data =(*pData->iter).data();
 
-    corto_setstr(&pData->result.id, (char*)data.name().c_str());
+    corto_setstr(&pData->result.id, (char*)data.id().c_str());
+    corto_setstr(&pData->result.name, (char*)data.name().c_str());
     corto_setstr(&pData->result.type, (char*)data.type().c_str());
     corto_setstr(&pData->result.parent, ".");//(char*)pData->parent.c_str()); //(char*)data.parent().c_str());
     pData->result.value = (corto_word)corto_strdup(data.value().c_str());
@@ -258,10 +272,8 @@ corto_resultIter _dds_Connector_onRequest(
     result.udata = data;
 
     // TRACE("onRequest[%s] %s, %s", corto_idof(_this), parent.c_str(), expr.c_str());
-
-    if ((*adapter)->Query(data->samples,
-                         "parent = %0 AND name like %1",
-                         {parent, expr}) == false)
+    bool updateNow = request->content;
+    if ((*adapter)->Query(data->samples, parent, expr, updateNow) == false)
     {
         data->iter = data->samples.end();
     }
@@ -271,5 +283,51 @@ corto_resultIter _dds_Connector_onRequest(
         data->iter = data->samples.begin();
     }
     return result;
+/* $end */
+}
+
+corto_word _dds_Connector_onSubscribe(
+    dds_Connector _this,
+    corto_string parent,
+    corto_string expr,
+    corto_word ctx)
+{
+/* $begin(recorto/dds/Connector/onSubscribe) */
+    if(_this->dds_adapter == NULLWORD)
+    {
+        return ctx;
+    }
+    std::string parentStr = SAFE_STRING(parent);
+    std::string exprStr = SAFE_STRING(expr);
+
+    // TRACE("onSubscribe[%s] %s, %s", corto_idof(_this), parentStr.c_str(), exprStr.c_str());
+
+    std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
+    (*adapter)->SubscribeData(parentStr, exprStr);
+
+    return ++gCounter;
+/* $end */
+}
+
+corto_word _dds_Connector_onUnsubscribe(
+    dds_Connector _this,
+    corto_string parent,
+    corto_string expr,
+    corto_word ctx)
+{
+/* $begin(recorto/dds/Connector/onUnsubscribe) */
+    if(_this->dds_adapter == NULLWORD)
+    {
+        return ctx;
+    }
+    std::string parentStr = SAFE_STRING(parent);
+    std::string exprStr = SAFE_STRING(expr);
+
+    // TRACE("onUnsubscribe[%s] %s, %s", corto_idof(_this), parentStr.c_str(), exprStr.c_str());
+
+    std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
+    (*adapter)->UnsubscribeData(parentStr, exprStr);
+
+    return ++gCounter;
 /* $end */
 }

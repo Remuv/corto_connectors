@@ -11,3 +11,6 @@ class Connector : core/mount, hidden::
 
     resultIter onRequest(core/request request)
     void onNotify(core/eventMask event, core/result object)
+
+    word onSubscribe(string parent, string expr, word ctx)
+    word onUnsubscribe(string parent, string expr, word ctx)
