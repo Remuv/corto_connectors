@@ -76,7 +76,7 @@ void CSyncAdapter::ProcessEvent()
         Event &event = iter->second;
         if (event.m_event == Event::Type::CREATE)
         {
-            CreateData(event);
+            // CreateData(event);
         }
         else if (event.m_event == Event::Type::UPDATE)
         {
@@ -84,7 +84,7 @@ void CSyncAdapter::ProcessEvent()
         }
         else if (event.m_event == Event::Type::DELETE)
         {
-            DeleteData(event);
+            // DeleteData(event);
         }
     }
 }
@@ -465,12 +465,13 @@ bool CSyncAdapter::CreateData(std::string &type, std::string &parent, std::strin
     StrToLower(parent);
     StrToLower(id);
 
-    std::string key = KEY(parent, id);
+    std::string key = KEY(parent,id);
 
-    LockGuard lock(m_ebMtx);
+    UniqueLock lock(m_ebMtx);
+    m_eventBuffer.erase(key);
+    lock.unlock();
 
-    Event &event = m_eventBuffer[key];
-
+    Event event;
     event.m_event = Event::Type::CREATE;
     event.m_data.type(std::move(type));
     event.m_data.parent(std::move(parent));
@@ -478,6 +479,8 @@ bool CSyncAdapter::CreateData(std::string &type, std::string &parent, std::strin
     event.m_data.name(std::move(name));
     event.m_data.value(std::move(value));
     event.m_data.source(m_uuid);
+
+    CreateData(event);
 
     return true;
 }
@@ -496,6 +499,7 @@ bool CSyncAdapter::UpdateData(std::string &type, std::string &parent, std::strin
     {
         event.m_event = Event::Type::UPDATE;
     }
+
     event.m_data.type(std::move(type));
     event.m_data.parent(std::move(parent));
     event.m_data.id(std::move(id));
@@ -511,14 +515,18 @@ bool CSyncAdapter::DeleteData(std::string &parent, std::string &id)
     StrToLower(parent);
     StrToLower(id);
 
-    std::string key = KEY(parent, id);
+    std::string key = KEY(parent,id);
 
-    LockGuard lock(m_ebMtx);
+    UniqueLock lock(m_ebMtx);
+    m_eventBuffer.erase(key);
+    lock.unlock();
 
-    Event &event = m_eventBuffer[key];
+    Event event;
     event.m_event = Event::Type::DELETE;
     event.m_data.parent(std::move(parent));
     event.m_data.id(std::move(id));
+
+    DeleteData(event);
 
     return true;
 }
