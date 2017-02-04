@@ -1,6 +1,3 @@
-variables:
-    PROJECT_NAME: "recorto"
-
 stages:
   - build
   - deploy
@@ -47,3 +44,5 @@ package-cloud:
         - package_cloud push remuv/${PROJECT_NAME}/debian/jessie remuv-${PROJECT_NAME}*.deb
     only:
         - master
+    tags:
+        - debian-jessie
