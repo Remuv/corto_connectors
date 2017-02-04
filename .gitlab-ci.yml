@@ -1,0 +1,45 @@
+variables:
+    PROJECT_NAME: "recorto"
+
+stages:
+  - build
+
+debug-debian-jessie:
+    stage: build
+    script:
+        - mkdir .deps && mkdir .tools && cd .tools
+        - git clone git@review.remuv.io:ops/build
+        - cd ../ #Return to root
+        - .tools/build/install_deps.sh ${PROJECT_NAME} debug debian-jessie $(pwd)/.deps
+        - sudo dpkg --install $(pwd)/.deps/*.deb
+        - corto build
+        - corto install --verbose
+        - bash .tools/build/remove_deps.sh $(pwd)/.deps
+        - git clean -xfd #clean up repository
+        - bash .tools/build/package.sh ${PROJECT_NAME} ${CI_PIPELINE_ID} 0 # Tag (0 = debug, 1 = release)
+        - package_cloud push remuv/${PROJECT_NAME}/debian/jessie remuv-${PROJECT_NAME}*.deb
+    artifacts:
+        paths:
+            - remuv-${PROJECT_NAME}*.deb
+    tags:
+        - debian-jessie
+
+release-debian-jessie:
+    stage: build
+    script:
+        - mkdir .deps && mkdir .tools && cd .tools
+        - git clone git@review.remuv.io:ops/build
+        - cd ../ #Return to root
+        - .tools/build/install_deps.sh ${PROJECT_NAME} release debian-jessie $(pwd)/.deps
+        - sudo dpkg --install $(pwd)/.deps/*.deb
+        - corto build --release
+        - corto install --verbose
+        - bash .tools/build/remove_deps.sh $(pwd)/.deps
+        - git clean -xfd #clean up repository
+        - bash .tools/build/package.sh ${PROJECT_NAME} ${CI_PIPELINE_ID} 1 # Tag (0 = debug, 1 = release)
+        - package_cloud push remuv/${PROJECT_NAME}/debian/jessie remuv-${PROJECT_NAME}*.deb
+    artifacts:
+        paths:
+            - remuv-${PROJECT_NAME}*.deb
+    tags:
+        - debian-jessie
