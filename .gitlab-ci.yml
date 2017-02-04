@@ -1,6 +1,7 @@
 stages:
   - build
   - deploy
+  - trigger_downstream
 
 debug-debian-jessie:
     stage: build
@@ -44,5 +45,10 @@ package-cloud:
         - package_cloud push remuv/${PROJECT_NAME}/debian/jessie remuv-${PROJECT_NAME}*.deb
     only:
         - master
-    tags:
-        - debian-jessie
+
+downstream:
+    stage: trigger_downstream
+    script:
+        - "curl -X POST -F token=${DOWNSTREAM_TRIGGER_TOKEN} -F ref=master ${DOWNSTREAM_TRIGGER_URL}"
+    only:
+        - master
