@@ -3,6 +3,7 @@ variables:
 
 stages:
   - build
+  - deploy
 
 debug-debian-jessie:
     stage: build
@@ -16,7 +17,6 @@ debug-debian-jessie:
         - bash .tools/build/remove_deps.sh $(pwd)/.deps
         - git clean -xfd #clean up repository
         - bash .tools/build/package.sh ${PROJECT_NAME} ${CI_PIPELINE_ID} 0 # Tag (0 = debug, 1 = release)
-        - package_cloud push remuv/${PROJECT_NAME}/debian/jessie remuv-${PROJECT_NAME}*.deb
     artifacts:
         paths:
             - remuv-${PROJECT_NAME}*.deb
@@ -35,9 +35,15 @@ release-debian-jessie:
         - bash .tools/build/remove_deps.sh $(pwd)/.deps
         - git clean -xfd #clean up repository
         - bash .tools/build/package.sh ${PROJECT_NAME} ${CI_PIPELINE_ID} 1 # Tag (0 = debug, 1 = release)
-        - package_cloud push remuv/${PROJECT_NAME}/debian/jessie remuv-${PROJECT_NAME}*.deb
     artifacts:
         paths:
             - remuv-${PROJECT_NAME}*.deb
     tags:
         - debian-jessie
+
+package-cloud:
+    stage: deploy
+    script:
+        - package_cloud push remuv/${PROJECT_NAME}/debian/jessie remuv-${PROJECT_NAME}*.deb
+    only:
+        - master
