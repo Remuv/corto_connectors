@@ -49,6 +49,6 @@ package-cloud:
 downstream:
     stage: trigger_downstream
     script:
-        - "curl -X POST -F token=${DOWNSTREAM_TRIGGER_TOKEN} -F ref=master ${DOWNSTREAM_TRIGGER_URL}"
+        -  if [ -n "${TRIGGER_DOWNSTREAM}" ]; then \"curl -X POST -F token=${DOWNSTREAM_TRIGGER_TOKEN} -F ref=master ${DOWNSTREAM_TRIGGER_URL}"; fi
     only:
         - master
