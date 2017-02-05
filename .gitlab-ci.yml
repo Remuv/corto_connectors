@@ -52,3 +52,4 @@ downstream:
         -  if [ -n "${DOWNSTREAM_TRIGGER}" ]; then curl -X POST -F token=${DOWNSTREAM_TRIGGER_TOKEN} -F ref=master ${DOWNSTREAM_TRIGGER_URL}; fi
     only:
         - master
+    dependencies: []
