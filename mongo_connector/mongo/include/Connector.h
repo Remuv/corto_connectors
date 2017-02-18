@@ -19,6 +19,10 @@ RECORTO_MONGO_CONNECTOR_MONGO_EXPORT corto_int16 _mongo_Connector_construct(
     mongo_Connector _this);
 #define mongo_Connector_construct(_this) _mongo_Connector_construct(mongo_Connector(_this))
 
+RECORTO_MONGO_CONNECTOR_MONGO_EXPORT corto_void _mongo_Connector_destruct(
+    mongo_Connector _this);
+#define mongo_Connector_destruct(_this) _mongo_Connector_destruct(mongo_Connector(_this))
+
 RECORTO_MONGO_CONNECTOR_MONGO_EXPORT corto_void _mongo_Connector_onNotify(
     mongo_Connector _this,
     corto_eventMask event,

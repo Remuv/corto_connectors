@@ -24,6 +24,7 @@ extern "C" {
 #endif
 
 #include <recorto/mongo_connector/mongo/Connector.h>
+#include <recorto/mongo_connector/mongo/Historian.h>
 
 #ifdef __cplusplus
 }

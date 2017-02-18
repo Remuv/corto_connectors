@@ -1,2 +1,3 @@
 /corto/test
-/recorto/mongo
+/corto/fmt/json
+/recorto/mongo_connector/mongo

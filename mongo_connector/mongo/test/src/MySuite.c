@@ -6,7 +6,219 @@
  * when the file is regenerated.
  */
 
-#include <test.h>
+#include <include/test.h>
+
+/* $header() */
+#define corto_resultForeach(iter, elem) \
+    corto_result *elem;\
+    while(corto_iterHasNext(&iter) ? elem = (corto_result*)(corto_word)corto_iterNext(&iter), TRUE : FALSE)
+
+#define corto_sampleIterForeach(iter, elem) \
+    corto_sample *elem;\
+    while(corto_iterHasNext(&iter) ? elem = (corto_sample*)(corto_word)corto_iterNext(&iter), TRUE : FALSE)
+
+corto_object createChildFromContent (
+    corto_object _parent,
+    corto_string _id,
+    corto_type   type,
+    corto_string contentType,
+    corto_string fmt
+)
+{
+    corto_object o = corto_declareChild(_parent, _id, type);
+    if (!corto_checkState(o, CORTO_DEFINED)) {
+        if (corto_fromcontent(o, contentType, fmt))
+        {
+            printf("ERRRRRRRSSSSSS\n");
+        }
+
+        if (corto_define(o))
+        {
+            printf("ERRR\n");
+        }
+    }
+    else
+    {
+        printf("EEERRRRRR\n");
+    }
+    return o;
+}
+
+/* $end */
+
+corto_void _test_MySuite_aTest(
+    test_MySuite this)
+{
+/* $begin(test/MySuite/aTest) */
+    //
+    corto_time t = {10000000, 100000};
+    test_setTimeout(&t);
+    printf("==========TEST===============\n");
+    corto_object mount = corto_voidCreateChild(root_o, "mount");
+
+    corto_string config = "{\
+        \"mount\":\"/mount\",\
+        \"mask\":\"ON_TREE\",\
+        \"dbname\":\"test_historian_db\",\
+        \"user\":\"\",\
+        \"password\":\"\",\
+        \"hostaddr\":\"localhost\",\
+        \"port\": 27017,\
+        \"update_rate\": 0\
+    }";
+
+    //corto_fromcontent(corto_object o, corto_string contentType, corto_string fmt, ...)
+    mongo_Connector mongo = mongo_Connector(createChildFromContent(root_o,
+                                             "mm",
+                                             corto_type(mongo_Historian_o),
+                                             "text/json",
+                                             config));
+    /* << Insert implementation >> */
+    // corto_string json = corto_contentof(NULL, "text/json", mongo);
+    // printf("data: %s \n\n\n", json);
+    // //corto_dealloc(json);
+    //
+    // corto_float32 *A = corto_float32CreateChild(mount, "A", 0);
+
+    // test_Vec2 v0 = test_Vec2CreateChild(A, "v0", 0, 0);
+    // for (int i = 1; i < 10; i++)
+    // {
+    //     usleep(1000*10);
+    //     corto_float32Update(A, i);
+    //     test_Vec2Update(v0, i, i*10);
+    // }
+    // //printf("\n")
+    // corto_release(v0);
+    // corto_release(A);
+
+    // {
+    //     corto_resultIter it;
+    //     printf("%s\n", "corto_select(\"mount\",\"//A\")");
+    //     corto_select("mount", "//A")
+    //                 .fromSample(0)
+    //                 .toNow()
+    //                 .contentType("text/json")
+    //                 .iter(&it);
+    //     //
+    //     corto_resultForeach(it, r1) {
+    //         printf("Query returned '%s': \n", r1->id);
+    //         corto_sampleIterForeach(r1->history, sample) {
+    //             corto_time timestamp = sample->timestamp;
+    //             corto_string value = (corto_string)sample->value;
+    //             printf("%lis, %lins, value: %s\n",timestamp.sec, timestamp.nanosec ,value);
+    //         }
+    //     }
+    // }
+
+    {
+        corto_resultIter it;
+        printf("%s\n", "corto_select(\"mount\",\"//*\")");
+        corto_select("mount", "//*")
+                    .fromSample(0)
+                    .toNow()
+                    .contentType("text/json")
+                    .iter(&it);
+        //
+
+        corto_resultForeach(it, r1)
+        {
+            printf("Query returned '%s': \n", r1->id);
+            corto_sampleIterForeach(r1->history, sample) {
+                corto_time timestamp = sample->timestamp;
+                corto_string value = (corto_string)sample->value;
+                printf("%lis, %lins, value: %s\n",timestamp.sec, timestamp.nanosec ,value);
+            }
+        }
+    }
+    printf("%i\n",corto_countof(mongo));
+    corto_delete(mongo);
+    printf("%i\n",corto_countof(mongo));
+    test_assert(1);
+
+/* $end */
+}
+
+corto_void _test_MySuite_testHistorical(
+    test_MySuite this)
+{
+/* $begin(test/MySuite/testHistorical) */
+    corto_time t = {10000000, 100000};
+    test_setTimeout(&t);
+
+    printf("TEST_HISTORIAN \n");
+
+    corto_object mount = corto_voidCreateChild(root_o, "mount");
+    mongo_Historian mongo = mongo_HistorianCreateChild(
+        root_o,
+        "mm",
+        mount,
+        CORTO_ON_TREE,
+        "test_historian_db",
+        "",
+        "",
+        "localhost",
+        27017,
+        0
+    );
+
+    corto_string json = corto_contentof(NULL, "text/json", mongo);
+    printf("%s \n", json);
+
+    //CORTO_UNUSED(mongo);
+    corto_float32 *A = corto_float32CreateChild(mount, "A", 0);
+    test_Vec2 v0 = test_Vec2CreateChild(A, "v0", 0, 0);
+    for (int i = 1; i < 10; i++)
+    {
+        usleep(1000*100);
+        corto_float32Update(A, i);
+        test_Vec2Update(v0, i, i*10);
+    }
+    //printf("\n")
+    corto_release(v0);
+    corto_release(A);
+
+    {
+        corto_resultIter it;
+        printf("%s\n", "corto_select(\"mount\",\"//A\")");
+        corto_select("mount", "//A")
+                    .fromSample(0)
+                    .toNow()
+                    .contentType("text/json")
+                    .iter(&it);
+        //
+        corto_resultForeach(it, r1) {
+            printf("Query returned '%s':\n", r1->id);
+            corto_sampleIterForeach(r1->history, sample) {
+                corto_time timestamp = sample->timestamp;
+                corto_string value = (corto_string)sample->value;
+                printf("%lis, %lins, value: %s\n",timestamp.sec, timestamp.nanosec ,value);
+            }
+        }
+    }
+
+    {
+        corto_resultIter it;
+        printf("%s\n", "corto_select(\"mount\",\"//*\")");
+        corto_select("mount", "//*")
+                    .fromSample(0)
+                    .toNow()
+                    .contentType("text/json")
+                    .iter(&it);
+        //
+        corto_resultForeach(it, r1) {
+            printf("Query returned '%s':\n", r1->id);
+            corto_sampleIterForeach(r1->history, sample) {
+                corto_time timestamp = sample->timestamp;
+                corto_string value = (corto_string)sample->value;
+                printf("%lis, %lins, value: %s\n",timestamp.sec, timestamp.nanosec ,value);
+            }
+        }
+    }
+    printf("Refounct: %i\n", corto_countof(mongo));
+    corto_delete(mongo);
+    test_assert(1);
+/* $end */
+}
 
 corto_void _test_MySuite_testSomething(
     test_MySuite this)
@@ -66,44 +278,44 @@ corto_void _test_MySuite_testSomething(
     printf("%s\n", "corto_select(\"mount\",\"//A\")");
     corto_select("mount", "//A").contentType("text/json").iter(&it);
 
-    corto_resultIterForeach(it, r1) {
-        printf("Query returned '%s' with value '%s'\n", r1.id, (corto_string)r1.value);
+    corto_resultForeach(it, r1) {
+        printf("Query returned '%s' with value '%s'\n", r1->id, (corto_string)r1->value);
     }
 
     printf("%s\n", "corto_select(\"mount\",\"A//*\")");
     corto_select("mount", "A//*").contentType("text/json").iter(&it);
 
-    corto_resultIterForeach(it, r2) {
-        printf("Query returned '%s' with value '%s'\n", r2.id, (corto_string)r2.value);
+    corto_resultForeach(it, r2) {
+        printf("Query returned '%s' with value '%s'\n", r2->id, (corto_string)r2->value);
     }
 
     printf("%s\n", "corto_select(\"mount\",\"/*\")");
     corto_select("mount", "/*").contentType("text/json").iter(&it);
 
-    corto_resultIterForeach(it, r3) {
-        printf("Query returned '%s' with value '%s'\n", r3.id, (corto_string)r3.value);
+    corto_resultForeach(it, r3) {
+        printf("Query returned '%s' with value '%s'\n", r3->id, (corto_string)r3->value);
     }
 
     printf("%s\n", "corto_select(\"mount\",\"//A*\")");
     corto_select("mount", "//A*").contentType("text/json").iter(&it);
 
-    corto_resultIterForeach(it, r4) {
-        printf("Query returned '%s' with value '%s'\n", r4.id, (corto_string)r4.value);
+    corto_resultForeach(it, r4) {
+        printf("Query returned '%s' with value '%s'\n", r4->id, (corto_string)r4->value);
     }
 
     printf("%s\n", "corto_select(\"mount\",\"//A*\")");
     corto_select("mount", "//*").contentType("text/json").iter(&it);
 
-    corto_resultIterForeach(it, r5) {
-        printf("Query returned '%s' with value '%s'\n", r5.id, (corto_string)r5.value);
+    corto_resultForeach(it, r5) {
+        printf("Query returned '%s' with value '%s'\n", r5->id, (corto_string)r5->value);
     }
 
     {
         printf("%s\n", "corto_select(\"mount\",\"//*\")");
         corto_select("mount", "//*").contentType("text/json").iter(&it);
 
-        corto_resultIterForeach(it, r6) {
-            printf("Query returned '%s/%s' with value '%s'\n", r6.parent, r6.id, (corto_string)r6.value);
+        corto_resultForeach(it, r6) {
+            printf("Query returned '%s/%s' with value '%s'\n", r6->parent, r6->id, (corto_string)r6->value);
         }
     }
 
@@ -113,11 +325,14 @@ corto_void _test_MySuite_testSomething(
         printf("%s\n", "corto_select(\"mount\",\"//*\")");
         corto_select("mount", "//*").contentType("text/json").iter(&it);
 
-        corto_resultIterForeach(it, r6) {
-            printf("Query returned '%s/%s' with value '%s'\n", r6.parent, r6.id, (corto_string)r6.value);
+        corto_resultForeach(it, r6) {
+            printf("Query returned '%s/%s' with value '%s'\n", r6->parent, r6->id, (corto_string)r6->value);
         }
     }
-    /* << Insert implementation >> */
+
+    printf("%i\n", corto_countof(mongo));
+
+    corto_delete(mongo);
     test_assert(1);
 /* $end */
 }

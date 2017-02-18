@@ -8,8 +8,19 @@ class Connector : core/mount, hidden::
     password : string
     hostaddr : string
     port : int32
+    mongo_handle : word, hidden
 
     int16 construct()
+    void destruct()
+
+    resultIter onRequest(core/request request)
+    void onNotify(core/eventMask event, core/result object)
+
+class Historian : Connector::
+    update_rate : float64
+
+    int16 construct()
+    void destruct()
 
     resultIter onRequest(core/request request)
     void onNotify(core/eventMask event, core/result object)

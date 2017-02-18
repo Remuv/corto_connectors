@@ -11,7 +11,9 @@
 /* $header() */
 static corto_word gCounter = 0;
 
-#define TRACE(fmt, args...) printf("%s:%i, %s: " fmt "\n", __FILE__, __LINE__, __func__, args)
+// #define TRACE(fmt, args...) printf("%s:%i, %s: " fmt "\n", __FILE__, __LINE__, __func__, args)
+#define TRACE(fnt, args...)
+
 #include <sys/types.h>
 
 #include "sync_adapter.h"
@@ -300,7 +302,7 @@ corto_word _dds_Connector_onSubscribe(
     std::string parentStr = SAFE_STRING(parent);
     std::string exprStr = SAFE_STRING(expr);
 
-    // TRACE("onSubscribe[%s] %s, %s", corto_idof(_this), parentStr.c_str(), exprStr.c_str());
+    TRACE("onSubscribe[%s] %s, %s", corto_idof(_this), parentStr.c_str(), exprStr.c_str());
 
     std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
     (*adapter)->SubscribeData(parentStr, exprStr);
@@ -323,7 +325,7 @@ corto_word _dds_Connector_onUnsubscribe(
     std::string parentStr = SAFE_STRING(parent);
     std::string exprStr = SAFE_STRING(expr);
 
-    // TRACE("onUnsubscribe[%s] %s, %s", corto_idof(_this), parentStr.c_str(), exprStr.c_str());
+    TRACE("onUnsubscribe[%s] %s, %s", corto_idof(_this), parentStr.c_str(), exprStr.c_str());
 
     std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
     (*adapter)->UnsubscribeData(parentStr, exprStr);

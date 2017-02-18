@@ -20,3 +20,5 @@ class ObjectPtr::
 
 test::Suite MySuite::
     void testSomething()
+    void testHistorical()
+    void aTest()

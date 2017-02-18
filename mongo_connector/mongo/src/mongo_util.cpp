@@ -1,6 +1,5 @@
 #include "mongo_util.h"
 
-
 CMongoPool::CMongoPool() : m_pMongoPool(nullptr)
 {
 
@@ -8,7 +7,7 @@ CMongoPool::CMongoPool() : m_pMongoPool(nullptr)
 
 CMongoPool::~CMongoPool()
 {
-    m_pMongoPool.reset();
+    m_pMongoPool.reset(nullptr);
 }
 
 void CMongoPool::Initialize(std::string user,
@@ -25,7 +24,19 @@ void CMongoPool::Initialize(std::string user,
     m_pMongoPool.reset(new mongocxx::pool(mongocxx::uri(uri)));
 }
 
+
 MongoClientPtr CMongoPool::GetClient()
 {
     return m_pMongoPool->acquire();
+}
+
+void StrToLower(std::string &str)
+{
+    size_t size = str.size();
+    char *c_str = &str[0];
+    for (size_t i = 0; i < size; i++)
+    {
+        char &c = c_str[i];
+        TO_LOWER(c);
+    }
 }
