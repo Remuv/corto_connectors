@@ -45,6 +45,7 @@ package-cloud:
         - package_cloud push remuv/${PROJECT_NAME}/debian/jessie remuv-${PROJECT_NAME}*.deb
     only:
         - tags
+    allow_failure: true
 
 downstream:
     stage: trigger_downstream
