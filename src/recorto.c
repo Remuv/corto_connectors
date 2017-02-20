@@ -8,7 +8,7 @@
 
 #include <recorto/recorto.h>
 
-int recortoMain(int argc, char* argv[]) {
+int recortoMain(int argc, char *argv[]) {
 /* $begin(main) */
 
     /* Insert code that must be run when component is loaded */

@@ -8,7 +8,7 @@
 
 #include <recorto/mongo_connector/mongo_connector.h>
 
-int mongo_connectorMain(int argc, char* argv[]) {
+int mongo_connectorMain(int argc, char *argv[]) {
 /* $begin(main) */
 
     /* Insert implementation */

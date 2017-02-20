@@ -8,7 +8,7 @@
 
 #include <recorto/sockjsserver/sockjsserver.h>
 
-int sockjsserverMain(int argc, char* argv[]) {
+int sockjsserverMain(int argc, char *argv[]) {
 /* $begin(main) */
 
     /* Insert code that must be run when component is loaded */

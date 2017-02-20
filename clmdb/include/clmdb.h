@@ -29,9 +29,9 @@ extern "C" {
 #include <corto/lang/c/c.h>
 
 #include <recorto/clmdb/_type.h>
-
 #include <recorto/clmdb/_api.h>
 #include <recorto/clmdb/_load.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif

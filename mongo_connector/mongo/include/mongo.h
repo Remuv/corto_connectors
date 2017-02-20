@@ -16,9 +16,9 @@
 #include <corto/lang/c/c.h>
 
 #include <recorto/mongo_connector/mongo/_type.h>
-
 #include <recorto/mongo_connector/mongo/_api.h>
 #include <recorto/mongo_connector/mongo/_load.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif

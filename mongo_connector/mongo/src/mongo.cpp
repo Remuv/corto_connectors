@@ -19,7 +19,7 @@ static void CMongoPoolClenup(void *userData) {
 }
 /* $end */
 
-int mongoMain(int argc, char* argv[]) {
+int mongoMain(int argc, char *argv[]) {
 /* $begin(main) */
     MONGOPOOL_HANDLE = corto_olsKey(CMongoPoolClenup);
     return 0;

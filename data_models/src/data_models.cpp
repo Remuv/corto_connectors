@@ -8,7 +8,7 @@
 
 #include <recorto/data_models/data_models.h>
 
-int data_modelsMain(int argc, char* argv[]) {
+int data_modelsMain(int argc, char *argv[]) {
 /* $begin(main) */
 
     /* Insert code that must be run when component is loaded */

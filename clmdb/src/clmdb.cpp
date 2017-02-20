@@ -20,7 +20,7 @@ void CLMDB_TLS_CLEAN(void *d)
 }
 /* $end */
 
-int clmdbMain(int argc, char* argv[]) {
+int clmdbMain(int argc, char *argv[]) {
 /* $begin(main) */
     corto_threadTlsKey(&CLMDB_TLS_KEY, CLMDB_TLS_CLEAN);
     return 0;

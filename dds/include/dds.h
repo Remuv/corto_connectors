@@ -20,9 +20,9 @@
 #include <corto/lang/c/c.h>
 
 #include <recorto/dds/_type.h>
-
 #include <recorto/dds/_api.h>
 #include <recorto/dds/_load.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
