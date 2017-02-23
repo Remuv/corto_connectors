@@ -5,7 +5,6 @@
  * Only code written between the begin and end tags will be preserved
  * when the file is regenerated.
  */
-
 #include <recorto/mongo_connector/mongo/mongo.h>
 
 /* $header() */
@@ -100,34 +99,71 @@ void mongo_Connector_update(
     }
 }
 
+void StringFindReplace(std::string& source,
+                       std::string const& find,
+                       std::string const& replace)
+{
+    for(std::string::size_type i = 0; (i = source.find(find, i)) != std::string::npos;)
+    {
+        source.replace(i, find.length(), replace);
+        i += replace.length();
+    }
+}
+
 void mongo_Connector_delete(
     mongo_Connector _this,
     corto_string parent,
     corto_string id
 )
 {
-    std::string database = SAFE_STRING(_this->dbname);
-    std::string collection = SAFE_STRING(parent);
+    std::string databaseStr = SAFE_STRING(_this->dbname);
+    std::string collectionStr = SAFE_STRING(parent);
     std::string name = SAFE_STRING(id);
 
     StrToLower(name);
-    StrToLower(collection);
+    StrToLower(collectionStr);
 
     try
     {
         CMongoPool *pPool = (CMongoPool*)_this->mongo_handle;
 
-        if (collection == ".") {
-            collection = "/";
+        if (collectionStr == ".") {
+            collectionStr = "/";
         }
 
         MongoClientPtr pClient = pPool->GetClient();
-        mongocxx::collection coll = (*pClient)[database][collection];
+        mongocxx::database database = (*pClient)[databaseStr];
+        mongocxx::collection collection = database[collectionStr];
 
         bsoncxx::builder::stream::document filterBuilder;
         filterBuilder << "id" << name;
 
-        coll.delete_many(filterBuilder.view());
+        collection.delete_many(filterBuilder.view());
+
+        std::string escapedStr(collectionStr+"/"+id);
+        StringFindReplace(escapedStr, "/", "\\/");
+
+        std::string regex("");
+        std::string option("si");
+        regex.append(escapedStr);
+        regex.append("");
+        bsoncxx::builder::stream::document collFilterBuilder;
+        collFilterBuilder << "name" << bsoncxx::types::b_regex(regex, option);
+
+        mongocxx::cursor collCursor = database.list_collections(collFilterBuilder.view());
+        for (bsoncxx::document::view doc : collCursor)
+        {
+            element nameElement = doc["name"];
+            if (nameElement.type() == bsoncxx::type::k_utf8)
+            {
+                bsoncxx::types::b_utf8 utfStr = nameElement.get_utf8();
+                std::string docName = utfStr.value.to_string();
+
+                mongocxx::collection childColl = database[docName];
+                childColl.drop();
+                corto_debug("Drop Collection [%s] from [%s]", docName.c_str(), databaseStr.c_str());
+            }
+        }
     }
     catch(std::exception &e)
     {
