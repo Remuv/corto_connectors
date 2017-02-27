@@ -64,7 +64,7 @@ corto_void _test_MySuite_aTest(
         \"password\":\"\",\
         \"hostaddr\":\"localhost\",\
         \"port\": 27017,\
-        \"update_rate\": 0\
+        \"sync_rate\": 10000000\
     }";
 
     //corto_fromcontent(corto_object o, corto_string contentType, corto_string fmt, ...)
@@ -73,47 +73,41 @@ corto_void _test_MySuite_aTest(
                                              corto_type(mongo_Historian_o),
                                              "text/json",
                                              config));
-    /* << Insert implementation >> */
-    // corto_string json = corto_contentof(NULL, "text/json", mongo);
-    // printf("data: %s \n\n\n", json);
-    // //corto_dealloc(json);
-    //
-    // corto_float32 *A = corto_float32CreateChild(mount, "A", 0);
+    corto_float32 *A = corto_float32CreateChild(mount, "A", 0);
 
-    // test_Vec2 v0 = test_Vec2CreateChild(A, "v0", 0, 0);
-    // for (int i = 1; i < 10; i++)
-    // {
-    //     usleep(1000*10);
-    //     corto_float32Update(A, i);
-    //     test_Vec2Update(v0, i, i*10);
-    // }
-    // //printf("\n")
-    // corto_release(v0);
-    // corto_release(A);
+    for (int i = 1; i < 100; i++)
+    {
+        usleep(1000);
+        corto_float32Update(A, i);
+    }
+    corto_release(A);
 
-    // {
-    //     corto_resultIter it;
-    //     printf("%s\n", "corto_select(\"mount\",\"//A\")");
-    //     corto_select("mount", "//A")
-    //                 .fromSample(0)
-    //                 .toNow()
-    //                 .contentType("text/json")
-    //                 .iter(&it);
-    //     //
-    //     corto_resultForeach(it, r1) {
-    //         printf("Query returned '%s': \n", r1->id);
-    //         corto_sampleIterForeach(r1->history, sample) {
-    //             corto_time timestamp = sample->timestamp;
-    //             corto_string value = (corto_string)sample->value;
-    //             printf("%lis, %lins, value: %s\n",timestamp.sec, timestamp.nanosec ,value);
-    //         }
-    //     }
-    // }
+    printf("\n");
+    {
+        corto_resultIter it;
+        printf("%s\n", "corto_select(\"mount\",\"A\")");
+        corto_select("mount", "A")
+                    .fromSample(0)
+                    .toNow()
+                    .contentType("text/json")
+                    .iter(&it);
+        //
+        corto_resultForeach(it, r1) {
+            printf("Query returned '%s': \n", r1->id);
+            corto_sampleIterForeach(r1->history, sample) {
+                corto_time timestamp = sample->timestamp;
+                corto_string value = (corto_string)sample->value;
+                printf("%lis, %lins, value: %s\n",timestamp.sec, timestamp.nanosec ,value);
+            }
+        }
+    }
+
+    usleep(1000*12000);
 
     {
         corto_resultIter it;
-        printf("%s\n", "corto_select(\"mount\",\"//*\")");
-        corto_select("mount", "//*")
+        printf("%s\n", "corto_select(\"mount\",\"A\")");
+        corto_select("mount", "A")
                     .fromSample(0)
                     .toNow()
                     .contentType("text/json")
@@ -130,11 +124,8 @@ corto_void _test_MySuite_aTest(
             }
         }
     }
-    printf("%i\n",corto_countof(mongo));
     corto_delete(mongo);
-    printf("%i\n",corto_countof(mongo));
     test_assert(1);
-
 /* $end */
 }
 
@@ -158,7 +149,8 @@ corto_void _test_MySuite_testHistorical(
         "",
         "localhost",
         27017,
-        0
+        100,
+        5000000
     );
 
     corto_string json = corto_contentof(NULL, "text/json", mongo);
@@ -173,6 +165,7 @@ corto_void _test_MySuite_testHistorical(
         corto_float32Update(A, i);
         test_Vec2Update(v0, i, i*10);
     }
+    usleep(1000*5200);
     //printf("\n")
     corto_release(v0);
     corto_release(A);
@@ -224,6 +217,7 @@ corto_void _test_MySuite_testSomething(
     test_MySuite this)
 {
 /* $begin(test/MySuite/testSomething) */
+
     corto_object mount = corto_voidCreateChild(root_o, "mount");
 
     mongo_Connector mongo = mongo_ConnectorCreateChild(

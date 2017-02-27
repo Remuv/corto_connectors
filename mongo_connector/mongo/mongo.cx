@@ -17,7 +17,9 @@ class Connector : core/mount, hidden::
     void onNotify(core/eventMask event, core/result object)
 
 class Historian : Connector::
-    update_rate : float64
+    sample_rate : float64
+    sync_rate : float64 
+    buffer_handle : word, hidden
 
     int16 construct()
     void destruct()

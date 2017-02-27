@@ -7,19 +7,28 @@
 #define RECORTO_DATA_MODELS_H
 
 #include <corto/corto.h>
+#include <corto/corto.h>
 #include <recorto/data_models/_project.h>
 #include <recorto/recorto.h>
 #include <corto/core/c/c.h>
 #include <corto/lang/c/c.h>
 
+/* $header() */
+/* Enter additional code here. */
+/* $end */
+
 #include <recorto/data_models/_type.h>
-#include <recorto/data_models/_api.h>
 #include <recorto/data_models/_load.h>
+#include <recorto/data_models/_api.h>
+
+/* $body() */
+/* Enter code that requires types here */
+/* $end */
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #include <recorto/data_models/net_base.h>
 #include <recorto/data_models/net_bool.h>
 #include <recorto/data_models/net_char.h>
@@ -44,5 +53,6 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
+
 #endif
 

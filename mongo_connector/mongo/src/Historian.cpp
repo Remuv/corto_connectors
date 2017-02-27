@@ -10,6 +10,7 @@
 
 /* $header() */
 #include "mongo_util.h"
+#include <recorto/mongo_connector/mongo/historian_buffer.h>
 
 #include <bsoncxx/json.hpp>
 #include <bsoncxx/stdx/string_view.hpp>
@@ -36,6 +37,8 @@ using bsoncxx::document::element;
  * Mongo utility
  * ********************************/
 
+#define MIN_SYNC_RATE 1000000 //1 second
+
 #define CORTO_TIME_TO_MILLIS(time) time.sec*1000 + time.nanosec/1000000
 #define TO_MILLISECONDS(time_point) std::chrono::duration_cast<std::chrono::milliseconds>(time_point.time_since_epoch())
 #define HISTORIAN_COLL(coll) "_history_"+coll
@@ -58,30 +61,12 @@ using bsoncxx::document::element;
         << value \
     << close_document
 
-b_date ISODate(std::chrono::hours hours)
-{
-    std::chrono::milliseconds millis = std::chrono::milliseconds(hours);
-    return b_date(millis.count());
-}
-
-b_date ISODate(std::chrono::minutes minutes)
-{
-    std::chrono::milliseconds millis = std::chrono::milliseconds(minutes);
-    return b_date(millis.count());
-}
-
-b_date ISODate(std::chrono::seconds seconds)
-{
-    std::chrono::milliseconds millis = std::chrono::milliseconds(seconds);
-    return b_date(millis.count());
-}
-
-b_date ISODate(std::chrono::milliseconds millis)
+static b_date ISODate(std::chrono::milliseconds millis)
 {
     return b_date(millis.count());
 }
 
-corto_time CortoTime(uint64_t millis)
+static corto_time CortoTime(uint64_t millis)
 {
     int32_t seconds = (millis/1000);
     uint32_t nanosec = (millis - seconds*1000)*1000000;
@@ -375,18 +360,28 @@ corto_int16 _mongo_Historian_construct(
 /* $begin(recorto/mongo_connector/mongo/Historian/construct) */
     mongo_Connector _base = mongo_Connector(_this);
     CMongoPool *pPool = new CMongoPool();
+    CMongoHistorian *pHistorian = new CMongoHistorian();
 
-    if (_this->update_rate > 0)
+    if (_this->sample_rate > 0)
     {
-        corto_asprintf(&corto_mount(_this)->policy, "sampleRate=%f", _this->update_rate);
+        corto_asprintf(&corto_mount(_this)->policy, "sampleRate=%f", _this->sample_rate);
     }
 
+    if (_this->sync_rate <= MIN_SYNC_RATE)
+    {
+        _this->sync_rate = MIN_SYNC_RATE;
+    }
+
+    //
     pPool->Initialize(SAFE_STRING(_base->user),
                       SAFE_STRING(_base->password),
                       SAFE_STRING(_base->hostaddr),
                       std::to_string(_base->port));
-    _base->mongo_handle = (corto_word)pPool;
 
+    pHistorian->Initialize(pPool, SAFE_STRING(_base->dbname), _this->sync_rate);
+
+    _base->mongo_handle = (corto_word)pPool;
+    _this->buffer_handle = (corto_word)pHistorian;
     corto_mount_setContentType(_this, "text/json");
     corto_mount(_this)->kind = CORTO_HISTORIAN;
     return corto_mount_construct(_this);
@@ -397,6 +392,13 @@ corto_void _mongo_Historian_destruct(
     mongo_Historian _this)
 {
 /* $begin(recorto/mongo_connector/mongo/Historian/destruct) */
+    if (_this->buffer_handle != NULLWORD)
+    {
+        CMongoHistorian *pHistorian = (CMongoHistorian*)_this->buffer_handle;
+        pHistorian->Stop();
+        delete pHistorian;
+        _this->buffer_handle = NULLWORD;
+    }
     mongo_Connector_destruct(_this);
 /* $end */
 }
@@ -410,81 +412,27 @@ void mongo_Historian_update (
     corto_string json
 )
 {
-    mongo_Connector _base =  mongo_Connector(_this);
-    CMongoPool *pPool = (CMongoPool*)_base->mongo_handle;
-
-    MongoClientPtr pClient = pPool->GetClient();
-    std::string database = SAFE_STRING(_base->dbname);
-    std::string collection = SAFE_STRING(parent);
+    std::string _parent = SAFE_STRING(parent);
     std::string id = SAFE_STRING(name);
     std::string _type = SAFE_STRING(type);
     std::string value = SAFE_STRING(json);
 
-    if (collection == ".") {
-        collection = "/";
-    }
-
+    StrToLower(_parent);
     StrToLower(id);
-    StrToLower(collection);
 
+    if (_parent == ".")
+    {
+        _parent = "/";
+    }
     auto timeStamp = std::chrono::system_clock::now();
-
     uint64_t milliseconds = TO_MILLISECONDS(timeStamp).count();
-    uint64_t hours = (milliseconds/3600000);
 
-    try
-    {
-        bsoncxx::builder::stream::document filterBuilder;
-        filterBuilder << "id" << id
-                      << "type" << _type
-                      << "timestamp" << ISODate(std::chrono::hours(hours));
-
-        mongocxx::collection coll = (*pClient)[database][collection];
-
-        auto found = coll.find_one(filterBuilder.view());
-        if (!found)
-        {
-            // Insert document
-            bsoncxx::builder::stream::document doc;
-            doc << "id" << id
-                << "type" << _type
-                << "timestamp" << ISODate(std::chrono::hours(hours));
-            bsoncxx::builder::stream::array minutesArray;
-
-            uint64_t minutes = hours * 60;
-            for (int i = 0; i < 60; i++)
-            {
-                minutesArray << open_document
-                             << "timestamp" << ISODate(std::chrono::minutes(minutes+i))
-                             << "seconds" << open_array << close_array
-                             << close_document;
-            }
-
-            doc << "minutes" << b_array{minutesArray.view()};
-
-            coll.insert_one(doc.view());
-        }
-
-        uint64_t minutes = milliseconds/60000;
-        std::string key = "minutes."+std::to_string(minutes%60)+".seconds";
-
-        // Add sample
-        bsoncxx::builder::stream::document updateBuilder;
-        updateBuilder << "$push"
-                      << open_document
-                         << key
-                         << open_document
-                            << "timestamp" << ISODate(std::chrono::milliseconds(milliseconds))
-                            << "value" << value
-                         << close_document
-                      << close_document;
-
-        coll.update_one(filterBuilder.view(), updateBuilder.view());
-    }
-    catch(std::exception &e)
-    {
-        corto_error("%s", e.what());
-    }
+    CMongoHistorian *pHistorian = (CMongoHistorian*)_this->buffer_handle;
+    pHistorian->UpdateSample(std::move(_parent),
+                             std::move(id),
+                             std::move(_type),
+                             std::move(value),
+                             milliseconds);
 }
 
 void mongo_Historian_delete (
@@ -684,6 +632,11 @@ corto_resultIter _mongo_Historian_onRequest(
 {
 /* $begin(recorto/mongo_connector/mongo/Historian/onRequest) */
     corto_resultIter result;
+    if (request->from.kind == CORTO_FRAME_NOW &&
+        request->to.kind == CORTO_FRAME_NOW)
+    {
+        return CORTO_ITERATOR_EMPTY;
+    }
 
     std::string parent = SAFE_STRING(request->parent);
     std::string expr = SAFE_STRING(request->expr);
@@ -798,6 +751,9 @@ corto_resultIter _mongo_Historian_onRequest(
     {
         parent = "/";
     }
+
+    StrToLower(parent);
+    StrToLower(expr);
 
     mongo_Connector _base = mongo_Connector(_this);
     CMongoPool *pPool = (CMongoPool*) _base->mongo_handle;

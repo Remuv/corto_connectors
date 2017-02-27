@@ -36,14 +36,16 @@ class optional
 {
 private:
     bool m_hasValue;
-    T m_value;
+    T    m_value;
+
 public:
     optional () : m_hasValue(false) {}
     optional (const T &v) : m_hasValue(true), m_value(v) {}
     optional (T &&v) : m_hasValue(true), m_value(std::move(v)) {}
     optional (const optional &o) : m_hasValue(o.m_hasValue), m_value(o.m_value) {}
 
-    T &value () {
+    T &value ()
+    {
         return m_value;
     }
 
@@ -53,7 +55,8 @@ public:
         m_hasValue = true;
     }
 
-    operator bool () {
+    operator bool ()
+    {
         return m_hasValue;
     }
 };

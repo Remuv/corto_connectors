@@ -7,11 +7,8 @@
 #define RECORTO_DDS_H
 
 #include <corto/corto.h>
+#include <corto/corto.h>
 #include <recorto/dds/_project.h>
-/* $header() */
-/* You can put your own definitions here! */
-/* $end */
-
 #include <common/dds/vendor/vendor.h>
 #include <recorto/recorto.h>
 #include <common/interface/corto/corto.h>
@@ -19,18 +16,27 @@
 #include <corto/core/c/c.h>
 #include <corto/lang/c/c.h>
 
+/* $header() */
+/* You can put your own definitions here! */
+/* $end */
+
 #include <recorto/dds/_type.h>
-#include <recorto/dds/_api.h>
 #include <recorto/dds/_load.h>
+#include <recorto/dds/_api.h>
+
+/* $body() */
+/* Enter code that requires types here */
+/* $end */
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #include <recorto/dds/Connector.h>
 
 #ifdef __cplusplus
 }
 #endif
+
 #endif
 
