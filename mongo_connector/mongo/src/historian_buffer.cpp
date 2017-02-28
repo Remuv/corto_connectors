@@ -262,7 +262,7 @@ void CMongoHistorian::ThreadStart()
     while (m_done == false)
     {
         ProcessEvent();
-        m_wakeUp.wait_for(lock, Microseconds(m_period));
+        m_wakeUp.wait_for(lock, Milliseconds(m_period));
     }
 
     m_running = false;

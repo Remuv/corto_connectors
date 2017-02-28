@@ -37,7 +37,7 @@ using bsoncxx::document::element;
  * Mongo utility
  * ********************************/
 
-#define MIN_SYNC_RATE 1000000 //1 second
+#define MIN_SYNC_RATE 1000 //1 second
 
 #define CORTO_TIME_TO_MILLIS(time) time.sec*1000 + time.nanosec/1000000
 #define TO_MILLISECONDS(time_point) std::chrono::duration_cast<std::chrono::milliseconds>(time_point.time_since_epoch())
@@ -364,7 +364,8 @@ corto_int16 _mongo_Historian_construct(
 
     if (_this->sample_rate > 0)
     {
-        corto_asprintf(&corto_mount(_this)->policy, "sampleRate=%f", _this->sample_rate);
+        corto_float64 frequency = 1.0f/(_this->sample_rate/1000.0f);
+        corto_asprintf(&corto_mount(_this)->policy, "sampleRate=%f", frequency);
     }
 
     if (_this->sync_rate <= MIN_SYNC_RATE)
