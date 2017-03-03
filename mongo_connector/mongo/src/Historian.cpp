@@ -37,8 +37,6 @@ using bsoncxx::document::element;
  * Mongo utility
  * ********************************/
 
-#define MIN_SYNC_RATE 1000 //1 second
-
 #define CORTO_TIME_TO_MILLIS(time) time.sec*1000 + time.nanosec/1000000
 #define TO_MILLISECONDS(time_point) std::chrono::duration_cast<std::chrono::milliseconds>(time_point.time_since_epoch())
 #define HISTORIAN_COLL(coll) "_history_"+coll
@@ -232,7 +230,7 @@ int mongo_iterDataHasNext(corto_iter *iter)
 
 void mongo_iterDataRelease(corto_iter *iter)
 {
-    if (iter->udata != nullptr)
+    if (iter->udata != NULLWORD)
     {
         mongo_iterData *pData = (mongo_iterData*)iter->udata;
         typedef optional<uint64_t> Optional64;
@@ -327,6 +325,8 @@ int mongo_sampleHasNext(corto_iter *iter)
 
 void mongo_sampleRelease(corto_iter *iter)
 {
+    corto_debug("mongo_sampleRelease %li", iter->udata);
+
     if (iter->udata != NULLWORD)
     {
         mongo_sampleData *pSample = (mongo_sampleData*)iter->udata;
@@ -340,6 +340,7 @@ void mongo_sampleRelease(corto_iter *iter)
         pSample->cursor.~Cursor();
         free(pSample);
 
+
         iter->udata = NULLWORD;
     }
 }
@@ -350,6 +351,9 @@ mongo_sampleData *mongo_sampleDataNew (mongocxx::cursor &&cursor)
     new (&pSample->cursor) mongocxx::cursor(std::move(cursor));
     new (&pSample->iter) mongocxx::cursor::iterator(pSample->cursor.begin());
     new (&pSample->value) std::string();
+
+    corto_debug("mongo_sampleDataNew %li", (int64_t)pSample);
+
     return pSample;
 }
 /* $end */
@@ -362,15 +366,11 @@ corto_int16 _mongo_Historian_construct(
     CMongoPool *pPool = new CMongoPool();
     CMongoHistorian *pHistorian = new CMongoHistorian();
 
+
     if (_this->sample_rate > 0)
     {
         corto_float64 frequency = 1.0f/(_this->sample_rate/1000.0f);
         corto_asprintf(&corto_mount(_this)->policy, "sampleRate=%f", frequency);
-    }
-
-    if (_this->sync_rate <= MIN_SYNC_RATE)
-    {
-        _this->sync_rate = MIN_SYNC_RATE;
     }
 
     //
@@ -378,8 +378,17 @@ corto_int16 _mongo_Historian_construct(
                       SAFE_STRING(_base->password),
                       SAFE_STRING(_base->hostaddr),
                       std::to_string(_base->port));
+    bool scale = 1;
+    if (_this->sample_rate > 500)
+    {
+        scale = 60;
+    }
 
-    pHistorian->Initialize(pPool, SAFE_STRING(_base->dbname), _this->sync_rate);
+    pHistorian->Initialize(pPool,
+                           SAFE_STRING(_base->dbname),
+                           _this->sync_rate,
+                           scale,
+                           _this->expire_after_seconds);
 
     _base->mongo_handle = (corto_word)pPool;
     _this->buffer_handle = (corto_word)pHistorian;
@@ -532,19 +541,19 @@ mongocxx::cursor mongo_Historian_select (
     bsoncxx::builder::stream::document filterGroupBuilder;
     bsoncxx::builder::stream::document filterSortBuilder;
 
-    // SELECT minutes.seconds.timestamp AS timestamp,
-    //        minutes.seconds.value AS value
-    //        minutes.seconds.type AS type
+    // SELECT samples.samples.timestamp AS timestamp,
+    //        samples.samples.value AS value
+    //        samples.samples.type AS type
 
-    filterPropertyBuilder << "minutes.seconds.timestamp" << 1
-                          << "minutes.seconds.value" << 1;
+    filterPropertyBuilder << "samples.samples.timestamp" << 1
+                          << "samples.samples.value" << 1;
 
-    filterGroupBuilder << "_id" << "$minutes.seconds.timestamp"
+    filterGroupBuilder << "_id" << "$samples.samples.timestamp"
                        << "timestamp" << open_document
-                          << "$last" << "$minutes.seconds.timestamp"
+                          << "$last" << "$samples.samples.timestamp"
                        << close_document
                        << "value" << open_document
-                          << "$last" << "$minutes.seconds.value"
+                          << "$last" << "$samples.samples.value"
                        << close_document;
 
     // WHERE id = id
@@ -556,25 +565,25 @@ mongocxx::cursor mongo_Historian_select (
             // timestamp > start and timestamp  < end
             filterHoursBuilder << AND(GTE("timestamp", ISODate(start.value())),
                                       LTE("timestamp", ISODate(end.value())));
-            filterMinutesBuilder << AND(GTE("minutes.timestamp", ISODate(start.value())),
-                                      LTE("minutes.timestamp", ISODate(end.value())));
-            filterSecondsBuilder << AND(GTE("minutes.seconds.timestamp", ISODate(start.value())),
-                                      LTE("minutes.seconds.timestamp", ISODate(end.value())));
+            filterMinutesBuilder << AND(GTE("samples.timestamp", ISODate(start.value())),
+                                      LTE("samples.timestamp", ISODate(end.value())));
+            filterSecondsBuilder << AND(GTE("samples.samples.timestamp", ISODate(start.value())),
+                                      LTE("samples.samples.timestamp", ISODate(end.value())));
         }
         else
         {
             // timestamp > start
             filterHoursBuilder << GTE("timestamp", ISODate(start.value()));
-            filterHoursBuilder << GTE("minutes.timestamp", ISODate(start.value()));
-            filterHoursBuilder << GTE("minutes.seconds.timestamp", ISODate(start.value()));
+            filterMinutesBuilder << GTE("samples.timestamp", ISODate(start.value()));
+            filterSecondsBuilder << GTE("samples.samples.timestamp", ISODate(start.value()));
         }
     }
     else if (end)
     {
         // timestamp  < end
         filterHoursBuilder << LTE("timestamp", ISODate(end.value()));
-        filterHoursBuilder << LTE("minutes.timestamp", ISODate(end.value()));
-        filterHoursBuilder << LTE("minutes.seconds.timestamp", ISODate(end.value()));
+        filterMinutesBuilder << LTE("samples.timestamp", ISODate(end.value()));
+        filterSecondsBuilder << LTE("samples.samples.timestamp", ISODate(end.value()));
     }
 
     bool filterTime = start || end;
@@ -590,14 +599,14 @@ mongocxx::cursor mongo_Historian_select (
 
     mongocxx::pipeline stages;
     stages.match(filterHoursBuilder.view());
-    stages.unwind("$minutes");
+    stages.unwind("$samples");
 
     if (filterTime)
     {
         stages.match(filterMinutesBuilder.view());
     }
 
-    stages.unwind("$minutes.seconds");
+    stages.unwind("$samples.samples");
 
     if (filterTime)
     {
@@ -652,7 +661,7 @@ corto_resultIter _mongo_Historian_onRequest(
         case CORTO_FRAME_NOW:
         {
             auto now = std::chrono::system_clock::now();
-            start.setValue(TO_MILLISECONDS(now));
+            end.setValue(TO_MILLISECONDS(now));
             reverse = true;
             break;
         }
@@ -692,6 +701,10 @@ corto_resultIter _mongo_Historian_onRequest(
 
                 reverse = true;
             }
+            else if (reverse)
+            {
+                start.setValue(std::chrono::milliseconds(millis));
+            }
             else
             {
                 end.setValue(std::chrono::milliseconds(millis));
@@ -708,10 +721,8 @@ corto_resultIter _mongo_Historian_onRequest(
             {
                 if (reverse)
                 {
-                    millis = start.value().count() - millis;
-                    auto t = start.value();
+                    millis = end.value().count() - millis;
                     start.setValue(std::chrono::milliseconds(millis));
-                    end.setValue(t);
                 }
                 else
                 {
@@ -725,7 +736,11 @@ corto_resultIter _mongo_Historian_onRequest(
         }
         case CORTO_FRAME_SAMPLE:
         {
-            if (skip)
+            if (reverse)
+            {
+                // TODO: fromNow to Sample(x) reverse
+            }
+            else if (skip)
             {
                 limit.setValue(request->to.value - skip.value());
             }
@@ -733,6 +748,7 @@ corto_resultIter _mongo_Historian_onRequest(
             {
                 limit.setValue(request->to.value);
             }
+
             break;
         }
         case CORTO_FRAME_DEPTH:

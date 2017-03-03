@@ -12,7 +12,8 @@ struct SampleKey {
     std::string parent;
     std::string id;
     std::string type;
-    uint64_t    hour;
+    uint64_t    timestamp;
+    uint64_t    scale;   // 1 = Minutes document, 60 = Hours Documents
 };
 
 struct Sample {
@@ -41,10 +42,13 @@ private:
     std::mutex m_bufferMtx;
     BufferMap  m_updateBuffer;
 
+    uint64_t                m_scale;
+
     //
     CMongoPool             *m_pMongoPool;
     std::string             m_database;
     uint64_t                m_period;
+    uint32_t                m_expireAfterSeconds;
     std::mutex              m_threadMtx;
     std::thread             m_thread;
     std::condition_variable m_wakeUp;
@@ -56,8 +60,15 @@ private:
 
     void ThreadStart();
 
+    void InitializeDocument(MongoClientPtr &pClient,
+                            std::string &database,
+                            const SampleKey &key);
 public:
-    void Initialize(CMongoPool *pMongoPool, std::string database, uint64_t period);
+    void Initialize(CMongoPool *pMongoPool,
+                    std::string database,
+                    uint64_t period,
+                    uint64_t scale,
+                    uint32_t expireAfterSeconds);
     void Stop();
 
     void UpdateSample(std::string &&parent,

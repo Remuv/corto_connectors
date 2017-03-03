@@ -19,6 +19,8 @@ class Connector : core/mount, hidden::
 class Historian : Connector::
     sample_rate : uint64
     sync_rate : uint64
+    expire_after_seconds : uint32
+    
     buffer_handle : word, hidden
 
     int16 construct()

@@ -31,11 +31,11 @@ using bsoncxx::types::b_array;
 using bsoncxx::types::b_document;
 using bsoncxx::document::element;
 
-static b_date ISODate(Hours hours)
-{
-    std::chrono::milliseconds millis = std::chrono::milliseconds(hours);
-    return b_date(millis.count());
-}
+// static b_date ISODate(Hours hours)
+// {
+//     std::chrono::milliseconds millis = std::chrono::milliseconds(hours);
+//     return b_date(millis.count());
+// }
 
 static b_date ISODate(Minutes minutes)
 {
@@ -80,7 +80,7 @@ std::size_t SampleKeyHasher::operator ()(const SampleKey &k) const
         hash = (hash ^ c) * FNV_prime;
     }
     //
-    it = (byte_t*)&k.hour;
+    it = (byte_t*)&k.timestamp;
     int size = sizeof(uint64_t);
     for (int i = 0; i < size; i++)
     {
@@ -97,7 +97,7 @@ bool SampleKeyEquals::operator ()(const SampleKey &lhs, const SampleKey &rhs) co
     char c1, c2;
     const char *s1, *s2;
 
-    retVal = lhs.hour == rhs.hour &&
+    retVal = lhs.timestamp == rhs.timestamp &&
              lhs.parent.size() == rhs.parent.size();
 
     s1 = lhs.parent.c_str();
@@ -136,20 +136,33 @@ bool SampleKeyEquals::operator ()(const SampleKey &lhs, const SampleKey &rhs) co
     return retVal;
 }
 
-
-void InitializeDocument(MongoClientPtr &pClient,
-                        std::string &database,
-                        const SampleKey &key)
+void CMongoHistorian::InitializeDocument(MongoClientPtr &pClient,
+                                         std::string &database,
+                                         const SampleKey &key)
 {
-    uint64_t hours = key.hour;
+    uint64_t timestamp = key.timestamp * key.scale;
+
     const std::string &collection = key.parent;
+
+    auto db = (*pClient)[database];
+
+    if (m_expireAfterSeconds > 0 && db.has_collection(collection) == false)
+    {
+        bsoncxx::builder::stream::document indexBuilder;
+        indexBuilder << "timestamp" << 1;
+
+        mongocxx::options::index optionsIndex;
+        optionsIndex.expire_after_seconds(m_expireAfterSeconds);
+
+        db[collection].create_index(indexBuilder.view(), optionsIndex);
+    }
 
     bsoncxx::builder::stream::document filterBuilder;
     filterBuilder << "id" << key.id
                   << "type" << key.type
-                  << "timestamp" << ISODate(Hours(hours));
+                  << "timestamp" << ISODate(Minutes(timestamp));
     //
-    mongocxx::collection coll = (*pClient)[database][collection];
+    mongocxx::collection coll = db[collection];
 
     auto found = coll.find_one(filterBuilder.view());
     if (!found)
@@ -158,19 +171,23 @@ void InitializeDocument(MongoClientPtr &pClient,
         bsoncxx::builder::stream::document doc;
         doc << "id" << key.id
             << "type" << key.type
-            << "timestamp" << ISODate(Hours(hours));
-        bsoncxx::builder::stream::array minutesArray;
+            << "timestamp" << ISODate(Minutes(timestamp));
+        bsoncxx::builder::stream::array samplesArr;
 
-        uint64_t minutes = hours * 60;
-        for (int i = 0; i < 60; i++)
+        uint64_t startTime = timestamp * 60;          // seconds
+        uint64_t endTime = startTime + 60 * key.scale;
+
+        for (uint64_t i = startTime;
+            i < endTime;
+            i += key.scale)
         {
-            minutesArray << open_document
-                         << "timestamp" << ISODate(Minutes(minutes+i))
-                         << "seconds" << open_array << close_array
+            samplesArr << open_document
+                         << "timestamp" << ISODate(Seconds(i))
+                         << "samples" << open_array << close_array
                          << close_document;
         }
 
-        doc << "minutes" << b_array{minutesArray.view()};
+        doc << "samples" << b_array{samplesArr.view()};
 
         coll.insert_one(doc.view());
     }
@@ -189,69 +206,78 @@ void CMongoHistorian::ProcessEvent()
 
     MongoClientPtr pClient = m_pMongoPool->GetClient();
 
-    for (BufferMap::iterator iter = buffer.begin();
-         iter != buffer.end();
-         iter++)
+    try
     {
-        const SampleKey &sampleKey = iter->first;
-        SampleSeq &samples = iter->second;
-        //
-        InitializeDocument(pClient, m_database, sampleKey);
-
-        bsoncxx::builder::stream::document updateBuilder;
-        bsoncxx::builder::stream::document pushBuilder;
-
-        for (SampleSeq::iterator it = samples.begin(); it != samples.end(); )
+        for (BufferMap::iterator iter = buffer.begin();
+             iter != buffer.end();
+             iter++)
         {
-            bsoncxx::builder::stream::array samplesSecs;
+            const SampleKey &sampleKey = iter->first;
+            SampleSeq &samples = iter->second;
+            //
+            InitializeDocument(pClient, m_database, sampleKey);
 
-            bool run = true;
+            uint64_t keyTimestampScale = sampleKey.scale * 60000;
 
-            Sample *sample = &*it++;
+            bsoncxx::builder::stream::document updateBuilder;
+            bsoncxx::builder::stream::document pushBuilder;
 
-            uint64_t minutesKey = (sample->timestamp/60000)%60;
-
-            std::string key = "minutes."+std::to_string(minutesKey)+".seconds";
-            while (run)
+            for (SampleSeq::iterator it = samples.begin(); it != samples.end(); )
             {
-                samplesSecs << open_document
-                            << "timestamp" << ISODate(Milliseconds(sample->timestamp))
-                            << "value" << sample->value
-                            << close_document;
-                if (it != samples.end())
+                bsoncxx::builder::stream::array samplesArr;
+
+                bool run = true;
+
+                Sample *sample = &*it++;
+
+                uint64_t currKey = (sample->timestamp/keyTimestampScale)%60;
+
+                std::string key = "samples."+std::to_string(currKey)+".samples";
+                while (run)
                 {
-                    sample = &(*it);
-                    uint64_t newKey = (sample->timestamp/60000)%60;
-                    if (newKey == minutesKey)
+                    samplesArr << open_document
+                                << "timestamp" << ISODate(Milliseconds(sample->timestamp))
+                                << "value" << sample->value
+                                << close_document;
+                    if (it != samples.end())
                     {
-                        it++;
+                        sample = &(*it);
+                        uint64_t newKey = (sample->timestamp/keyTimestampScale)%60;
+                        if (newKey == currKey)
+                        {
+                            it++;
+                        }
+                        else
+                        {
+                            run = false;
+                        }
                     }
                     else
                     {
                         run = false;
                     }
                 }
-                else
-                {
-                    run = false;
-                }
+
+                pushBuilder << key << open_document
+                            << "$each" << b_array{samplesArr.view()}
+                            << close_document;
             }
 
-            pushBuilder << key << open_document
-                        << "$each" << b_array{samplesSecs.view()}
-                        << close_document;
+            updateBuilder << "$push" << b_document{pushBuilder.view()};
+
+            bsoncxx::builder::stream::document filterBuilder;
+            filterBuilder << "id" << sampleKey.id
+                          << "type" << sampleKey.type
+                          << "timestamp" << ISODate(Minutes(sampleKey.timestamp * sampleKey.scale));
+
+            mongocxx::collection coll = (*pClient)[m_database][sampleKey.parent];
+
+            coll.update_one(filterBuilder.view(), updateBuilder.view());
         }
-
-        updateBuilder << "$push" << b_document{pushBuilder.view()};
-
-        bsoncxx::builder::stream::document filterBuilder;
-        filterBuilder << "id" << sampleKey.id
-                      << "type" << sampleKey.type
-                      << "timestamp" << ISODate(Hours(sampleKey.hour));
-
-        mongocxx::collection coll = (*pClient)[m_database][sampleKey.parent];
-
-        coll.update_one(filterBuilder.view(), updateBuilder.view());
+    }
+    catch (std::exception &e)
+    {
+        corto_error("Failed to process Events [%s]", e.what());
     }
 }
 
@@ -268,19 +294,48 @@ void CMongoHistorian::ThreadStart()
     m_running = false;
 }
 
-void CMongoHistorian::Initialize(CMongoPool *pMongoPool, std::string database, uint64_t period)
+void CMongoHistorian::Initialize(CMongoPool *pMongoPool,
+                                 std::string database,
+                                 uint64_t period,
+                                 uint64_t scale,
+                                 uint32_t expireAfterSeconds)
 {
     LockGuard lock(m_threadMtx);
+    m_expireAfterSeconds = expireAfterSeconds;
     m_database = database;
     m_pMongoPool = pMongoPool;
     m_period = period;
+    m_scale  = scale;
 
-    if (m_running == false)
+    if (m_period != 0)
     {
-        m_thread = std::thread(&CMongoHistorian::ThreadStart, this);
-        while (m_running == false)
+        if (m_running == false)
         {
-            std::this_thread::sleep_for(Microseconds(DEFAULT_WAIT_US));
+            m_thread = std::thread(&CMongoHistorian::ThreadStart, this);
+            while (m_running == false)
+            {
+                std::this_thread::sleep_for(Microseconds(DEFAULT_WAIT_US));
+            }
+        }
+    }
+
+    if (m_expireAfterSeconds > 0)
+    {
+        bsoncxx::builder::stream::document indexBuilder;
+        indexBuilder << "timestamp" << 1;
+
+        mongocxx::options::modify_collection modifyOptions;
+        modifyOptions.index( indexBuilder.view(), Seconds(m_expireAfterSeconds));
+
+        MongoClientPtr pClient = m_pMongoPool->GetClient();
+
+        mongocxx::database db = (*pClient)[m_database];
+        mongocxx::cursor collCursor = db.list_collections();
+
+        for (bsoncxx::document::view doc : collCursor)
+        {
+            std::string name = doc["name"].get_utf8().value.to_string();
+            db.modify_collection(name, modifyOptions);
         }
     }
 }
@@ -304,18 +359,26 @@ void CMongoHistorian::UpdateSample(std::string &&parent,
                                    std::string &&value,
                                    uint64_t timestamp)
 {
-    SampleKey sampleKey;
-    sampleKey.parent = std::move(parent);
-    sampleKey.id = std::move(id);
-    sampleKey.type = std::move(type);
-    sampleKey.hour = (timestamp/3600000);
+    if (m_running == true)
+    {
+        SampleKey sampleKey;
+        sampleKey.parent = std::move(parent);
+        sampleKey.id = std::move(id);
+        sampleKey.type = std::move(type);
+        sampleKey.scale = m_scale;
+        sampleKey.timestamp = (timestamp/(60000*m_scale));
 
-    Sample sample;
-    sample.value = std::move(value);
-    sample.timestamp = timestamp;
+        Sample sample;
+        sample.value = std::move(value);
+        sample.timestamp = timestamp;
 
-    LockGuard lock(m_bufferMtx);
-    m_updateBuffer[sampleKey].push_back(std::move(sample));
+        LockGuard lock(m_bufferMtx);
+        m_updateBuffer[sampleKey].push_back(std::move(sample));
+    }
+    else
+    {
+        InsertOne(parent, id, type, value, timestamp);
+    }
 }
 
 void CMongoHistorian::InsertOne(std::string &parent,
@@ -326,60 +389,42 @@ void CMongoHistorian::InsertOne(std::string &parent,
 {
     MongoClientPtr pClient = m_pMongoPool->GetClient();
 
-    uint64_t hours = (milliseconds/3600000);
+    SampleKey sampleKey;
+    sampleKey.parent = parent;
+    sampleKey.id = id;
+    sampleKey.type = type;
+    sampleKey.timestamp = (milliseconds/(60000*m_scale));
 
+    InitializeDocument(pClient, m_database, sampleKey);
+
+    uint64_t keyTimestampScale = sampleKey.scale * 60000;
+    uint64_t currKey = (milliseconds/keyTimestampScale)%60;
+
+    std::string key = "samples."+std::to_string(currKey)+".samples";
     try
     {
+        // Add sample
         bsoncxx::builder::stream::document filterBuilder;
         filterBuilder << "id" << id
                       << "type" << type
-                      << "timestamp" << ISODate(std::chrono::hours(hours));
+                      << "timestamp" << ISODate(Minutes(sampleKey.timestamp*m_scale));
 
-        mongocxx::collection coll = (*pClient)[m_database][parent];
-
-        auto found = coll.find_one(filterBuilder.view());
-        if (!found)
-        {
-            // Insert document
-            bsoncxx::builder::stream::document doc;
-            doc << "id" << id
-                << "type" << type
-                << "timestamp" << ISODate(std::chrono::hours(hours));
-            bsoncxx::builder::stream::array minutesArray;
-
-            uint64_t minutes = hours * 60;
-            for (int i = 0; i < 60; i++)
-            {
-                minutesArray << open_document
-                             << "timestamp" << ISODate(std::chrono::minutes(minutes+i))
-                             << "seconds" << open_array << close_array
-                             << close_document;
-            }
-
-            doc << "minutes" << b_array{minutesArray.view()};
-
-            coll.insert_one(doc.view());
-        }
-
-        uint64_t minutes = milliseconds/60000;
-        std::string key = "minutes."+std::to_string(minutes%60)+".seconds";
-
-        // Add sample
         bsoncxx::builder::stream::document updateBuilder;
         updateBuilder << "$push"
                       << open_document
                          << key
                          << open_document
-                            << "timestamp" << ISODate(std::chrono::milliseconds(milliseconds))
+                            << "timestamp" << ISODate(Milliseconds(milliseconds))
                             << "value" << value
                          << close_document
                       << close_document;
-
+        //
+        auto coll = (*pClient)[m_database][parent];
         coll.update_one(filterBuilder.view(), updateBuilder.view());
     }
-    catch(std::exception &e)
+    catch (std::exception &e)
     {
-        corto_error("%s", e.what());
+        corto_error("Failed to insert sample [%s], error = %s", key.c_str(), e.what());
     }
 }
 
