@@ -56,6 +56,10 @@ void mongo_Connector_update(
     try
     {
         CMongoPool *pPool = (CMongoPool*)_this->mongo_handle;
+        if (pPool == nullptr)
+        {
+            corto_error("Invalid mongo pool handle.");
+        }
 
         std::string parent_s = collection;
 
@@ -64,6 +68,10 @@ void mongo_Connector_update(
         }
 
         MongoClientPtr pClient = pPool->GetClient();
+        if (pClient.get() == nullptr)
+        {
+            corto_error("Invalid mongo pool client.");
+        }
         mongocxx::collection coll = (*pClient)[database][collection];
 
         bsoncxx::builder::stream::document filterBuilder;
@@ -222,6 +230,7 @@ struct mongodb_iterData
 void *mongodb_iterDataNext(corto_iter *iter)
 {
     mongodb_iterData *pData = (mongodb_iterData*)iter->udata;
+
     bsoncxx::document::view data = *pData->iter;
 
     element name = data["id"];
@@ -247,8 +256,16 @@ void *mongodb_iterDataNext(corto_iter *iter)
 
 int mongodb_iterDataHasNext(corto_iter *iter)
 {
-    mongodb_iterData *pData = (mongodb_iterData*)iter->udata;
     bool retVal = false;
+
+    mongodb_iterData *pData = (mongodb_iterData*)iter->udata;
+
+    if (pData == nullptr)
+    {
+        corto_error("MongoDB iterator is uninitialized.");
+        return false;
+    }
+
     while (retVal == false && pData->iter != pData->cursor.end())
     {
         bsoncxx::document::view data = *pData->iter;
@@ -259,6 +276,7 @@ int mongodb_iterDataHasNext(corto_iter *iter)
         }
         retVal = true;
     }
+
     return retVal;
 }
 
@@ -267,6 +285,11 @@ void mongodb_iterDataRelease(corto_iter *iter)
     if (iter->udata != NULLWORD)
     {
         mongodb_iterData *pData = (mongodb_iterData*)iter->udata;
+
+        if (pData == nullptr)
+        {
+            corto_error("MongoDB iterator is uninitialized.");
+        }
 
         typedef mongocxx::cursor Cursor;
         typedef mongocxx::cursor::iterator Iterator;
