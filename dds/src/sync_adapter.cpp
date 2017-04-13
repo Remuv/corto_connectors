@@ -9,7 +9,6 @@
 
 // #define TRACE(fmt, args...) printf("%s:%i, %s: " fmt "\n", __FILE__, __LINE__, __func__, args)
 #define TRACE(fmt, args...)
-
 std::size_t StringHasher::operator ()(const std::string &k) const
 {
     const std::size_t FNV_prime = 1099511628211;
@@ -65,6 +64,7 @@ static void StrToLower(std::string &str)
 
 void CSyncAdapter::ProcessEvent()
 {
+
     UniqueLock lock(m_ebMtx);
     EventMap events = std::move(m_eventBuffer);
     lock.unlock();
@@ -87,6 +87,7 @@ void CSyncAdapter::ProcessEvent()
             // DeleteData(event);
         }
     }
+
 }
 
 bool CSyncAdapter::CreateData(Event &event)
@@ -95,6 +96,7 @@ bool CSyncAdapter::CreateData(Event &event)
     {
         return false;
     }
+
 
     Corto::Data &data = event.m_data;
     std::string key = KEY(data.parent(), data.id());
@@ -113,6 +115,8 @@ bool CSyncAdapter::CreateData(Event &event)
     TRACE("CreateData parent = %s AND id = %s", obj.m_data.parent().c_str(), obj.m_data.id().c_str());
     m_pDataPublisher->Write(obj.m_data, obj.m_handle);
 
+
+
     return true;
 }
 
@@ -122,6 +126,7 @@ bool CSyncAdapter::UpdateData(Event &event)
     {
         return false;
     }
+
 
     Corto::Data &data = event.m_data;
     std::string key = KEY(data.parent(), data.id());
@@ -149,13 +154,14 @@ bool CSyncAdapter::UpdateData(Event &event)
         m_updateCache[key] = obj.m_data.value();
     }
 
+
+
     return true;
 }
 
 bool CSyncAdapter::DeleteData(Event &event)
 {
     DisposeData(event.m_data);
-
     return true;
 }
 
@@ -319,14 +325,14 @@ void CSyncAdapter::OnCortoMessage(CCortoMessageSubscriber::Sample &sample)
             }
             case MessageType::UPDATE_REQUEST:
             {
-                TRACE("UPDATE_REQUEST: %s", msg.source().c_str());
+                TRACE("UPDATE_REQUEST: %s: %s", msg.source().c_str(), msg.id().c_str());
                 SendUpdates();
                 SendMessage(msg.source(), msg.id(), MessageType::UPDATE_DONE);
                 break;
             }
             case MessageType::UPDATE_DONE:
             {
-                TRACE("UPDATE_DONE: %s", msg.source().c_str());
+                TRACE("UPDATE_DONE: %s: %s", msg.source().c_str(), msg.id().c_str());
                 LockGuard lock(m_requestMtx);
                 m_requests[msg.id()]--;
                 break;
@@ -453,7 +459,7 @@ bool CSyncAdapter::Initialize(DataNotifyCallback newDataCallback,
         m_taskId = m_taskFactory.Create(updateRate, updateRate, std::bind(&CSyncAdapter::ProcessEvent, this));
     }
 
-    TRACE("[%s]:%s", m_uuid.c_str(), m_ddsTopic.c_str());
+    TRACE("Initialize [%s]:%s", m_uuid.c_str(), m_ddsTopic.c_str());
 
     SendMessage("", "0", MessageType::CONNECTION);
 
@@ -560,6 +566,8 @@ bool CSyncAdapter::Query(SampleSeq &sampleSeq,
                          std::string &expr,
                          bool latest)
 {
+
+
     StrToLower(parent);
     StrToLower(expr);
     // std::string objPath = KEY(parent, expr);
@@ -575,39 +583,39 @@ bool CSyncAdapter::Query(SampleSeq &sampleSeq,
         std::string requestId = std::to_string(++m_lastID);
 
         UniqueLock ddsLock(m_ddsMtx);
-        m_requests[requestId] = m_ddsConnectors.size();
+        int32_t size = (int32_t)m_ddsConnectors.size();
+        m_requests[requestId] = size;
         ddsLock.unlock();
 
         requestLock.unlock();
-        for (std::string s : m_ddsConnectors)
-        {
-            TRACE("Connections: %s", s.c_str());
-        }
 
         SendUpdates();
 
-        TRACE("%s: %lu", requestId.c_str(), m_ddsConnectors.size());
-
-        SendMessage("", requestId, MessageType::UPDATE_REQUEST);
-
-        time_t start = time(0);
-        while (wait == true && timeOut == false)
+        if (size > 0)
         {
-            std::this_thread::yield();
+            SendMessage("", requestId, MessageType::UPDATE_REQUEST);
 
-            requestLock.lock();
-            wait = m_requests[requestId] > 0;
-            requestLock.unlock();
+            time_t start = time(0);
+            while (wait == true && timeOut == false)
+            {
+                std::this_thread::yield();
 
-            time_t end = time(0);
-            timeOut = (end - start) > MAX_WAIT_TIME;
+                requestLock.lock();
+                wait = m_requests[requestId] > 0;
+                requestLock.unlock();
+
+                time_t end = time(0);
+                timeOut = (end - start) > MAX_WAIT_TIME;
+            }
+
+            DisposeMessage("", requestId);
         }
 
-        DisposeMessage("", requestId);
-
         requestLock.lock();
+
         m_requests.erase(requestId);
     }
+
     TRACE("QUERY parent = %s AND id = %s", parent.c_str(), expr.c_str());
     ParamVector params = {parent, expr};
     std::string expression = "parent = %0 AND id like %1";
@@ -617,6 +625,8 @@ bool CSyncAdapter::Query(SampleSeq &sampleSeq,
     {
         retVal = true;
     }
+
+    ;
 
     return retVal;
 }

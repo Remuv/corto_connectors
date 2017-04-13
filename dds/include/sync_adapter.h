@@ -63,11 +63,11 @@ private:
     template<typename T>
     using RinMap = std::unordered_map<std::string, T, StringHasher, StringEquals>;
 
-    typedef RinMap<std::string>               CacheMap;
-    typedef RinMap<ObjectData>                ObjectMap;
-    typedef RinMap<Event>                     EventMap;
-    typedef RinMap<uint64_t>                  RequestMap;
-    typedef RinMap<DdsInstanceHandle>         InstanceMap;
+    typedef RinMap<std::string>          CacheMap;
+    typedef RinMap<ObjectData>           ObjectMap;
+    typedef RinMap<Event>                EventMap;
+    typedef RinMap<int32_t>              RequestMap;
+    typedef RinMap<DdsInstanceHandle>    InstanceMap;
 
     typedef std::lock_guard<std::mutex>  LockGuard;
     typedef std::unique_lock<std::mutex> UniqueLock;

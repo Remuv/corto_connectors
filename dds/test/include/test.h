@@ -7,7 +7,8 @@
 #define TEST_H
 
 #include <corto/corto.h>
-#include <_project.h>
+#include <corto/corto.h>
+#include <include/_project.h>
 #include <recorto/data_models/data_models.h>
 #include <corto/test/test.h>
 #include <recorto/dds/dds.h>
@@ -20,20 +21,28 @@
 #include <corto/core/c/c.h>
 #include <corto/lang/c/c.h>
 
-#include <_type.h>
+/* $header() */
+/* Enter additional code here. */
+/* $end */
 
-#include <_api.h>
-#include <_load.h>
+#include <include/_type.h>
+#include <include/_load.h>
+#include <include/_api.h>
+
+/* $body() */
+/* Enter code that requires types here */
+/* $end */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include <Data.h>
-#include <ddsConnectorTest.h>
-#include <TestData.h>
+#include <include/Data.h>
+#include <include/ddsConnectorTest.h>
+#include <include/TestData.h>
 
 #ifdef __cplusplus
 }
 #endif
+
 #endif
 
