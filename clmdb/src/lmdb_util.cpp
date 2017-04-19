@@ -284,7 +284,7 @@ int CLMDB::GetData(std::string path, std::string db, std::string key, MDB_val &o
                 else
                 {
                     out.mv_size = data_v.mv_size;
-                    out.mv_data = malloc(out.mv_size);
+                    out.mv_data = calloc(out.mv_size+1,1);
                     memcpy(out.mv_data, data_v.mv_data, out.mv_size);
                     mdb_txn_commit(txn);
                 }
