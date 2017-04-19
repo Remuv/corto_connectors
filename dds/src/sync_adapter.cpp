@@ -662,8 +662,12 @@ void CSyncAdapter::Close()
              objIt != m_objects.end();
              objIt++)
         {
-            m_pDataPublisher->UnregisterInstance(objIt->second.m_handle);
+            if (objIt->second.m_handle.is_nil() == false)
+            {
+                m_pDataPublisher->UnregisterInstance(objIt->second.m_handle);
+            }
         }
+
         m_objects.clear();
 
         delete m_pDataPublisher;
@@ -686,7 +690,10 @@ void CSyncAdapter::Close()
              instanceIt != m_instances.end();
              instanceIt++)
         {
-            m_pMessagePublisher->UnregisterInstance(instanceIt->second);
+            if (instanceIt->second.is_nil() == false)
+            {
+                m_pMessagePublisher->UnregisterInstance(instanceIt->second);
+            }
         }
         m_instances.clear();
 
