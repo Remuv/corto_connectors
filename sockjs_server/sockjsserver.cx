@@ -2,7 +2,7 @@
 
 
 class sockjs_server : corto::web::server::SockJS::
-    handler : object, hidden
+    handler : word, hidden
     handler_func : word, hidden
 
     int16 construct()

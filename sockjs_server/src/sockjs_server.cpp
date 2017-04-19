@@ -43,13 +43,13 @@ corto_void _sockjsserver_sockjs_server_onClose(
     server_HTTP_Connection c)
 {
 /* $begin(recorto/sockjsserver/sockjs_server/onClose) */
-    if(_this->handler == NULL || _this->handler_func == 0)
+    if(_this->handler == 0 || _this->handler_func == 0)
     {
         return;
     }
     void (*fptr)(corto_object,sockjsserver_sockjs_server,server_HTTP_Connection, corto_string);
     *(void **)(&fptr) = (void*)_this->handler_func;
-    fptr(_this->handler, _this, c, "{\"type\":\"CONNECTION_CLOSE\"}");
+    fptr((void*)_this->handler, _this, c, "{\"type\":\"CONNECTION_CLOSE\"}");
 /* $end */
 }
 
@@ -69,13 +69,13 @@ corto_void _sockjsserver_sockjs_server_onMessage(
     corto_string msg)
 {
 /* $begin(recorto/sockjsserver/sockjs_server/onMessage) */
-    if(_this->handler == NULL || _this->handler_func == 0)
+    if(_this->handler == 0 || _this->handler_func == 0)
     {
         return;
     }
     void (*fptr)(corto_object,sockjsserver_sockjs_server,server_HTTP_Connection, corto_string);
     *(void **)(&fptr) = (void*)_this->handler_func;
-    fptr(_this->handler, _this, c, msg);
+    fptr((void*)_this->handler, _this, c, msg);
 /* $end */
 }
 
@@ -84,13 +84,13 @@ corto_void _sockjsserver_sockjs_server_onOpen(
     server_HTTP_Connection c)
 {
 /* $begin(recorto/sockjsserver/sockjs_server/onOpen) */
-    if(_this->handler == NULL || _this->handler_func == 0)
+    if(_this->handler == 0 || _this->handler_func == 0)
     {
         return;
     }
     void (*fptr)(corto_object,sockjsserver_sockjs_server,server_HTTP_Connection, corto_string);
     *(void **)(&fptr) = (void*)_this->handler_func;
-    fptr(_this->handler, _this, c, "{\"type\":\"CONNECTION_OPEN\"}");
+    fptr((void*)_this->handler, _this, c, "{\"type\":\"CONNECTION_OPEN\"}");
 /* $end */
 }
 
@@ -129,7 +129,7 @@ corto_void _sockjsserver_sockjs_server_setHandler(
     corto_word func)
 {
 /* $begin(recorto/sockjsserver/sockjs_server/setHandler) */
-    _this->handler = obj;
+    _this->handler = (corto_word)obj;
     _this->handler_func = func;
 /* $end */
 }
