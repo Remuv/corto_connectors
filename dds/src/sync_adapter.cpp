@@ -642,7 +642,7 @@ void CSyncAdapter::Close()
 
     if (m_taskId != 0)
     {
-        m_taskFactory.Destroy(m_taskId);
+        m_taskFactory.DestroyWait(m_taskId);
         m_taskId = 0;
     }
 
