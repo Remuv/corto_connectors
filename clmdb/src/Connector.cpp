@@ -151,12 +151,12 @@ void *clmdb_iterNext(corto_iter *iter)
         ptr++;
         ptr2++;
     }
-    
+
     strJson = std::string(json, data.size-(json-(char*)data.data));
 
     corto_setstr(&pData->result.id,(char*)data.key.c_str());
     corto_setstr(&pData->result.type, type);
-    corto_setstr(&pData->result.parent, (char*)pData->parent.c_str());
+    corto_setstr(&pData->result.parent, ".");
     pData->result.value = (corto_word)corto_strdup((char*)strJson.c_str());
 
     pData->cursor.Next();

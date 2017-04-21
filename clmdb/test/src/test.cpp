@@ -6,9 +6,9 @@
  * when the file is regenerated.
  */
 
-#include <test.h>
+#include <include/test.h>
 
-int testMain(int argc, char* argv[]) {
+int testMain(int argc, char *argv[]) {
 /* $begin(main) */
 
     int result = 0;

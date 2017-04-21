@@ -7,16 +7,20 @@
 #define TEST_DATA_H
 
 #include <corto/corto.h>
-#include <_project.h>
-#include <_type.h>
+#include <corto/corto.h>
+#include <include/_project.h>
+
+#include <include/_type.h>
+#include <include/_load.h>
+#include <include/_api.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
 #ifdef __cplusplus
 }
 #endif
+
 #endif
 

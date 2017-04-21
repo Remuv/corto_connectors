@@ -62,7 +62,7 @@ CLMDB::Cursor::~Cursor()
         }
         else
         {
-            printf("Wrong txn on Tls\n");
+            printf("Wrong txn on Tls %p:%p\n", data!= nullptr ? data->txn : 0, txn);
         }
     }
 }
@@ -258,40 +258,61 @@ int CLMDB::SetData(std::string path, std::string db, std::string key, MDB_val &d
 int CLMDB::GetData(std::string path, std::string db, std::string key, MDB_val &out)
 {
     int retCode = -1;
+
     MDB_env *m_env = CLMDB::GetMDB(path);
 
     if (m_env != nullptr)
     {
-        MDB_txn *txn = nullptr;
+        MDB_txn_data *data = (MDB_txn_data*)corto_threadTlsGet(CLMDB_TLS_KEY);
 
-        if (mdb_txn_begin(m_env, nullptr, MDB_RDONLY, &txn) == 0)
+        if (data == nullptr)
         {
+            data = (MDB_txn_data*)malloc(sizeof(MDB_txn_data));
+            data->txn = nullptr;
+            data->refCount = 0;
+             corto_threadTlsSet(CLMDB_TLS_KEY, data);
+        }
+
+        if (data->txn == nullptr)
+        {
+            MDB_txn *txn = nullptr;
+            if (mdb_txn_begin(m_env, nullptr, MDB_RDONLY, &txn) == 0)
+            {
+                data->txn = txn;
+            }
+        }
+
+        if (data->txn != nullptr)
+        {
+            data->refCount++;
             MDB_dbi dbi = 0;
-            if (mdb_dbi_open(txn, db.c_str(), MDB_CREATE, &dbi) == 0)
+            if (mdb_dbi_open(data->txn, db.c_str(), 0, &dbi) == 0)
             {
                 MDB_val data_v;
                 MDB_val key_v;
                 key_v.mv_size = key.size();
                 key_v.mv_data = (void*)key.data();
-                retCode = mdb_get(txn, dbi, &key_v, &data_v);
+                retCode = mdb_get(data->txn, dbi, &key_v, &data_v);
 
                 if (retCode != 0)
                 {
                     out.mv_size = 0;
                     out.mv_data = nullptr;
-                    mdb_txn_abort(txn);
                 }
                 else
                 {
                     out.mv_size = data_v.mv_size;
                     out.mv_data = calloc(out.mv_size+1,1);
                     memcpy(out.mv_data, data_v.mv_data, out.mv_size);
-                    mdb_txn_commit(txn);
                 }
             }
-            else
+
+            data->refCount--;
+
+            if (data->refCount == 0)
             {
-                mdb_txn_abort(txn);
+                mdb_txn_commit(data->txn);
+                data->txn = nullptr;
             }
         }
     }
@@ -406,7 +427,6 @@ CLMDB::Cursor CLMDB::GetCursor(std::string path, std::string db, std::string exp
                         data->refCount++;
                         retVal.m_cursor = cur;
                         retVal.Begin();
-
                     }
                 }
             }

@@ -6,12 +6,12 @@
  * when the file is regenerated.
  */
 
-#include <test.h>
+#include <include/test.h>
 
 /* $header() */
 #include <string>
 
-
+#define SAFE_STRING(str) std::string(str != nullptr ? str : "")
 
 /* $end */
 
@@ -19,7 +19,6 @@ corto_void _test_clmdbTest_StartTest(
     test_clmdbTest _this)
 {
 /* $begin(test/clmdbTest/StartTest) */
-
     corto_object myRoot = corto_voidCreateChild(root_o, "MyRoot");
     corto_object myObjects = corto_voidCreateChild(myRoot, "Objects");
 
@@ -57,15 +56,6 @@ corto_void _test_clmdbTest_StartTest(
     corto_float32 *H = corto_float32CreateChild(F, "H", 8);
     corto_float32 *I = corto_float32CreateChild(mount2, "I", 9);
     corto_float32 *J = corto_float32CreateChild(I, "J", 10);
-
-    corto_resultIter it;
-    //printf("%s\n", "corto_select(\"/MyRoot/Objects\",\"//*\")");
-    corto_select("/MyRoot/Objects", "mount/A/*").contentType("text/json").iter(&it);
-
-    corto_resultIterForeach(it, r1) {
-        printf("Query returned '%s' with value '%s'\n", r1.id, (corto_string)r1.value);
-    }
-
     corto_release(A);
     corto_release(B);
     corto_release(C);
@@ -76,6 +66,26 @@ corto_void _test_clmdbTest_StartTest(
     corto_release(H);
     corto_release(I);
     corto_release(J);
+
+    corto_resultIter it;
+    //printf("%s\n", "corto_select(\"/MyRoot/Objects\",\"//*\")");
+    corto_select("/", "/MyRoot/Objects/mount//*").contentType("text/json").iter(&it);
+
+    corto_resultIterForeach(it, r1) {
+        std::string parent = SAFE_STRING(r1.parent);
+        std::string id = SAFE_STRING(r1.id);
+        std::string name =  parent + "/"+id;
+        // printf("%s=>%s,%s\n", name.c_str(), parent.c_str(), id.c_str());
+        corto_float32 * obj = (corto_float32 *)corto_lookup(root_o, (char*)name.c_str());
+
+        printf("Query returned '%s' with value '%s'<%p>\n", name.c_str(), (corto_string)r1.value, obj);
+        if (obj != nullptr)
+        {
+            corto_release(obj);
+        }
+    }
+
+
 
     //
     // test_Vec2 v0 = test_Vec2CreateChild(B, "v0", 1, 6);
