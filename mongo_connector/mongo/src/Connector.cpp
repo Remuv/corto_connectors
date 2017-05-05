@@ -355,7 +355,7 @@ corto_void _mongo_Connector_onNotify(
     {
         return;
     }
-
+        
     if (event & CORTO_ON_DEFINE)
     {
         corto_string json = (corto_string)(void*)object->value;

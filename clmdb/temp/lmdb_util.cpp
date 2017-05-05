@@ -117,7 +117,6 @@ CLMDB::Cursor::Data CLMDB::Cursor::GetData()
 
     return retVal;
 }
-CLMDB::LMDB_MAP CLMDB::m_factory;
 
 bool CLMDB::Cursor::HasNext()
 {
@@ -165,79 +164,65 @@ CLMDB::LMDB_MAP::~LMDB_MAP()
     }
 }
 
-MDB_env *CLMDB::GetMDB(std::string path)
+
+/* *****************************
+ *  CLMDB
+ * *****************************/
+
+std::mutex       CLMDB::m_ebMtx;
+CLMDB::BufferMap CLMDB::m_eventBuffer;
+CLMDB::LMDB_MAP  CLMDB::m_factory;
+
+
+void CLMDB::ProcessEvent()
 {
-    MDB_env *env = m_factory.m_files[path];
+    m_ebMtx.lock();
+    BufferMap events = std::move(m_eventBuffer);
+    m_eventBuffer.reserve(events.size());
+    m_ebMtx.unlock();
 
-    return env;
-}
-
-int CLMDB::Initialize(const char *path, uint32_t flags, mdb_mode_t mode, uint64_t map_size)
-{
-    int retCode = -1;
-
-    std::string key = SAFE_STRING(path);
-
-    MDB_env *env = m_factory.m_files[key];
-
-    if (env == nullptr)
+    for (EventMap::iterator iter = events.begin();
+         iter != events.end();
+         iter++)
     {
-        if (mdb_env_create(&env) == 0)
+        Event &event = iter->second;
+        if (event.m_event == Event::Type::UPDATE)
         {
-            if (mdb_env_set_mapsize(env, map_size) == 0 &&
-                mdb_env_set_maxdbs(env, 32767) == 0)
-            {
-                int rc = mdb_env_open(env, path, flags, mode);
-                //if (mdb_env_open(env, path, flags, mode) == 0)
-                if (rc == 0)
-                {
-                    m_factory.m_files[key] = env;
-                    retCode = 0;
-                }
-                else
-                {
-                    mdb_env_close(env);
-                    env = nullptr;
-                }
-            }
-            else
-            {
-                mdb_env_close(env);
-                env = nullptr;
-            }
+            SetData(event);
         }
-        else
+        else if (event.m_event == Event::Type::DELETE)
         {
-            env = nullptr;
+            SetData(event);
         }
     }
-    else
-    {
-        retCode = 0;
-    }
-    return retCode;
 }
 
-int CLMDB::SetData(std::string path, std::string db, std::string key, MDB_val &data)
+void CLMDB::SetData(Event &event)
 {
-    int retCode = -1;
+    std::string &path = event.m_path;
+    std::string &db = event.m_db;
+    std::string &key = event.m_key;
+    std::string &data = event.m_data;
 
     MDB_env *m_env = CLMDB::GetMDB(path);
+    MDB_txn *txn = nullptr;
+    MDB_dbi dbi = 0;
+    MDB_val key_v;
+    MDB_val data_v;
 
     if (m_env != nullptr)
     {
-        MDB_txn *txn = nullptr;
-
         if (mdb_txn_begin(m_env, nullptr, 0, &txn) == 0)
         {
-            MDB_dbi dbi = 0;
-            if( mdb_dbi_open(txn, db.c_str(), MDB_CREATE, &dbi) == 0)
+            if (mdb_dbi_open(txn, db.c_str(), MDB_CREATE, &dbi) == 0)
             {
-                MDB_val key_v;
                 key_v.mv_size = key.size();
                 key_v.mv_data = (void*)key.data();
 
-                if (mdb_put(txn, dbi, &key_v, &data, 0) == 0)
+                data_v.mv_size = data.size()+1;
+                data_v.mv_data = (void*)data.data();
+
+                if (mdb_put(txn, dbi, &key_v, &data_v, 0) == 0)
                 {
                     retCode = mdb_txn_commit(txn);
                 }
@@ -252,12 +237,58 @@ int CLMDB::SetData(std::string path, std::string db, std::string key, MDB_val &d
             }
         }
     }
-    return retCode;
 }
 
-int CLMDB::GetData(std::string path, std::string db, std::string key, MDB_val &out)
+void CLMDB::DelData(Event &event)
 {
-    int retCode = -1;
+    std::string &path = event.m_path;
+    std::string &db = event.m_db;
+    std::string &key = event.m_key;
+
+    MDB_env *m_env = CLMDB::GetMDB(path);
+    MDB_txn *txn = nullptr;
+    MDB_dbi dbi = 0;
+    MDB_val key_v;
+    MDB_val data_v;
+
+    if (m_env != nullptr)
+    {
+        if (mdb_txn_begin(m_env, nullptr, 0, &txn) == 0)
+        {
+            if (mdb_dbi_open(txn, db.c_str(), MDB_CREATE, &dbi) == 0)
+            {
+                key_v.mv_size = key.size();
+                key_v.mv_data = (void*)key.data();
+
+                if (mdb_del(txn, dbi, &key_v, &data_v) == 0)
+                {
+                    retCode = mdb_txn_commit(txn);
+                }
+                else
+                {
+                    mdb_txn_abort(txn);
+                }
+            }
+            else
+            {
+                mdb_txn_abort(txn);
+            }
+        }
+    }
+}
+
+MDB_env *CLMDB::GetMDB(std::string path)
+{
+    MDB_env *env = m_factory.m_files[path];
+
+    return env;
+}
+
+void CLMDB::GetData(std::string &path, std::string &db, std::string &key, std::string &out)
+{
+    StrToLower(db);
+    StrToLower(key);
+
 
     MDB_env *m_env = CLMDB::GetMDB(path);
 
@@ -270,7 +301,7 @@ int CLMDB::GetData(std::string path, std::string db, std::string key, MDB_val &o
             data = (MDB_txn_data*)malloc(sizeof(MDB_txn_data));
             data->txn = nullptr;
             data->refCount = 0;
-             corto_threadTlsSet(CLMDB_TLS_KEY, data);
+            corto_threadTlsSet(CLMDB_TLS_KEY, data);
         }
 
         if (data->txn == nullptr)
@@ -318,7 +349,6 @@ int CLMDB::GetData(std::string path, std::string db, std::string key, MDB_val &o
     }
     return retCode;
 }
-
 void CLMDB::FreeData(MDB_val &data)
 {
     if (data.mv_data != nullptr)
@@ -328,43 +358,94 @@ void CLMDB::FreeData(MDB_val &data)
         data.mv_size = 0;
     }
 }
-
-int CLMDB::Delete(std::string path, std::string db, std::string key)
+/* *********************************** *
+ * PUBLIC
+ * *********************************** */
+void CLMDB::Initialize(const char *path, uint32_t flags, mdb_mode_t mode, uint64_t map_size)
 {
-    int retCode = -1;
+    std::string key = SAFE_STRING(path);
 
-    MDB_env *m_env = CLMDB::GetMDB(path);
+    MDB_env *env = m_factory.m_files[key];
 
-    if (m_env != nullptr)
+    if (env == nullptr)
     {
-        MDB_txn *txn = nullptr;
-
-        if (mdb_txn_begin(m_env, nullptr, 0, &txn) == 0)
+        if (mdb_env_create(&env) == 0)
         {
-            MDB_dbi dbi = 0;
-            if (mdb_dbi_open(txn, db.c_str(), MDB_CREATE, &dbi) == 0)
+            if (mdb_env_set_mapsize(env, map_size) == 0 &&
+                mdb_env_set_maxdbs(env, 32767) == 0)
             {
-                MDB_val key_v;
-                MDB_val data;
-                key_v.mv_size = key.size();
-                key_v.mv_data = (void*)key.data();
-
-                if (mdb_del(txn, dbi, &key_v, &data) == 0)
+                if (mdb_env_open(env, path, flags, mode) == 0)
                 {
-                    retCode = mdb_txn_commit(txn);
+                    m_factory.m_files[key] = env;
                 }
                 else
                 {
-                    mdb_txn_abort(txn);
+                    mdb_env_close(env);
+                    env = nullptr;
                 }
             }
             else
             {
-                mdb_txn_abort(txn);
+                mdb_env_close(env);
+                env = nullptr;
             }
         }
+        else
+        {
+            env = nullptr;
+        }
     }
-    return retCode;
+}
+
+void CLMDB::DefData(std::string &path, std::string &db, std::string &key, std::string &data)
+{
+    StrToLower(db);
+    StrToLower(key);
+
+    Event event;
+    event.m_event = Event::Type::UPDATE;
+    event.m_path = std::move(path);
+    event.m_db = std::move(db);
+    event.m_key = std::move(key);
+    event.m_data = std::move(data);
+
+    SetData(event);
+}
+
+void CLMDB::SetData(std::string &path, std::string &db, std::string &key, std::string &data)
+{
+    StrToLower(db);
+    StrToLower(key);
+
+    std::string evKey = db + "/"+ key;
+
+    LockGuard lock(m_ebMtx);
+    Event &event = m_eventBuffer[evKey]
+
+    event.m_event = Event::Type::UPDATE;
+    event.m_path = std::move(path);
+    event.m_db = std::move(db);
+    event.m_key = std::move(key);
+    event.m_data = std::move(data);
+}
+
+void CLMDB::DelData(std::string path, std::string db, std::string key)
+{
+    StrToLower(db);
+    StrToLower(key);
+
+    std::string key = path+":"+parent + ":" + id;
+
+    UniqueLock lock(m_ebMtx);
+    m_eventBuffer.erase(key);
+    lock.unlock();
+
+    Event event;
+    event.m_path = std::move(path);
+    event.m_db = std::move(db);
+    event.m_key = std::move(key);
+
+    DelData(event);
 }
 
 CLMDB::Cursor CLMDB::GetCursor(std::string path, std::string db, std::string expr)

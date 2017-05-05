@@ -8,7 +8,8 @@ class Connector : core/mount, hidden::
     flags : uint32
     mode : int32
     map_size : uint64
-
+    update_rate : uint64
+    
     handle : word, private|local
 
     int16 construct()
