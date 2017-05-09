@@ -6,6 +6,7 @@
 #define INSTANCE_KEY(src, dest, id) src+":"+dest+":"+id
 
 #define TO_LOWER(c) if (c <= 'Z' && c >= 'A') c += 32
+#define SAFE_STRING(str) std::string( str != nullptr ? str : "")
 
 // #define TRACE(fmt, args...) printf("%s:%i, %s: " fmt "\n", __FILE__, __LINE__, __func__, args)
 #define TRACE(fmt, args...)
@@ -62,6 +63,20 @@ static void StrToLower(std::string &str)
 }
 
 
+CSyncAdapter::Event::Event() : m_event(Type::NONE), m_object(nullptr)
+{
+
+}
+
+CSyncAdapter::Event::~Event()
+{
+    if (m_object != nullptr)
+    {
+        // corto_delete(m_object);
+    }
+}
+
+
 void CSyncAdapter::ProcessEvent()
 {
 
@@ -97,6 +112,13 @@ bool CSyncAdapter::CreateData(Event &event)
         return false;
     }
 
+    if (event.m_object != nullptr)
+    {
+        corto_string str = corto_contentof(nullptr, "text/json", event.m_object);
+        event.m_data.value(SAFE_STRING(str));
+        // corto_delete(event.m_object);
+        event.m_object = nullptr;
+    }
 
     Corto::Data &data = event.m_data;
     std::string key = KEY(data.parent(), data.id());
@@ -127,6 +149,13 @@ bool CSyncAdapter::UpdateData(Event &event)
         return false;
     }
 
+    if (event.m_object != nullptr)
+    {
+        corto_string str = corto_contentof(nullptr, "text/json", event.m_object);
+        event.m_data.value(SAFE_STRING(str));
+        // corto_delete(event.m_object);
+        event.m_object = nullptr;
+    }
 
     Corto::Data &data = event.m_data;
     std::string key = KEY(data.parent(), data.id());
@@ -491,6 +520,37 @@ bool CSyncAdapter::CreateData(std::string &type, std::string &parent, std::strin
     return true;
 }
 
+bool CSyncAdapter::CreateData(std::string &type, std::string &parent, std::string &id, std::string &name, corto_object object)
+{
+    StrToLower(parent);
+    StrToLower(id);
+
+    std::string key = KEY(parent,id);
+
+    UniqueLock lock(m_ebMtx);
+    m_eventBuffer.erase(key);
+    lock.unlock();
+
+    Event event;
+    event.m_event = Event::Type::CREATE;
+    event.m_data.type(std::move(type));
+    event.m_data.parent(std::move(parent));
+    event.m_data.id(std::move(id));
+    event.m_data.name(std::move(name));
+    event.m_data.source(m_uuid);
+
+    // printf("Before: %s:%s: <%p> <%p>\n", event.m_data.parent().c_str(), event.m_data.id().c_str(),  event.m_object, object);
+    event.m_object = object;
+
+    // corto_copy(&event.m_object, object);
+
+    // printf("After: %s:%s: <%p> <%p>\n", event.m_data.parent().c_str(), event.m_data.id().c_str(), event.m_object, object);
+
+    CreateData(event);
+
+    return true;
+}
+
 bool CSyncAdapter::UpdateData(std::string &type, std::string &parent, std::string &id, std::string &name, std::string &value)
 {
     StrToLower(parent);
@@ -512,6 +572,32 @@ bool CSyncAdapter::UpdateData(std::string &type, std::string &parent, std::strin
     event.m_data.name(std::move(name));
     event.m_data.value(std::move(value));
     event.m_data.source(m_uuid);
+
+    return true;
+}
+
+bool CSyncAdapter::UpdateData(std::string &type, std::string &parent, std::string &id, std::string &name, corto_object object)
+{
+    StrToLower(parent);
+    StrToLower(id);
+
+    std::string key = KEY(parent, id);
+
+    LockGuard lock(m_ebMtx);
+
+    Event &event = m_eventBuffer[key];
+    if (event.m_event != Event::Type::CREATE)
+    {
+        event.m_event = Event::Type::UPDATE;
+    }
+
+    event.m_data.type(std::move(type));
+    event.m_data.parent(std::move(parent));
+    event.m_data.id(std::move(id));
+    event.m_data.name(std::move(name));
+    event.m_data.source(m_uuid);
+    event.m_object = object;
+    // corto_copy(&event.m_object, object);
 
     return true;
 }

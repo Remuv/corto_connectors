@@ -32,6 +32,7 @@
 extern "C" {
 #endif
 #include <recorto/dds/Connector.h>
+#include <recorto/dds/ObjectConnector.h>
 
 #ifdef __cplusplus
 }

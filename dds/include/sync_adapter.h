@@ -54,10 +54,13 @@ private:
             UPDATE,
             DELETE
         };
-        Event() : m_event(Type::NONE){}
+        
+        Event();
+        ~Event();
 
-        Type        m_event;
-        Corto::Data m_data;
+        Type         m_event;
+        Corto::Data  m_data;
+        corto_object m_object;
     };
 
     template<typename T>
@@ -129,11 +132,23 @@ public:
                     std::string &id,
                     std::string &name,
                     std::string &value);
+    bool CreateData(std::string &type,
+                    std::string &parent,
+                    std::string &id,
+                    std::string &name,
+                    corto_object object);
+
     bool UpdateData(std::string &type,
                     std::string &parent,
                     std::string &id,
                     std::string &name,
                     std::string &value);
+    bool UpdateData(std::string &type,
+                    std::string &parent,
+                    std::string &id,
+                    std::string &name,
+                    corto_object object);
+
     bool DeleteData(std::string &parent, std::string &id);
 
     bool SubscribeData(std::string &parent, std::string &expr);
