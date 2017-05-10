@@ -10,6 +10,7 @@
 #include <corto/corto.h>
 #include <recorto/dds/_project.h>
 #include <common/dds/vendor/vendor.h>
+#include <recorto/common/common.h>
 #include <recorto/recorto.h>
 #include <common/interface/corto/corto.h>
 #include <common/base/base.h>

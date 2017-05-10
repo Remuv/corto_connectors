@@ -61,6 +61,7 @@ private:
         Type         m_event;
         Corto::Data  m_data;
         corto_object m_object;
+        bool         m_owner;
     };
 
     template<typename T>

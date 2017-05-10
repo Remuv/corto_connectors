@@ -8,11 +8,13 @@
 
 #include <recorto/data_models/data_models.h>
 
+/* $header() */
+void LoadReCortoDataModelsCopyCallbacks();
+/* $end */
+
 int data_modelsMain(int argc, char *argv[]) {
 /* $begin(main) */
-
-    /* Insert code that must be run when component is loaded */
-
+    LoadReCortoDataModelsCopyCallbacks();
     return 0;
 /* $end */
 }

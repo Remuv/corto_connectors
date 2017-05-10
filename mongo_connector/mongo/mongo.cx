@@ -16,12 +16,35 @@ class Connector : core/mount, hidden::
     resultIter onRequest(core/request request)
     void onNotify(core/eventMask event, core/result object)
 
-class Historian : Connector::
+class Historian : core/mount, hidden::
+    alias mount : mount/mount
+    dbname : string
+    user : string
+    password : string
+    hostaddr : string
+    port : int32
     sample_rate : uint64
     sync_rate : uint64
     expire_after_seconds : uint32
-    
-    buffer_handle : word, hidden
+    mongo_handle : word, hidden
+
+    int16 construct()
+    void destruct()
+
+    resultIter onRequest(core/request request)
+    void onNotify(core/eventMask event, core/result object)
+
+class ObjectHistorian : core/mount, hidden::
+    alias mount : mount/mount
+    dbname : string
+    user : string
+    password : string
+    hostaddr : string
+    port : int32
+    sample_rate : uint64
+    sync_rate : uint64
+    expire_after_seconds : uint32
+    mongo_handle : word, hidden
 
     int16 construct()
     void destruct()

@@ -43,6 +43,7 @@ public:
     optional (const T &v) : m_hasValue(true), m_value(v) {}
     optional (T &&v) : m_hasValue(true), m_value(std::move(v)) {}
     optional (const optional &o) : m_hasValue(o.m_hasValue), m_value(o.m_value) {}
+    optional (const optional &&o) : m_hasValue(std::move(o.m_hasValue)), m_value(std::move(o.m_value)) {}
 
     T &value ()
     {

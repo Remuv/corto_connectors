@@ -1,1 +1,1 @@
-/recorto
+/recorto/common

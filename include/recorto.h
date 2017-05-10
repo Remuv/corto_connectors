@@ -21,7 +21,9 @@
 #include <recorto/_api.h>
 
 /* $body() */
-/* Enter code that requires types here */
+
+
+
 /* $end */
 
 #ifdef __cplusplus

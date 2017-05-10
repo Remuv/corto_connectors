@@ -2,11 +2,12 @@
 PACKAGE = 'recorto'
 
 COMPONENTS = %w(
-   data_models
-   mongo_connector
-   dds
-   clmdb
-   sockjs_server
+    common
+    data_models
+    mongo_connector
+    dds
+    clmdb
+    sockjs_server
 )
 
 require "#{ENV['CORTO_BUILD']}/package"

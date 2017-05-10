@@ -1,6 +1,6 @@
 /* $CORTO_GENERATED
  *
- * Historian.cpp
+ * ObjectHistorian.cpp
  *
  * Only code written between the begin and end tags will be preserved
  * when the file is regenerated.
@@ -31,48 +31,48 @@ static corto_time CortoTime(uint64_t millis)
 /* ********************************
  * MONGO HISTORIAN
  * ********************************/
-struct mongo_iterData
+struct mongo_objIterData
 {
     MongoHistorian::Cursor cursor;
     corto_result           result;
 };
 
-void *mongo_iterDataNext(corto_iter *iter);
-int mongo_iterDataHasNext(corto_iter *iter);
-void mongo_iterDataRelease(corto_iter *iter);
+void *mongo_objIterDataNext(corto_iter *iter);
+int mongo_objIterDataHasNext(corto_iter *iter);
+void mongo_objIterDataRelease(corto_iter *iter);
 
-mongo_iterData *mongo_iterDataNew (MongoHistorian::Cursor &&cursor);
+mongo_objIterData *mongo_objIterDataNew (MongoHistorian::Cursor &&cursor);
 
-struct mongo_sampleData
+struct mongo_objSampleData
 {
     MongoHistorian::HistoryCursor cursor;
     std::string                   value;
     corto_sample                  sample;
 };
 
-void *mongo_sampleNext(corto_iter *iter);
-int mongo_sampleHasNext(corto_iter *iter);
-void mongo_sampleRelease(corto_iter *iter);
-mongo_sampleData *mongo_sampleDataNew(MongoHistorian::HistoryCursor &&cursor);
+void *mongo_objSampleNext(corto_iter *iter);
+int mongo_objSampleHasNext(corto_iter *iter);
+void mongo_objSampleRelease(corto_iter *iter);
+mongo_objSampleData *mongo_objSampleDataNew(MongoHistorian::HistoryCursor &&cursor);
 
 /* **********************************
  * MONGO ITERATOR
  * **********************************/
-void *mongo_iterDataNext (corto_iter *iter)
+void *mongo_objIterDataNext (corto_iter *iter)
 {
-    mongo_iterData *pData = (mongo_iterData*)iter->udata;
+    mongo_objIterData *pData = (mongo_objIterData*)iter->udata;
 
     MongoHistorian::Data data = pData->cursor.GetData();
 
     std::string &id = data.m_name;
     std::string &type = data.m_type;
 
-    mongo_sampleData *pSample =  nullptr;
+    mongo_objSampleData *pSample =  nullptr;
 
     try
     {
         MongoHistorian::HistoryCursor history = pData->cursor.GetHistoryCursor();
-        pSample = mongo_sampleDataNew(std::move(history));
+        pSample = mongo_objSampleDataNew(std::move(history));
     }
     catch (std::exception &e)
     {
@@ -80,9 +80,9 @@ void *mongo_iterDataNext (corto_iter *iter)
     }
 
     pData->result.history.udata = pSample;
-    pData->result.history.hasNext = mongo_sampleHasNext;
-    pData->result.history.next = mongo_sampleNext;
-    pData->result.history.release = mongo_sampleRelease;
+    pData->result.history.hasNext = mongo_objSampleHasNext;
+    pData->result.history.next = mongo_objSampleNext;
+    pData->result.history.release = mongo_objSampleRelease;
 
     corto_setstr(&pData->result.id, (char*)id.c_str());
     corto_setstr(&pData->result.type, (char*)type.c_str());
@@ -95,28 +95,27 @@ void *mongo_iterDataNext (corto_iter *iter)
     return &pData->result;
 }
 
-int mongo_iterDataHasNext (corto_iter *iter)
+int mongo_objIterDataHasNext (corto_iter *iter)
 {
-    mongo_iterData *pData = (mongo_iterData*)iter->udata;
+    mongo_objIterData *pData = (mongo_objIterData*)iter->udata;
     bool retVal = pData->cursor.HasNext();
     return retVal;
 }
 
-void mongo_iterDataRelease (corto_iter *iter)
+void mongo_objIterDataRelease (corto_iter *iter)
 {
     if (iter->udata != NULLWORD)
     {
-        mongo_iterData *pData = (mongo_iterData*)iter->udata;
-        // typedef MongoHistorian::Cursor Cursor;
+        mongo_objIterData *pData = (mongo_objIterData*)iter->udata;
         pData->cursor.~Cursor();
         free(pData);
         iter->udata = NULLWORD;
     }
 }
 
-mongo_iterData *mongo_iterDataNew (MongoHistorian::Cursor &&cursor)
+mongo_objIterData *mongo_objIterDataNew (MongoHistorian::Cursor &&cursor)
 {
-    mongo_iterData *pData = (mongo_iterData*)calloc(1, sizeof(mongo_iterData));
+    mongo_objIterData *pData = (mongo_objIterData*)calloc(1, sizeof(mongo_objIterData));
     new (&pData->cursor) MongoHistorian::Cursor(std::move(cursor));
     return pData;
 }
@@ -124,9 +123,9 @@ mongo_iterData *mongo_iterDataNew (MongoHistorian::Cursor &&cursor)
 /* *************************************
  * HISTORIAN ITERATOR
  * *************************************/
-void *mongo_sampleNext (corto_iter *iter)
+void *mongo_objSampleNext (corto_iter *iter)
 {
-    mongo_sampleData *pSample =(mongo_sampleData*)iter->udata;
+    mongo_objSampleData *pSample =(mongo_objSampleData*)iter->udata;
 
     MongoHistorian::Data data = pSample->cursor.GetData();
 
@@ -139,18 +138,18 @@ void *mongo_sampleNext (corto_iter *iter)
     return &pSample->sample;
 }
 
-int mongo_sampleHasNext (corto_iter *iter)
+int mongo_objSampleHasNext (corto_iter *iter)
 {
-    mongo_sampleData *pSample = (mongo_sampleData*)iter->udata;
+    mongo_objSampleData *pSample = (mongo_objSampleData*)iter->udata;
     bool retVal = pSample->cursor.HasNext();
     return retVal;
 }
 
-void mongo_sampleRelease (corto_iter *iter)
+void mongo_objSampleRelease (corto_iter *iter)
 {
     if (iter->udata != NULLWORD)
     {
-        mongo_sampleData *pSample = (mongo_sampleData*)iter->udata;
+        mongo_objSampleData *pSample = (mongo_objSampleData*)iter->udata;
 
         typedef std::string String;
         typedef MongoHistorian::HistoryCursor Cursor;
@@ -163,9 +162,9 @@ void mongo_sampleRelease (corto_iter *iter)
     }
 }
 
-mongo_sampleData *mongo_sampleDataNew (MongoHistorian::HistoryCursor &&cursor)
+mongo_objSampleData *mongo_objSampleDataNew (MongoHistorian::HistoryCursor &&cursor)
 {
-    mongo_sampleData *pSample = (mongo_sampleData*)calloc(1,sizeof(mongo_sampleData));
+    mongo_objSampleData *pSample = (mongo_objSampleData*)calloc(1,sizeof(mongo_objSampleData));
 
     new (&pSample->cursor) MongoHistorian::HistoryCursor(std::move(cursor));
     new (&pSample->value) std::string();
@@ -174,10 +173,10 @@ mongo_sampleData *mongo_sampleDataNew (MongoHistorian::HistoryCursor &&cursor)
 }
 /* $end */
 
-corto_int16 _mongo_Historian_construct(
-    mongo_Historian _this)
+corto_int16 _mongo_ObjectHistorian_construct(
+    mongo_ObjectHistorian _this)
 {
-/* $begin(recorto/mongo_connector/mongo/Historian/construct) */
+/* $begin(recorto/mongo_connector/mongo/ObjectHistorian/construct) */
     CMongoHistorian *pHistorian = new CMongoHistorian();
 
     pHistorian->Initialize(SAFE_STRING(_this->user),
@@ -190,17 +189,16 @@ corto_int16 _mongo_Historian_construct(
                            _this->expire_after_seconds);
     _this->mongo_handle = (corto_word)pHistorian;
 
-    corto_mount_setContentType(_this, "text/json");
     corto_observer(_this)->mask = CORTO_ON_TREE;
     corto_mount(_this)->kind = CORTO_HISTORIAN;
     return corto_mount_construct(_this);
 /* $end */
 }
 
-corto_void _mongo_Historian_destruct(
-    mongo_Historian _this)
+corto_void _mongo_ObjectHistorian_destruct(
+    mongo_ObjectHistorian _this)
 {
-/* $begin(recorto/mongo_connector/mongo/Historian/destruct) */
+/* $begin(recorto/mongo_connector/mongo/ObjectHistorian/destruct) */
     if (_this->mongo_handle != NULLWORD)
     {
         CMongoHistorian *pHistorian = MONGO_HISTORIAN(_this->mongo_handle);
@@ -212,12 +210,12 @@ corto_void _mongo_Historian_destruct(
 /* $end */
 }
 
-corto_void _mongo_Historian_onNotify(
-    mongo_Historian _this,
+corto_void _mongo_ObjectHistorian_onNotify(
+    mongo_ObjectHistorian _this,
     corto_eventMask event,
     corto_result *object)
 {
-/* $begin(recorto/mongo_connector/mongo/Historian/onNotify) */
+/* $begin(recorto/mongo_connector/mongo/ObjectHistorian/onNotify) */
     if (_this->mongo_handle == NULLWORD)
     {
         return;
@@ -226,25 +224,19 @@ corto_void _mongo_Historian_onNotify(
     CMongoHistorian *pHistorian = MONGO_HISTORIAN(_this->mongo_handle);
     if (event & CORTO_ON_DEFINE)
     {
-        corto_string json = (corto_string)(void*)object->value;
-
-        std::string  value = SAFE_STRING(json);
         std::string  parent = SAFE_STRING(object->parent);
         std::string  id = SAFE_STRING(object->id);
         std::string  type = SAFE_STRING(object->type);
 
-        pHistorian->UpdateSample(parent, id, type, value);
+        pHistorian->UpdateSample(parent, id, type, object->object);
     }
     else if (event & CORTO_ON_UPDATE)
     {
-        corto_string json = (corto_string)(void*)object->value;
-
-        std::string  value = SAFE_STRING(json);
         std::string  parent = SAFE_STRING(object->parent);
         std::string  id = SAFE_STRING(object->id);
         std::string  type = SAFE_STRING(object->type);
 
-        pHistorian->UpdateSample(parent, id, type, value);
+        pHistorian->UpdateSample(parent, id, type, object->object);
     }
     else if (event & CORTO_ON_DELETE)
     {
@@ -253,11 +245,11 @@ corto_void _mongo_Historian_onNotify(
 /* $end */
 }
 
-corto_resultIter _mongo_Historian_onRequest(
-    mongo_Historian _this,
+corto_resultIter _mongo_ObjectHistorian_onRequest(
+    mongo_ObjectHistorian _this,
     corto_request *request)
 {
-/* $begin(recorto/mongo_connector/mongo/Historian/onRequest) */
+/* $begin(recorto/mongo_connector/mongo/ObjectHistorian/onRequest) */
     corto_resultIter result;
     if (request->from.kind == CORTO_FRAME_NOW &&
         request->to.kind == CORTO_FRAME_NOW)
@@ -379,7 +371,7 @@ corto_resultIter _mongo_Historian_onRequest(
         }
     }
 
-    mongo_iterData *pData = nullptr;
+    mongo_objIterData *pData = nullptr;
 
     if (parent == ".")
     {
@@ -402,7 +394,7 @@ corto_resultIter _mongo_Historian_onRequest(
                                               limit,
                                               reverse);
 
-        pData = mongo_iterDataNew(std::move(cursor));
+        pData = mongo_objIterDataNew(std::move(cursor));
     }
     catch (std::exception &e)
     {
@@ -410,9 +402,9 @@ corto_resultIter _mongo_Historian_onRequest(
     }
 
     result.udata = pData;
-    result.hasNext = mongo_iterDataHasNext;
-    result.next = mongo_iterDataNext;
-    result.release = mongo_iterDataRelease;
+    result.hasNext = mongo_objIterDataHasNext;
+    result.next = mongo_objIterDataNext;
+    result.release = mongo_objIterDataRelease;
 
     return result;
 /* $end */

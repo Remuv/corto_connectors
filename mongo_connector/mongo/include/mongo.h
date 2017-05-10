@@ -10,6 +10,7 @@
 #include <corto/corto.h>
 #include <recorto/mongo_connector/mongo/_project.h>
 #include <recorto/mongo_connector/mongo_connector.h>
+#include <recorto/common/common.h>
 #include <recorto/recorto.h>
 #include <recorto/mongo_connector/driver/mongocxx/mongocxx.h>
 #include <corto/fmt/json/json.h>
@@ -33,6 +34,7 @@ extern "C" {
 #endif
 #include <recorto/mongo_connector/mongo/Connector.h>
 #include <recorto/mongo_connector/mongo/Historian.h>
+#include <recorto/mongo_connector/mongo/ObjectHistorian.h>
 
 #ifdef __cplusplus
 }
