@@ -14,6 +14,12 @@
 #define DEFAULT_WAIT_US 10
 #define TO_MILLISECONDS(time_point) std::chrono::duration_cast<std::chrono::milliseconds>(time_point.time_since_epoch())
 
+#define CORTO_NULL_OWNER(func) do { \
+    corto_object prev = corto_setOwner(nullptr); \
+    func; \
+    corto_setOwner(prev); \
+} while(false)
+
 typedef std::chrono::hours Hours;
 typedef std::chrono::minutes Minutes;
 typedef std::chrono::seconds Seconds;
@@ -77,7 +83,7 @@ Event::~Event()
     {
         if (m_owner == true)
         {
-            corto_delete(m_object);
+            CORTO_NULL_OWNER(corto_delete(m_object));
             m_object = nullptr;
         }
         else
@@ -388,10 +394,11 @@ void CMongoHistorian::ProcessSamples()
         if (event.m_object != nullptr)
         {
             corto_string str = corto_contentof(nullptr, "text/json", event.m_object);
+
             event.m_value = SAFE_STRING(str);
             if (event.m_owner == true)
             {
-                corto_delete(event.m_object);
+                CORTO_NULL_OWNER(corto_delete(event.m_object));
                 event.m_object = nullptr;
             }
             else
@@ -508,6 +515,8 @@ void CMongoHistorian::WorkerThread()
         }
         m_wakeUp.wait_for(lock, Milliseconds(m_sampleRate));
     }
+
+    ProcessEvents();
     m_running = false;
 }
 
@@ -653,7 +662,8 @@ void CMongoHistorian::UpdateSample(std::string &parent,
     {
         if (updateEvent.m_owner == true)
         {
-            corto_delete(updateEvent.m_object);
+            CORTO_NULL_OWNER(corto_delete(updateEvent.m_object));
+
             updateEvent.m_object = nullptr;
         }
         else
@@ -700,7 +710,8 @@ void CMongoHistorian::UpdateSample(std::string &parent,
 
     if (copyCb != nullptr)
     {
-        copyCb(&updateEvent.m_object, object);
+        CORTO_NULL_OWNER(copyCb(&updateEvent.m_object, object));
+
         updateEvent.m_owner = true;
     }
     else

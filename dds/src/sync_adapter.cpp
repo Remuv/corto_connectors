@@ -9,6 +9,12 @@
 #define TO_LOWER(c) if (c <= 'Z' && c >= 'A') c += 32
 #define SAFE_STRING(str) std::string( str != nullptr ? str : "")
 
+#define CORTO_NULL_OWNER(func) do { \
+    corto_object prev = corto_setOwner(nullptr); \
+    func; \
+    corto_setOwner(prev); \
+} while(false)
+
 // #define TRACE(fmt, args...) printf("%s:%i, %s: " fmt "\n", __FILE__, __LINE__, __func__, args)
 #define TRACE(fmt, args...)
 std::size_t StringHasher::operator ()(const std::string &k) const
@@ -75,7 +81,7 @@ CSyncAdapter::Event::~Event()
     {
         if (m_owner == true)
         {
-            corto_delete(m_object);
+            CORTO_NULL_OWNER(corto_delete(m_object));
             m_object = nullptr;
         }
         else
@@ -128,7 +134,7 @@ bool CSyncAdapter::CreateData(Event &event)
         event.m_data.value(SAFE_STRING(str));
         if (event.m_owner == true)
         {
-            corto_delete(event.m_object);
+            CORTO_NULL_OWNER(corto_delete(event.m_object));
             event.m_object = nullptr;
         }
         else
@@ -155,8 +161,6 @@ bool CSyncAdapter::CreateData(Event &event)
     TRACE("CreateData parent = %s AND id = %s", obj.m_data.parent().c_str(), obj.m_data.id().c_str());
     m_pDataPublisher->Write(obj.m_data, obj.m_handle);
 
-
-
     return true;
 }
 
@@ -173,7 +177,7 @@ bool CSyncAdapter::UpdateData(Event &event)
         event.m_data.value(SAFE_STRING(str));
         if (event.m_owner == true)
         {
-            corto_delete(event.m_object);
+            CORTO_NULL_OWNER(corto_delete(event.m_object));
             event.m_object = nullptr;
         }
         else
@@ -569,7 +573,7 @@ bool CSyncAdapter::CreateData(std::string &type, std::string &parent, std::strin
     CopyCallbackHandler copyCb = CORTO_OLS_GET_COPY_CB(typeObj);
     if (copyCb != nullptr)
     {
-        copyCb(&event.m_object, object);
+        CORTO_NULL_OWNER(copyCb(&event.m_object, object));
         event.m_owner = true;
     }
     else
@@ -579,14 +583,6 @@ bool CSyncAdapter::CreateData(std::string &type, std::string &parent, std::strin
         event.m_owner = false;
         corto_claim(event.m_object);
     }
-
-    // corto_copy(&event.m_object, object);
-
-    // printf("Before: %s:%s: <%p> <%p>\n", event.m_data.parent().c_str(), event.m_data.id().c_str(),  event.m_object, object);
-    // event.m_object = object;
-
-
-    // printf("After: %s:%s: <%p> <%p>\n", event.m_data.parent().c_str(), event.m_data.id().c_str(), event.m_object, object);
 
     CreateData(event);
 
@@ -643,16 +639,16 @@ bool CSyncAdapter::UpdateData(std::string &type, std::string &parent, std::strin
     CopyCallbackHandler copyCb = CORTO_OLS_GET_COPY_CB(typeObj);
     if (copyCb != nullptr)
     {
-        copyCb(&event.m_object, object);
+        CORTO_NULL_OWNER(copyCb(&event.m_object, object));
+        event.m_owner = true;
     }
     else
     {
         printf("Unable to find copy callback for type=%s\n", corto_fullpath(nullptr, typeObj));
         event.m_object = object;
+        event.m_owner = false;
+        corto_claim(event.m_object);
     }
-
-    // event.m_object = object;
-    // corto_copy(&event.m_object, object);
 
     return true;
 }
