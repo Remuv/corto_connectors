@@ -114,16 +114,14 @@ corto_void _dds_ObjectConnector_destruct(
     dds_ObjectConnector _this)
 {
 /* $begin(recorto/dds/ObjectConnector/destruct) */
-    if(_this->dds_adapter == NULLWORD)
+    if(_this->dds_adapter != NULLWORD)
     {
-        return;
-    }
-    std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
-
-    (*adapter)->Close();
-    adapter->reset();
-    delete adapter;
-    _this->dds_adapter = NULLWORD;
+        std::shared_ptr<CSyncAdapter> *adapter = StdSharedPtr_SyncAdapter(_this->dds_adapter);
+        (*adapter)->Close();
+        delete adapter;
+        _this->dds_adapter = NULLWORD;
+    }    
+    corto_mount_destruct(_this);
 /* $end */
 }
 

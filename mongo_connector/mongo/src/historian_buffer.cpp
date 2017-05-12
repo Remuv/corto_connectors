@@ -711,12 +711,12 @@ void CMongoHistorian::UpdateSample(std::string &parent,
     if (copyCb != nullptr)
     {
         CORTO_NULL_OWNER(copyCb(&updateEvent.m_object, object));
-
         updateEvent.m_owner = true;
     }
     else
     {
-        printf("Unable to find copy callback for type=%s\n", corto_fullpath(nullptr, typeObj));
+        corto_warning("Unable to find copy callback for type=%s",
+                      corto_fullpath(nullptr, typeObj));
         updateEvent.m_object = object;
         updateEvent.m_owner = false;
         corto_claim(updateEvent.m_object);
@@ -787,7 +787,13 @@ Cursor CMongoHistorian::GetCursor(std::string &parent,
                   reverse);
 }
 
-CMongoHistorian::CMongoHistorian()
+CMongoHistorian::CMongoHistorian() :
+    m_sampleRate(0),
+    m_updateRate(0),
+    m_scale(0),
+    m_expireAfterSeconds(0),
+    m_done(false),
+    m_running(false)
 {
 
 }

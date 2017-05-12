@@ -95,7 +95,6 @@ CSyncAdapter::Event::~Event()
 
 void CSyncAdapter::ProcessEvent()
 {
-
     UniqueLock lock(m_ebMtx);
     EventMap events = std::move(m_eventBuffer);
     lock.unlock();
@@ -118,7 +117,6 @@ void CSyncAdapter::ProcessEvent()
             // DeleteData(event);
         }
     }
-
 }
 
 bool CSyncAdapter::CreateData(Event &event)
@@ -212,8 +210,6 @@ bool CSyncAdapter::UpdateData(Event &event)
         TRACE("[%s]: Cache %s Update", m_uuid.c_str(), key.c_str());
         m_updateCache[key] = obj.m_data.value();
     }
-
-
 
     return true;
 }
@@ -569,20 +565,9 @@ bool CSyncAdapter::CreateData(std::string &type, std::string &parent, std::strin
     event.m_data.name(std::move(name));
     event.m_data.source(m_uuid);
 
-    corto_object typeObj = corto_typeof(object);
-    CopyCallbackHandler copyCb = CORTO_OLS_GET_COPY_CB(typeObj);
-    if (copyCb != nullptr)
-    {
-        CORTO_NULL_OWNER(copyCb(&event.m_object, object));
-        event.m_owner = true;
-    }
-    else
-    {
-        printf("Unable to find copy callback for type=%s\n", corto_fullpath(nullptr, typeObj));
-        event.m_object = object;
-        event.m_owner = false;
-        corto_claim(event.m_object);
-    }
+    event.m_object = object;
+    event.m_owner = false;
+    corto_claim(event.m_object);
 
     CreateData(event);
 
@@ -635,6 +620,12 @@ bool CSyncAdapter::UpdateData(std::string &type, std::string &parent, std::strin
     event.m_data.name(std::move(name));
     event.m_data.source(m_uuid);
 
+    if (event.m_object != nullptr && event.m_owner == false)
+    {
+        corto_release(event.m_object);
+        event.m_object = nullptr;
+    }
+
     corto_object typeObj = corto_typeof(object);
     CopyCallbackHandler copyCb = CORTO_OLS_GET_COPY_CB(typeObj);
     if (copyCb != nullptr)
@@ -644,7 +635,8 @@ bool CSyncAdapter::UpdateData(std::string &type, std::string &parent, std::strin
     }
     else
     {
-        printf("Unable to find copy callback for type=%s\n", corto_fullpath(nullptr, typeObj));
+        corto_warning("Unable to find copy callback for type=%s",
+                       corto_fullpath(nullptr, typeObj));
         event.m_object = object;
         event.m_owner = false;
         corto_claim(event.m_object);
@@ -771,6 +763,7 @@ bool CSyncAdapter::Query(SampleSeq &sampleSeq,
 void CSyncAdapter::Close()
 {
     DisposeMessage("", "0");
+
 
     // LockGuard lock(m_ebMtx);
     // LockGuard requestLock(m_requestMtx);
