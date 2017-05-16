@@ -1,5 +1,5 @@
 
-#include "sync_adapter.h"
+#include <recorto/dds/sync_adapter.h>
 #include <recorto/common/common.h>
 
 #define MAX_WAIT_TIME 5
@@ -79,16 +79,8 @@ CSyncAdapter::Event::~Event()
 {
     if (m_object != nullptr)
     {
-        if (m_owner == true)
-        {
-            CORTO_NULL_OWNER(corto_delete(m_object));
-            m_object = nullptr;
-        }
-        else
-        {
-            corto_release(m_object);
-            m_object = nullptr;
-        }
+        CORTO_NULL_OWNER(corto_delete(m_object));
+        m_object = nullptr;
     }
 }
 
@@ -128,18 +120,12 @@ bool CSyncAdapter::CreateData(Event &event)
 
     if (event.m_object != nullptr)
     {
-        corto_string str = corto_contentof(nullptr, "text/json", event.m_object);
+        corto_string str = corto_object_contentof(event.m_object, "text/json");
         event.m_data.value(SAFE_STRING(str));
-        if (event.m_owner == true)
-        {
-            CORTO_NULL_OWNER(corto_delete(event.m_object));
-            event.m_object = nullptr;
-        }
-        else
-        {
-            corto_release(event.m_object);
-            event.m_object = nullptr;
-        }
+        free(str);
+
+        CORTO_NULL_OWNER(corto_delete(event.m_object));
+        event.m_object = nullptr;
     }
 
     Corto::Data &data = event.m_data;
@@ -171,18 +157,12 @@ bool CSyncAdapter::UpdateData(Event &event)
 
     if (event.m_object != nullptr)
     {
-        corto_string str = corto_contentof(nullptr, "text/json", event.m_object);
+        corto_string str = corto_object_contentof(event.m_object, "text/json");
         event.m_data.value(SAFE_STRING(str));
-        if (event.m_owner == true)
-        {
-            CORTO_NULL_OWNER(corto_delete(event.m_object));
-            event.m_object = nullptr;
-        }
-        else
-        {
-            corto_release(event.m_object);
-            event.m_object = nullptr;
-        }
+        free(str);
+
+        CORTO_NULL_OWNER(corto_delete(event.m_object));
+        event.m_object = nullptr;
     }
 
     Corto::Data &data = event.m_data;
@@ -565,9 +545,9 @@ bool CSyncAdapter::CreateData(std::string &type, std::string &parent, std::strin
     event.m_data.name(std::move(name));
     event.m_data.source(m_uuid);
 
-    event.m_object = object;
-    event.m_owner = false;
-    corto_claim(event.m_object);
+    corto_string str = corto_object_contentof(object, "text/json");
+    event.m_data.value(SAFE_STRING(str));
+    free(str);
 
     CreateData(event);
 
@@ -620,27 +600,7 @@ bool CSyncAdapter::UpdateData(std::string &type, std::string &parent, std::strin
     event.m_data.name(std::move(name));
     event.m_data.source(m_uuid);
 
-    if (event.m_object != nullptr && event.m_owner == false)
-    {
-        corto_release(event.m_object);
-        event.m_object = nullptr;
-    }
-
-    corto_object typeObj = corto_typeof(object);
-    CopyCallbackHandler copyCb = CORTO_OLS_GET_COPY_CB(typeObj);
-    if (copyCb != nullptr)
-    {
-        CORTO_NULL_OWNER(copyCb(&event.m_object, object));
-        event.m_owner = true;
-    }
-    else
-    {
-        corto_warning("Unable to find copy callback for type=%s",
-                       corto_fullpath(nullptr, typeObj));
-        event.m_object = object;
-        event.m_owner = false;
-        corto_claim(event.m_object);
-    }
+    CORTO_NULL_OWNER(corto_copy(&event.m_object, object));
 
     return true;
 }

@@ -71,7 +71,6 @@ Sample::Sample() :
 
 Event::Event() :
     m_object(nullptr),
-    m_owner(false),
     m_timestamp(0)
 {
 
@@ -81,15 +80,8 @@ Event::~Event()
 {
     if (m_object != nullptr)
     {
-        if (m_owner == true)
-        {
-            CORTO_NULL_OWNER(corto_delete(m_object));
-            m_object = nullptr;
-        }
-        else
-        {
-            corto_release(m_object);
-        }
+        CORTO_NULL_OWNER(corto_delete(m_object));
+        m_object = nullptr;
     }
 }
 
@@ -393,19 +385,14 @@ void CMongoHistorian::ProcessSamples()
 
         if (event.m_object != nullptr)
         {
-            corto_string str = corto_contentof(nullptr, "text/json", event.m_object);
+            corto_string str = corto_object_contentof(event.m_object, "text/json");
 
             event.m_value = SAFE_STRING(str);
-            if (event.m_owner == true)
-            {
-                CORTO_NULL_OWNER(corto_delete(event.m_object));
-                event.m_object = nullptr;
-            }
-            else
-            {
-                corto_release(event.m_object);
-                event.m_object = nullptr;
-            }
+
+            free(str);
+
+            CORTO_NULL_OWNER(corto_delete(event.m_object));
+            event.m_object = nullptr;
         }
 
         Sample sample;
@@ -660,17 +647,8 @@ void CMongoHistorian::UpdateSample(std::string &parent,
 
     if (updateEvent.m_object != nullptr)
     {
-        if (updateEvent.m_owner == true)
-        {
-            CORTO_NULL_OWNER(corto_delete(updateEvent.m_object));
-
-            updateEvent.m_object = nullptr;
-        }
-        else
-        {
-            corto_release(updateEvent.m_object);
-            updateEvent.m_object = nullptr;
-        }
+        CORTO_NULL_OWNER(corto_delete(updateEvent.m_object));
+        updateEvent.m_object = nullptr;
     }
 
     updateEvent.m_value = std::move(value);
@@ -696,31 +674,10 @@ void CMongoHistorian::UpdateSample(std::string &parent,
     sampleKey.m_id = std::move(id);
     sampleKey.m_type = std::move(type);
 
-    corto_object typeObj = corto_typeof(object);
-    CopyCallbackHandler copyCb = CORTO_OLS_GET_COPY_CB(typeObj);
-
     LockGuard lock(m_eventMutex);
     Event &updateEvent = m_eventBuffer[sampleKey];
-
-    if (updateEvent.m_object != nullptr && updateEvent.m_owner == false)
-    {
-        corto_release(updateEvent.m_object);
-        updateEvent.m_object = nullptr;
-    }
-
-    if (copyCb != nullptr)
-    {
-        CORTO_NULL_OWNER(copyCb(&updateEvent.m_object, object));
-        updateEvent.m_owner = true;
-    }
-    else
-    {
-        corto_warning("Unable to find copy callback for type=%s",
-                      corto_fullpath(nullptr, typeObj));
-        updateEvent.m_object = object;
-        updateEvent.m_owner = false;
-        corto_claim(updateEvent.m_object);
-    }
+    
+    CORTO_NULL_OWNER(corto_copy(&updateEvent.m_object, object));
 
     auto timeStamp = std::chrono::system_clock::now();
     updateEvent.m_timestamp =  TO_MILLISECONDS(timeStamp).count();

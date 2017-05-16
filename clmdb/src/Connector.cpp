@@ -77,7 +77,7 @@ void clmdb_Connector_delete(
 
 /* $end */
 
-corto_int16 _clmdb_Connector_construct(
+int16_t _clmdb_Connector_construct(
     clmdb_Connector _this)
 {
 /* $begin(recorto/clmdb/Connector/construct) */
@@ -97,7 +97,7 @@ corto_int16 _clmdb_Connector_construct(
 /* $end */
 }
 
-corto_void _clmdb_Connector_destruct(
+void _clmdb_Connector_destruct(
     clmdb_Connector _this)
 {
 /* $begin(recorto/clmdb/Connector/destruct) */
@@ -110,7 +110,7 @@ corto_void _clmdb_Connector_destruct(
 /* $end */
 }
 
-corto_void _clmdb_Connector_onNotify(
+void _clmdb_Connector_onNotify(
     clmdb_Connector _this,
     corto_eventMask event,
     corto_result *object)
@@ -186,9 +186,9 @@ void *clmdb_iterNext(corto_iter *iter)
 
     strJson = std::string(json, data.m_size-(json-(char*)data.m_data));
 
-    corto_setstr(&pData->result.id,(char*)data.m_key.c_str());
-    corto_setstr(&pData->result.type, type);
-    corto_setstr(&pData->result.parent, ".");
+    corto_ptr_setstr(&pData->result.id,(char*)data.m_key.c_str());
+    corto_ptr_setstr(&pData->result.type, type);
+    corto_ptr_setstr(&pData->result.parent, ".");
     pData->result.value = (corto_word)corto_strdup((char*)strJson.c_str());
 
     pData->cursor.Next();

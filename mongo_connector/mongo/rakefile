@@ -1,7 +1,7 @@
-PACKAGE = "recorto/mongo_connector/mongo"
-
-INCLUDE = ["$(CORTO_INCLUDE)"]
-
-LANGUAGE = "c4cpp"
-
+PACKAGE = 'recorto/mongo_connector/mongo'
+USE_PACKAGE = [
+    "/corto/fmt/json",
+    "/recorto/mongo_connector/driver/mongocxx",
+]
+LANGUAGE = 'c4cpp'
 require "#{ENV['CORTO_BUILD']}/package"

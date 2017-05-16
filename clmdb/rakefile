@@ -1,7 +1,7 @@
-PACKAGE = "recorto/clmdb"
-
-INCLUDE = ["$(CORTO_INCLUDE)"]
-
-LANGUAGE = "c4cpp"
-
+PACKAGE = 'recorto/clmdb'
+USE_PACKAGE = [
+    "/corto/fmt/json",
+    "/common/vendor/lmdb",
+]
+LANGUAGE = 'c4cpp'
 require "#{ENV['CORTO_BUILD']}/package"

@@ -1,0 +1,4 @@
+PACKAGE = 'recorto/mongo_connector/mongo/c'
+
+NOCORTO = true
+require "#{ENV['CORTO_BUILD']}/package"

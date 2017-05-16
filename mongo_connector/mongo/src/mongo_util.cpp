@@ -1,4 +1,4 @@
-#include "mongo_util.h"
+#include <recorto/mongo_connector/mongo/mongo_util.h>
 
 CMongoPool::CMongoPool() : m_pMongoPool(nullptr)
 {

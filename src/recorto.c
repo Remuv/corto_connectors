@@ -8,6 +8,10 @@
 
 #include <recorto/recorto.h>
 
+/* $header() */
+/* Enter code outside of main here. */
+/* $end */
+
 int recortoMain(int argc, char *argv[]) {
 /* $begin(main) */
 

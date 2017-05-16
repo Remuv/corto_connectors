@@ -1,0 +1,4 @@
+PACKAGE = 'recorto/dds/c'
+
+NOCORTO = true
+require "#{ENV['CORTO_BUILD']}/package"

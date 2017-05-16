@@ -8,13 +8,8 @@
 
 #include <recorto/data_models/data_models.h>
 
-/* $header() */
-void LoadReCortoDataModelsCopyCallbacks();
-/* $end */
-
 int data_modelsMain(int argc, char *argv[]) {
 /* $begin(main) */
-    LoadReCortoDataModelsCopyCallbacks();
     return 0;
 /* $end */
 }

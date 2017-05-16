@@ -1,3 +1,0 @@
-/common/vendor/lmdb
-/corto/fmt/json
-/recorto

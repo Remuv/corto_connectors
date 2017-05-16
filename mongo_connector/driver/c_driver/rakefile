@@ -5,6 +5,8 @@ INCLUDE = ["$(CORTO_INCLUDE)"]
 
 LIB = ["ssl"]
 
+USE_PACKAGE = ["/recorto/mongo_connector/driver/bson"]
+
 NOCORTO = true
 
 require "#{ENV['CORTO_BUILD']}/package"

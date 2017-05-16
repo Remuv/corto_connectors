@@ -8,6 +8,11 @@ INCLUDE = [
 
 LANGUAGE = 'c++'
 
+USE_PACKAGE = [
+    "/recorto/mongo_connector/driver/c_driver",
+    "/recorto/mongo_connector/driver/bsoncxx"
+]
+
 NOCORTO = true
 
 require "#{ENV['CORTO_BUILD']}/package"

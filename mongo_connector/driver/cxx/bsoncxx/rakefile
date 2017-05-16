@@ -10,4 +10,6 @@ LANGUAGE = 'c++'
 
 NOCORTO = true
 
+USE_PACKAGE=["/recorto/mongo_connector/driver/bson"]
+
 require "#{ENV['CORTO_BUILD']}/package"

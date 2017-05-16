@@ -9,7 +9,7 @@
 #include <recorto/mongo_connector/mongo/mongo.h>
 
 /* $header() */
-#include "mongo_util.h"
+#include <recorto/mongo_connector/mongo/mongo_util.h>
 #include <recorto/mongo_connector/mongo/historian_buffer.h>
 
 /* ********************************
@@ -84,9 +84,9 @@ void *mongo_objIterDataNext (corto_iter *iter)
     pData->result.history.next = mongo_objSampleNext;
     pData->result.history.release = mongo_objSampleRelease;
 
-    corto_setstr(&pData->result.id, (char*)id.c_str());
-    corto_setstr(&pData->result.type, (char*)type.c_str());
-    corto_setstr(&pData->result.parent, ".");
+    corto_ptr_setstr(&pData->result.id, (char*)id.c_str());
+    corto_ptr_setstr(&pData->result.type, (char*)type.c_str());
+    corto_ptr_setstr(&pData->result.parent, ".");
     pData->result.value = NULLWORD;
     pData->result.name = NULL;
 
@@ -173,7 +173,7 @@ mongo_objSampleData *mongo_objSampleDataNew (MongoHistorian::HistoryCursor &&cur
 }
 /* $end */
 
-corto_int16 _mongo_ObjectHistorian_construct(
+int16_t _mongo_ObjectHistorian_construct(
     mongo_ObjectHistorian _this)
 {
 /* $begin(recorto/mongo_connector/mongo/ObjectHistorian/construct) */
@@ -195,7 +195,7 @@ corto_int16 _mongo_ObjectHistorian_construct(
 /* $end */
 }
 
-corto_void _mongo_ObjectHistorian_destruct(
+void _mongo_ObjectHistorian_destruct(
     mongo_ObjectHistorian _this)
 {
 /* $begin(recorto/mongo_connector/mongo/ObjectHistorian/destruct) */
@@ -210,7 +210,7 @@ corto_void _mongo_ObjectHistorian_destruct(
 /* $end */
 }
 
-corto_void _mongo_ObjectHistorian_onNotify(
+void _mongo_ObjectHistorian_onNotify(
     mongo_ObjectHistorian _this,
     corto_eventMask event,
     corto_result *object)
@@ -254,7 +254,7 @@ corto_resultIter _mongo_ObjectHistorian_onRequest(
     if (request->from.kind == CORTO_FRAME_NOW &&
         request->to.kind == CORTO_FRAME_NOW)
     {
-        return CORTO_ITERATOR_EMPTY;
+        return CORTO_ITER_EMPTY;
     }
 
     std::string parent = SAFE_STRING(request->parent);

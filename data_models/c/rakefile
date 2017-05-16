@@ -1,0 +1,4 @@
+PACKAGE = 'recorto/data_models/c'
+
+NOCORTO = true
+require "#{ENV['CORTO_BUILD']}/package"

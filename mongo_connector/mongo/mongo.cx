@@ -1,8 +1,8 @@
 #package /recorto/mongo_connector/mongo
 
 class Connector : core/mount, hidden::
-    alias mount : mount/mount
-    alias mask : observer/mask
+    alias mount : subscriber/parent
+    alias expr : subscriber/expr
     dbname : string
     user : string
     password : string
@@ -17,7 +17,7 @@ class Connector : core/mount, hidden::
     void onNotify(core/eventMask event, core/result object)
 
 class Historian : core/mount, hidden::
-    alias mount : mount/mount
+    alias mount : subscriber/parent
     dbname : string
     user : string
     password : string
@@ -35,7 +35,7 @@ class Historian : core/mount, hidden::
     void onNotify(core/eventMask event, core/result object)
 
 class ObjectHistorian : core/mount, hidden::
-    alias mount : mount/mount
+    alias mount : subscriber/parent
     dbname : string
     user : string
     password : string

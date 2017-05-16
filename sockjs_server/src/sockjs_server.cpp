@@ -8,37 +8,7 @@
 
 #include <recorto/sockjsserver/sockjsserver.h>
 
-corto_int16 _sockjsserver_sockjs_server_construct(
-    sockjsserver_sockjs_server _this)
-{
-/* $begin(recorto/sockjsserver/sockjs_server/construct) */
-    return server_SockJs_construct(_this);
-/* $end */
-}
-
-corto_void _sockjsserver_sockjs_server_onAdded(
-    sockjsserver_sockjs_server _this,
-    corto_eventMask event,
-    corto_object object,
-    corto_observer observer)
-{
-/* $begin(recorto/sockjsserver/sockjs_server/onAdded) */
-
-/* $end */
-}
-
-corto_void _sockjsserver_sockjs_server_onChanged(
-    sockjsserver_sockjs_server _this,
-    corto_eventMask event,
-    corto_object object,
-    corto_observer observer)
-{
-/* $begin(recorto/sockjsserver/sockjs_server/onChanged) */
-
-/* $end */
-}
-
-corto_void _sockjsserver_sockjs_server_onClose(
+void _sockjsserver_sockjs_server_onClose(
     sockjsserver_sockjs_server _this,
     server_HTTP_Connection c)
 {
@@ -53,17 +23,7 @@ corto_void _sockjsserver_sockjs_server_onClose(
 /* $end */
 }
 
-corto_void _sockjsserver_sockjs_server_onData(
-    sockjsserver_sockjs_server _this,
-    server_HTTP_Connection c,
-    corto_string msg)
-{
-/* $begin(recorto/sockjsserver/sockjs_server/onData) */
-
-/* $end */
-}
-
-corto_void _sockjsserver_sockjs_server_onMessage(
+void _sockjsserver_sockjs_server_onMessage(
     sockjsserver_sockjs_server _this,
     server_HTTP_Connection c,
     corto_string msg)
@@ -79,7 +39,7 @@ corto_void _sockjsserver_sockjs_server_onMessage(
 /* $end */
 }
 
-corto_void _sockjsserver_sockjs_server_onOpen(
+void _sockjsserver_sockjs_server_onOpen(
     sockjsserver_sockjs_server _this,
     server_HTTP_Connection c)
 {
@@ -94,26 +54,7 @@ corto_void _sockjsserver_sockjs_server_onOpen(
 /* $end */
 }
 
-corto_void _sockjsserver_sockjs_server_onPoll(
-    sockjsserver_sockjs_server _this)
-{
-/* $begin(recorto/sockjsserver/sockjs_server/onPoll) */
-
-/* $end */
-}
-
-corto_void _sockjsserver_sockjs_server_onRemoved(
-    sockjsserver_sockjs_server _this,
-    corto_eventMask event,
-    corto_object object,
-    corto_observer observer)
-{
-/* $begin(recorto/sockjsserver/sockjs_server/onRemoved) */
-
-/* $end */
-}
-
-corto_void _sockjsserver_sockjs_server_sendMessage(
+void _sockjsserver_sockjs_server_sendMessage(
     sockjsserver_sockjs_server _this,
     server_HTTP_Connection c,
     corto_string msg)
@@ -123,10 +64,10 @@ corto_void _sockjsserver_sockjs_server_sendMessage(
 /* $end */
 }
 
-corto_void _sockjsserver_sockjs_server_setHandler(
+void _sockjsserver_sockjs_server_setHandler(
     sockjsserver_sockjs_server _this,
     corto_object obj,
-    corto_word func)
+    uintptr_t func)
 {
 /* $begin(recorto/sockjsserver/sockjs_server/setHandler) */
     _this->handler = (corto_word)obj;

@@ -12,7 +12,8 @@
 static corto_word gCounter = 0;
 
 #include <sys/types.h>
-#include "sync_adapter.h"
+#include <recorto/dds/sync_adapter.h>
+
 #include <sstream>
 
 #define REPLACE_CHR(str, from, to) std::replace(str.begin(), str.end(), from, to)
@@ -72,7 +73,7 @@ corto_void dds_ObjectConnector_OnDisposeData(dds_ObjectConnector _this, CCortoDa
 
 /* $end */
 
-corto_int16 _dds_ObjectConnector_construct(
+int16_t _dds_ObjectConnector_construct(
     dds_ObjectConnector _this)
 {
 /* $begin(recorto/dds/ObjectConnector/construct) */
@@ -110,7 +111,7 @@ corto_int16 _dds_ObjectConnector_construct(
 /* $end */
 }
 
-corto_void _dds_ObjectConnector_destruct(
+void _dds_ObjectConnector_destruct(
     dds_ObjectConnector _this)
 {
 /* $begin(recorto/dds/ObjectConnector/destruct) */
@@ -120,12 +121,12 @@ corto_void _dds_ObjectConnector_destruct(
         (*adapter)->Close();
         delete adapter;
         _this->dds_adapter = NULLWORD;
-    }    
+    }
     corto_mount_destruct(_this);
 /* $end */
 }
 
-corto_void _dds_ObjectConnector_onNotify(
+void _dds_ObjectConnector_onNotify(
     dds_ObjectConnector _this,
     corto_eventMask event,
     corto_result *object)
@@ -187,10 +188,10 @@ void *dds_objIterNext(corto_iter *iter)
 
     const Corto::Data &data =(*pData->iter).data();
 
-    corto_setstr(&pData->result.id, (char*)data.id().c_str());
-    corto_setstr(&pData->result.name, (char*)data.name().c_str());
-    corto_setstr(&pData->result.type, (char*)data.type().c_str());
-    corto_setstr(&pData->result.parent, ".");//(char*)pData->parent.c_str()); //(char*)data.parent().c_str());
+    corto_ptr_setstr(&pData->result.id, (char*)data.id().c_str());
+    corto_ptr_setstr(&pData->result.name, (char*)data.name().c_str());
+    corto_ptr_setstr(&pData->result.type, (char*)data.type().c_str());
+    corto_ptr_setstr(&pData->result.parent, ".");//(char*)pData->parent.c_str()); //(char*)data.parent().c_str());
 
     pData->iter++;
     return &pData->result;
@@ -267,11 +268,11 @@ corto_resultIter _dds_ObjectConnector_onRequest(
 /* $end */
 }
 
-corto_word _dds_ObjectConnector_onSubscribe(
+uintptr_t _dds_ObjectConnector_onSubscribe(
     dds_ObjectConnector _this,
     corto_string parent,
     corto_string expr,
-    corto_word ctx)
+    uintptr_t ctx)
 {
 /* $begin(recorto/dds/ObjectConnector/onSubscribe) */
     if(_this->dds_adapter == NULLWORD)
@@ -288,11 +289,11 @@ corto_word _dds_ObjectConnector_onSubscribe(
 /* $end */
 }
 
-corto_word _dds_ObjectConnector_onUnsubscribe(
+uintptr_t _dds_ObjectConnector_onUnsubscribe(
     dds_ObjectConnector _this,
     corto_string parent,
     corto_string expr,
-    corto_word ctx)
+    uintptr_t ctx)
 {
 /* $begin(recorto/dds/ObjectConnector/onUnsubscribe) */
     if(_this->dds_adapter == NULLWORD)

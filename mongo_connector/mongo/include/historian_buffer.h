@@ -35,7 +35,6 @@ namespace MongoHistorian
     {
         std::string  m_value;
         corto_object m_object;
-        bool         m_owner;
         uint64_t     m_timestamp;
 
         Event();

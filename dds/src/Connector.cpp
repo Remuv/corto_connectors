@@ -16,7 +16,8 @@ static corto_word gCounter = 0;
 
 #include <sys/types.h>
 
-#include "sync_adapter.h"
+#include <recorto/dds/sync_adapter.h>
+
 #include <sstream>
 
 
@@ -79,7 +80,7 @@ corto_void dds_Connector_OnDisposeData(dds_Connector _this, CCortoDataSubscriber
 }
 /* $end */
 
-corto_int16 _dds_Connector_construct(
+int16_t _dds_Connector_construct(
     dds_Connector _this)
 {
 /* $begin(recorto/dds/Connector/construct) */
@@ -119,7 +120,7 @@ corto_int16 _dds_Connector_construct(
 /* $end */
 }
 
-corto_void _dds_Connector_destruct(
+void _dds_Connector_destruct(
     dds_Connector _this)
 {
 /* $begin(recorto/dds/Connector/destruct) */
@@ -136,7 +137,7 @@ corto_void _dds_Connector_destruct(
 /* $end */
 }
 
-corto_void _dds_Connector_onNotify(
+void _dds_Connector_onNotify(
     dds_Connector _this,
     corto_eventMask event,
     corto_result *object)
@@ -203,10 +204,10 @@ void *dds_iterNext(corto_iter *iter)
 
     const Corto::Data &data =(*pData->iter).data();
 
-    corto_setstr(&pData->result.id, (char*)data.id().c_str());
-    corto_setstr(&pData->result.name, (char*)data.name().c_str());
-    corto_setstr(&pData->result.type, (char*)data.type().c_str());
-    corto_setstr(&pData->result.parent, ".");//(char*)pData->parent.c_str()); //(char*)data.parent().c_str());
+    corto_ptr_setstr(&pData->result.id, (char*)data.id().c_str());
+    corto_ptr_setstr(&pData->result.name, (char*)data.name().c_str());
+    corto_ptr_setstr(&pData->result.type, (char*)data.type().c_str());
+    corto_ptr_setstr(&pData->result.parent, ".");//(char*)pData->parent.c_str()); //(char*)data.parent().c_str());
     pData->result.value = (corto_word)corto_strdup(data.value().c_str());
 
     pData->iter++;
@@ -288,11 +289,11 @@ corto_resultIter _dds_Connector_onRequest(
 /* $end */
 }
 
-corto_word _dds_Connector_onSubscribe(
+uintptr_t _dds_Connector_onSubscribe(
     dds_Connector _this,
     corto_string parent,
     corto_string expr,
-    corto_word ctx)
+    uintptr_t ctx)
 {
 /* $begin(recorto/dds/Connector/onSubscribe) */
     if(_this->dds_adapter == NULLWORD)
@@ -311,11 +312,11 @@ corto_word _dds_Connector_onSubscribe(
 /* $end */
 }
 
-corto_word _dds_Connector_onUnsubscribe(
+uintptr_t _dds_Connector_onUnsubscribe(
     dds_Connector _this,
     corto_string parent,
     corto_string expr,
-    corto_word ctx)
+    uintptr_t ctx)
 {
 /* $begin(recorto/dds/Connector/onUnsubscribe) */
     if(_this->dds_adapter == NULLWORD)

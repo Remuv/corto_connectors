@@ -9,36 +9,22 @@
 #include <corto/corto.h>
 #include <corto/corto.h>
 #include <recorto/mongo_connector/mongo/_project.h>
-#include <recorto/mongo_connector/mongo_connector.h>
-#include <recorto/common/common.h>
-#include <recorto/recorto.h>
+#include <corto/c/c.h>
 #include <recorto/mongo_connector/driver/mongocxx/mongocxx.h>
 #include <corto/fmt/json/json.h>
-#include <corto/core/c/c.h>
-#include <corto/lang/c/c.h>
 
 /* $header() */
 /* Enter additional code here. */
 /* $end */
 
 #include <recorto/mongo_connector/mongo/_type.h>
+#include <recorto/mongo_connector/mongo/_interface.h>
 #include <recorto/mongo_connector/mongo/_load.h>
-#include <recorto/mongo_connector/mongo/_api.h>
+#include <recorto/mongo_connector/mongo/c/_api.h>
 
 /* $body() */
 /* Enter code that requires types here */
 /* $end */
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include <recorto/mongo_connector/mongo/Connector.h>
-#include <recorto/mongo_connector/mongo/Historian.h>
-#include <recorto/mongo_connector/mongo/ObjectHistorian.h>
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif
 

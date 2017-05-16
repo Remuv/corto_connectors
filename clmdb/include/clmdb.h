@@ -9,42 +9,22 @@
 #include <corto/corto.h>
 #include <corto/corto.h>
 #include <recorto/clmdb/_project.h>
-#include <recorto/recorto.h>
-#include <corto/fmt/json/json.h>
+#include <corto/c/c.h>
 #include <common/vendor/lmdb/lmdb.h>
-#include <corto/core/c/c.h>
-#include <corto/lang/c/c.h>
+#include <corto/fmt/json/json.h>
 
 /* $header() */
-/* You can put your own definitions here! */
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include <corto/fmt/json/json.h>
-
-#ifdef __cplusplus
-}
-#endif
-
+/* Enter additional code here. */
 /* $end */
 
 #include <recorto/clmdb/_type.h>
+#include <recorto/clmdb/_interface.h>
 #include <recorto/clmdb/_load.h>
-#include <recorto/clmdb/_api.h>
+#include <recorto/clmdb/c/_api.h>
 
 /* $body() */
 /* Enter code that requires types here */
 /* $end */
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include <recorto/clmdb/Connector.h>
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif
 

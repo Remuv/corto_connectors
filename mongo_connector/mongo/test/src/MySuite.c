@@ -153,9 +153,10 @@ corto_void _test_MySuite_testHistorical(
         5000000
     );
 
-    corto_string json = corto_contentof(NULL, "text/json", mongo);
+    corto_string json = corto_object_contentof(mongo, "text/json");
     printf("%s \n", json);
-
+    free(json);
+    
     //CORTO_UNUSED(mongo);
     corto_float32 *A = corto_float32CreateChild(mount, "A", 0);
     test_Vec2 v0 = test_Vec2CreateChild(A, "v0", 0, 0);

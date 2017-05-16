@@ -1,0 +1,16 @@
+{
+    "id": "recorto/sockjsserver",
+    "type": "package",
+    "value": {
+        "description": "Making the world a better place",
+        "author": "Arthur Dent",
+        "version": "1.0.0",
+        "language": "c4cpp",
+        "managed": true,
+        "dependencies":[
+            "/corto/web",
+            "/corto/web/server",
+            "/corto/ws"
+        ]
+    }
+}

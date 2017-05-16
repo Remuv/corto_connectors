@@ -9,7 +9,7 @@
 #include <recorto/mongo_connector/mongo/mongo.h>
 
 /* $header() */
-#include "mongo_util.h"
+#include <recorto/mongo_connector/mongo/mongo_util.h>
 
 #include <bsoncxx/json.hpp>
 #include <bsoncxx/stdx/string_view.hpp>
@@ -234,7 +234,7 @@ void *mongodb_iterDataNext(corto_iter *iter)
     bsoncxx::document::view data = *pData->iter;
 
     element name = data["id"];
-    corto_setstr(&pData->result.id, (char*)name.get_utf8().value.to_string().c_str());
+    corto_ptr_setstr(&pData->result.id, (char*)name.get_utf8().value.to_string().c_str());
 
     element value = data["value"];
     pData->result.value = (corto_word)corto_strdup((char*)value.get_utf8().value.to_string().c_str());
@@ -244,9 +244,9 @@ void *mongodb_iterDataNext(corto_iter *iter)
     bsoncxx::document::view view = meta.get_document().view();
 
     element type = view["type"];
-    corto_setstr(&pData->result.type, (char*)type.get_utf8().value.to_string().c_str());
+    corto_ptr_setstr(&pData->result.type, (char*)type.get_utf8().value.to_string().c_str());
 
-    corto_setstr(&pData->result.parent, ".");
+    corto_ptr_setstr(&pData->result.parent, ".");
 
     pData->result.name = NULL;
     pData->iter++;
@@ -314,7 +314,7 @@ mongodb_iterData *mongodb_iterDataNew(MongoClientPtr &&pClient, mongocxx::cursor
 }
 /* $end */
 
-corto_int16 _mongo_Connector_construct(
+int16_t _mongo_Connector_construct(
     mongo_Connector _this)
 {
 /* $begin(recorto/mongo_connector/mongo/Connector/construct) */
@@ -332,7 +332,7 @@ corto_int16 _mongo_Connector_construct(
 /* $end */
 }
 
-corto_void _mongo_Connector_destruct(
+void _mongo_Connector_destruct(
     mongo_Connector _this)
 {
 /* $begin(recorto/mongo_connector/mongo/Connector/destruct) */
@@ -345,7 +345,7 @@ corto_void _mongo_Connector_destruct(
 /* $end */
 }
 
-corto_void _mongo_Connector_onNotify(
+void _mongo_Connector_onNotify(
     mongo_Connector _this,
     corto_eventMask event,
     corto_result *object)
@@ -355,7 +355,7 @@ corto_void _mongo_Connector_onNotify(
     {
         return;
     }
-        
+
     if (event & CORTO_ON_DEFINE)
     {
         corto_string json = (corto_string)(void*)object->value;
