@@ -1,9 +1,0 @@
-PACKAGE = 'recorto/dds'
-USE_PACKAGE = [
-    "/common/interface/corto",
-    "corto/fmt/json",
-    "common/base",
-    "common/dds/vendor",
-]
-LANGUAGE = 'c4cpp'
-require "#{ENV['CORTO_BUILD']}/package"
